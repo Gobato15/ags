@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <item>
+        <id>1</id>
+        <name>Classic Smash Burgerrrrr</name>
+        <category>burgers</category>
+        <price>32.90</price>
+        <description>Blend especial de 160g, queijo cheddar derretido, alface crespa e molho secreto no pão brioche.</description>
+        <image>assets/burger_premium.png</image>
+    </item>
+    <item>
+        <id>2</id>
+        <name>Pizza Margherita Premium</name>
+        <category>pizzas</category>
+        <price>54.90</price>
+        <description>Molho de tomate artesanal, muçarela de búfala, manjericão fresco e azeite extravirgem.</description>
+        <image>assets/pizza_premium.png</image>
+    </item>
+    <item>
+        <id>3</id>
+        <name>Combo Sushi Zen</name>
+        <category>sushi</category>
+        <price>78.00</price>
+        <description>Seleção do chef com 16 peças: nigiri de salmão, maki de abacate e uramaki Filadélfia.</description>
+        <image>assets/sushi_premium.png</image>
+    </item>
+    <item>
+        <id>4</id>
+        <name>Double Bacon Burger</name>
+        <category>burgers</category>
+        <price>38.50</price>
+        <description>Dois hambúrgueres de 120g, muito bacon crocante, cebola caramelizada e maionese defumada.</description>
+        <image>assets/burger_premium.png</image>
+    </item>
+    <item>
+        <id>5</id>
+        <name>Pizza Calabresa Especial</name>
+        <category>pizzas</category>
+        <price>49.90</price>
+        <description>Calabresa artesanal, cebola roxa, azeitonas pretas e orégano fresco.</description>
+        <image>assets/pizza_premium.png</image>
+    </item>
+    <item>
+        <id>6</id>
+        <name>Suco de Laranja Natural</name>
+        <category>drinks</category>
+        <price>12.00</price>
+        <description>Suco 100% natural, espremido na hora. 500ml.</description>
+        <image>https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+    </item>
+</menu>
