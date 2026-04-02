@@ -2,82 +2,92 @@ let menuItems = [];
 
 // DOM Elements
 const menuGrid = document.getElementById('menuGrid');
-const categoryPills = document.querySelectorAll('.category-pill');
+const categoryContainer = document.getElementById('categoryContainer');
 const searchInput = document.getElementById('searchInput');
+
+// Labels para as categorias (opcional, para exibir nomes mais bonitos)
+const categoryLabels = {
+    'all': 'Todos',
+    'burgers': 'Burgers',
+    'pizzas': 'Pizzas',
+    'sushi': 'Sushi',
+    'drinks': 'Bebidas',
+    'desserts': 'Sobremesas'
+};
 
 // Fetch and Parse XML
 async function loadMenu() {
     console.log("Iniciando carregamento do cardápio...");
 
-    const isLocalFile = window.location.protocol === 'file:';
-
-    // Se menuItemsData estiver disponível ou se estivermos em arquivo local sem servidor, use os dados JS
-    if (window.menuItemsData || isLocalFile) {
-        if (window.menuItemsData) {
-            console.log("Modo Local: Carregando dados de menuData.js...");
-            menuItems = window.menuItemsData;
-            renderMenu();
-            return;
-        } else if (isLocalFile) {
-            console.error("ERRO: menuData.js não foi carregado corretamente.");
-            menuGrid.innerHTML = `
-                <div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #cc0000; border: 1px dashed #ff4d4d; border-radius: 12px; background: #fff5f5;">
-                    <h3>Dados não encontrados!</h3>
-                    <p>O arquivo <strong>menuData.js</strong> parece estar faltando ou vazio.</p>
-                </div>
-            `;
-            return;
-        }
-    }
-
     try {
-        const response = await fetch('items.xml');
-        console.log("Status da resposta XML:", response.status, response.statusText);
+        console.log("Tentando carregar items.xml...");
+        const response = await fetch('items.xml?v=' + Date.now());
         
-        if (!response.ok) {
-            throw new Error(`Erro HTTP: ${response.status} - Verifique se você está usando um servidor como o Apache do XAMPP.`);
+        if (response.ok) {
+            const str = await response.text();
+            const data = new window.DOMParser().parseFromString(str, "text/xml");
+            
+            const parseError = data.getElementsByTagName("parsererror");
+            if (parseError.length > 0) throw new Error("Erro de XML");
+
+            const items = data.getElementsByTagName("item");
+
+            if (items.length > 0) {
+                menuItems = Array.from(items).map(item => {
+                    const getTagValue = (tagName) => {
+                        const el = item.getElementsByTagName(tagName)[0];
+                        return el ? el.textContent : '';
+                    };
+
+                    return {
+                        id: getTagValue("id"),
+                        name: getTagValue("name"),
+                        category: getTagValue("category"),
+                        price: parseFloat(getTagValue("price")) || 0,
+                        description: getTagValue("description"),
+                        image: getTagValue("image")
+                    };
+                });
+                
+                renderCategories();
+                renderMenu();
+                return;
+            }
         }
-
-        const str = await response.text();
-        const data = new window.DOMParser().parseFromString(str, "text/xml");
-        
-        // Verifica se houve erro de parse no XML
-        const parseError = data.getElementsByTagName("parsererror");
-        if (parseError.length > 0) {
-            console.error("Erro de parse no XML:", parseError[0].textContent);
-            throw new Error("O arquivo items.xml contém erros de sintaxe.");
-        }
-
-        const items = data.getElementsByTagName("item");
-        console.log(`Itens encontrados no XML: ${items.length}`);
-        
-        menuItems = Array.from(items).map(item => {
-            const getTagValue = (tagName) => {
-                const el = item.getElementsByTagName(tagName)[0];
-                return el ? el.textContent : '';
-            };
-
-            return {
-                id: getTagValue("id"),
-                name: getTagValue("name"),
-                category: getTagValue("category"),
-                price: parseFloat(getTagValue("price")) || 0,
-                description: getTagValue("description"),
-                image: getTagValue("image")
-            };
-        });
-
-        renderMenu();
-    } catch (error) {
-        console.error("DEBUG - Detalhes do Erro:", error);
-        menuGrid.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #cc0000; border: 1px dashed #ff4d4d; border-radius: 12px; background: #fff5f5;">
-                <h3>Oops! Não conseguimos carregar o menu.</h3>
-                <p>${error.message}</p>
-                <p style="font-size: 0.8rem; margin-top: 1rem; color: #666;">Dica: Certifique-se de acessar via <strong>http://localhost/ags/index.html</strong> e não diretamente pelo arquivo.</p>
-            </div>
-        `;
+    } catch (e) {
+        console.warn("Fetch XML falhou, tentando fallback...", e.message);
     }
+
+    if (window.menuItemsData) {
+        menuItems = window.menuItemsData;
+        renderCategories();
+        renderMenu();
+    }
+}
+
+// Generate Categories dynamically
+function renderCategories() {
+    const categories = ['all', ...new Set(menuItems.map(item => item.category))];
+    
+    categoryContainer.innerHTML = '';
+    
+    categories.forEach(cat => {
+        const pill = document.createElement('div');
+        pill.className = `category-pill ${cat === 'all' ? 'active' : ''}`;
+        pill.dataset.category = cat;
+        
+        // Usa o label mapeado ou coloca a primeira letra em maiúsculo
+        const label = categoryLabels[cat] || cat.charAt(0).toUpperCase() + cat.slice(1);
+        pill.textContent = label;
+        
+        pill.addEventListener('click', () => {
+            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            renderMenu(cat, searchInput.value);
+        });
+        
+        categoryContainer.appendChild(pill);
+    });
 }
 
 // Initial Render
@@ -112,17 +122,9 @@ function renderMenu(filter = 'all', searchQuery = '') {
     });
 }
 
-// Event Listeners
-categoryPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-        categoryPills.forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        renderMenu(pill.dataset.category, searchInput.value);
-    });
-});
-
 searchInput.addEventListener('input', (e) => {
-    const activeCategory = document.querySelector('.category-pill.active').dataset.category;
+    const activePill = document.querySelector('.category-pill.active');
+    const activeCategory = activePill ? activePill.dataset.category : 'all';
     renderMenu(activeCategory, e.target.value);
 });
 

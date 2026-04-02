@@ -1,7 +1,7 @@
 window.menuItemsData = [
     {
         id: "1",
-        name: "Classic Smash Burger",
+        name: "Coxinha do Gobatinho",
         category: "burgers",
         price: 32.90,
         description: "Blend especial de 160g, queijo cheddar derretido, alface crespa e molho secreto no pão brioche.",
