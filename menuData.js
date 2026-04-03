@@ -20,7 +20,7 @@ window.menuItemsData = [
         name: "Bolinho de Carne",
         category: "bolinho",
         price: 9.00,
-        description: "Bolinho de carne artesanal, temperado com ervas e frito até ficar crocante.",
+        description: "Bolinho de carne artesanal, temperado with ervas e frito até ficar crocante.",
         image: "assets/bolinho_carne.png"
     },
     {
@@ -33,19 +33,43 @@ window.menuItemsData = [
     },
     {
         id: "2",
-        name: "Esfirra de Carne Premium",
+        name: "Esfirra de Carne",
         category: "esfirra",
         price: 8.50,
         description: "Massa leve e fofinha, recheio de carne temperada com especiarias árabes.",
-        image: "assets/pizza_premium.png"
+        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=400&q=80"
     },
     {
-        id: "3",
-        name: "Croissant de Salmão",
+        id: "9",
+        name: "Esfirra de Frango",
+        category: "esfirra",
+        price: 8.50,
+        description: "Frango desfiado suculento com tempero especial da casa.",
+        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        id: "10",
+        name: "Esfirra de Calabresa",
+        category: "esfirra",
+        price: 8.50,
+        description: "Calabresa artesanal moída com cebola e toque de orégano.",
+        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        id: "11",
+        name: "Croissant de Queijo",
         category: "croissant",
         price: 15.00,
-        description: "Folhado francês crocante com recheio cremoso de salmão e cream cheese.",
-        image: "assets/sushi_premium.png"
+        description: "Massa folhada francesa com recheio de queijo derretido.",
+        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        id: "12",
+        name: "Croissant Presunto e Queijo",
+        category: "croissant",
+        price: 16.50,
+        description: "Clássico croissant com fatias de presunto e queijo mussarela.",
+        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80"
     },
     {
         id: "4",
@@ -54,14 +78,6 @@ window.menuItemsData = [
         price: 11.50,
         description: "Duas carnes, bacon crocante, presunto, mussarela e cheddar no pão artesanal.",
         image: "assets/hamburguinho.png"
-    },
-    {
-        id: "5",
-        name: "Esfirra de Queijo",
-        category: "esfirra",
-        price: 7.90,
-        description: "Mistura de queijos especiais derretidos em massa artesanal.",
-        image: "assets/pizza_premium.png"
     },
     {
         id: "6",

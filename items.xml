@@ -34,19 +34,43 @@
     </item>
     <item>
         <id>2</id>
-        <name>Esfirra de Carne Premium</name>
+        <name>Esfirra de Carne</name>
         <category>esfirra</category>
         <price>8.50</price>
         <description>Massa leve e fofinha, recheio de carne temperada com especiarias árabes.</description>
-        <image>assets/pizza_premium.png</image>
+        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
     </item>
     <item>
-        <id>3</id>
-        <name>Croissant de Salmão</name>
+        <id>9</id>
+        <name>Esfirra de Frango</name>
+        <category>esfirra</category>
+        <price>8.50</price>
+        <description>Frango desfiado suculento com tempero especial da casa.</description>
+        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+    </item>
+    <item>
+        <id>10</id>
+        <name>Esfirra de Calabresa</name>
+        <category>esfirra</category>
+        <price>8.50</price>
+        <description>Calabresa artesanal moída com cebola e toque de orégano.</description>
+        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+    </item>
+    <item>
+        <id>11</id>
+        <name>Croissant de Queijo</name>
         <category>croissant</category>
         <price>15.00</price>
-        <description>Folhado francês crocante com recheio cremoso de salmão e cream cheese.</description>
-        <image>assets/sushi_premium.png</image>
+        <description>Massa folhada francesa com recheio de queijo derretido.</description>
+        <image>https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+    </item>
+    <item>
+        <id>12</id>
+        <name>Croissant Presunto e Queijo</name>
+        <category>croissant</category>
+        <price>16.50</price>
+        <description>Clássico croissant com fatias de presunto e queijo mussarela.</description>
+        <image>https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
     </item>
     <item>
         <id>4</id>
@@ -55,14 +79,6 @@
         <price>11.50</price>
         <description>Duas carnes, bacon crocante, presunto, mussarela e cheddar no pão artesanal.</description>
         <image>assets/hamburguinho.png</image>
-    </item>
-    <item>
-        <id>5</id>
-        <name>Esfirra de Queijo</name>
-        <category>esfirra</category>
-        <price>7.90</price>
-        <description>Mistura de queijos especiais derretidos em massa artesanal.</description>
-        <image>assets/pizza_premium.png</image>
     </item>
     <item>
         <id>6</id>
