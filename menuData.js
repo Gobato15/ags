@@ -9,7 +9,7 @@ window.menuItemsData = [
     },
     {
         id: "1",
-        name: "Coxinha Especial",
+        name: "Coxinha",
         category: "coxinha",
         price: 7.00,
         description: "Coxinha de Frango cremosa de 100g, receita da casa com massa de batata.",
@@ -27,17 +27,17 @@ window.menuItemsData = [
         id: "8",
         name: "Bolinho de Ovo",
         category: "bolinho",
-        price: 12.00,
+        price: 9.00,
         description: "Ovo cozido envolvido em massa de carne suculenta e empanado.",
-        image: "https://images.unsplash.com/photo-1579207010427-b50a36e52002?auto=format&fit=crop&w=400&q=80"
+        image: "https://images.unsplash.com/photo-1579207010427-b50a36e52002?q=60&w=400"
     },
     {
         id: "2",
         name: "Esfirra de Carne",
         category: "esfirra",
         price: 8.50,
-        description: "Massa leve e fofinha, recheio de carne temperada com especiarias árabes.",
-        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=400&q=80"
+        description: "Massa leve e fofinha, recheio de carne temperada com especiarias.",
+        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&w=400"
     },
     {
         id: "9",
@@ -45,7 +45,7 @@ window.menuItemsData = [
         category: "esfirra",
         price: 8.50,
         description: "Frango desfiado suculento com tempero especial da casa.",
-        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=400&q=80"
+        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&w=400"
     },
     {
         id: "10",
@@ -53,23 +53,23 @@ window.menuItemsData = [
         category: "esfirra",
         price: 8.50,
         description: "Calabresa artesanal moída com cebola e toque de orégano.",
-        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&fit=crop&w=400&q=80"
+        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&w=400"
     },
     {
         id: "11",
         name: "Croissant de Queijo",
         category: "croissant",
         price: 15.00,
-        description: "Massa folhada francesa com recheio de queijo derretido.",
-        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80"
+        description: "Massa folhada francesa with recheio de queijo derretido.",
+        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=60&w=400"
     },
     {
         id: "12",
         name: "Croissant Presunto e Queijo",
         category: "croissant",
         price: 16.50,
-        description: "Clássico croissant com fatias de presunto e queijo mussarela.",
-        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=80"
+        description: "Clássico croissant with fatias de presunto e queijo mussarela.",
+        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=60&w=400"
     },
     {
         id: "4",
@@ -85,7 +85,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 6.00,
         description: "Refrigerante Coca-Cola original gelado. Garrafa 200ml.",
-        image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80"
+        image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?q=60&w=400"
     },
     {
         id: "14",
@@ -93,7 +93,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 6.00,
         description: "Refrigerante Coca-Cola sem açúcar gelado. Garrafa 200ml.",
-        image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80"
+        image: "https://images.unsplash.com/photo-1629203851022-39c6f2c79835?q=60&w=400"
     },
     {
         id: "15",
@@ -101,7 +101,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 6.00,
         description: "Refrigerante Sprite sabor limão gelado. Garrafa 200ml.",
-        image: "https://images.unsplash.com/photo-1625772290748-390b1dfa539e?auto=format&fit=crop&w=400&q=80"
+        image: "https://images.unsplash.com/photo-1625772290748-390b1dfa539e?q=60&w=400"
     },
     {
         id: "16",
@@ -109,6 +109,6 @@ window.menuItemsData = [
         category: "drinks",
         price: 4.50,
         description: "Água mineral natural cristalina e refrescante. 500ml.",
-        image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=400&q=80"
+        image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=60&w=400"
     }
 ];

@@ -30,7 +30,7 @@
         <category>bolinho</category>
         <price>9.00</price>
         <description>Ovo cozido envolvido em massa de carne suculenta e empanado.</description>
-        <image>https://images.unsplash.com/photo-1579207010427-b50a36e52002?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <image>https://images.unsplash.com/photo-1579207010427-b50a36e52002?q=60&amp;w=400</image>
     </item>
     <item>
         <id>2</id>
@@ -38,7 +38,7 @@
         <category>esfirra</category>
         <price>8.50</price>
         <description>Massa leve e fofinha, recheio de carne temperada com especiarias.</description>
-        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&amp;w=400</image>
     </item>
     <item>
         <id>9</id>
@@ -46,7 +46,7 @@
         <category>esfirra</category>
         <price>8.50</price>
         <description>Frango desfiado suculento com tempero especial da casa.</description>
-        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&amp;w=400</image>
     </item>
     <item>
         <id>10</id>
@@ -54,7 +54,7 @@
         <category>esfirra</category>
         <price>8.50</price>
         <description>Calabresa artesanal moída com cebola e toque de orégano.</description>
-        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&amp;w=400</image>
     </item>
     <item>
         <id>11</id>
@@ -62,7 +62,7 @@
         <category>croissant</category>
         <price>15.00</price>
         <description>Massa folhada francesa com recheio de queijo derretido.</description>
-        <image>https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <image>https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=60&amp;w=400</image>
     </item>
     <item>
         <id>12</id>
@@ -70,7 +70,7 @@
         <category>croissant</category>
         <price>16.50</price>
         <description>Clássico croissant com fatias de presunto e queijo mussarela.</description>
-        <image>https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <image>https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=60&amp;w=400</image>
     </item>
     <item>
         <id>4</id>
@@ -86,7 +86,7 @@
         <category>drinks</category>
         <price>6.00</price>
         <description>Refrigerante Coca-Cola original gelado. Garrafa 200ml.</description>
-        <image>https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <image>https://images.unsplash.com/photo-1554866585-cd94860890b7?q=60&amp;w=400</image>
     </item>
     <item>
         <id>14</id>
@@ -94,7 +94,7 @@
         <category>drinks</category>
         <price>6.00</price>
         <description>Refrigerante Coca-Cola sem açúcar gelado. Garrafa 200ml.</description>
-        <image>https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <image>https://images.unsplash.com/photo-1629203851022-39c6f2c79835?q=60&amp;w=400</image>
     </item>
     <item>
         <id>15</id>
@@ -102,7 +102,7 @@
         <category>drinks</category>
         <price>6.00</price>
         <description>Refrigerante Sprite sabor limão gelado. Garrafa 200ml.</description>
-        <image>https://images.unsplash.com/photo-1625772290748-390b1dfa539e?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <image>https://images.unsplash.com/photo-1625772290748-390b1dfa539e?q=60&amp;w=400</image>
     </item>
     <item>
         <id>16</id>
@@ -110,6 +110,6 @@
         <category>drinks</category>
         <price>4.50</price>
         <description>Água mineral natural cristalina e refrescante. 500ml.</description>
-        <image>https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <image>https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=60&amp;w=400</image>
     </item>
 </menu>
