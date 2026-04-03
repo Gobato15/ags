@@ -10,7 +10,7 @@
     </item>
     <item>
         <id>1</id>
-        <name>Coxinha Especial</name>
+        <name>Coxinha</name>
         <category>coxinha</category>
         <price>7.00</price>
         <description>Coxinha de Frango cremosa de 100g, receita da casa com massa de batata.</description>
@@ -28,7 +28,7 @@
         <id>8</id>
         <name>Bolinho de Ovo</name>
         <category>bolinho</category>
-        <price>12.00</price>
+        <price>9.00</price>
         <description>Ovo cozido envolvido em massa de carne suculenta e empanado.</description>
         <image>https://images.unsplash.com/photo-1579207010427-b50a36e52002?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
     </item>
@@ -37,7 +37,7 @@
         <name>Esfirra de Carne</name>
         <category>esfirra</category>
         <price>8.50</price>
-        <description>Massa leve e fofinha, recheio de carne temperada com especiarias árabes.</description>
+        <description>Massa leve e fofinha, recheio de carne temperada com especiarias.</description>
         <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
     </item>
     <item>
