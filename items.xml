@@ -81,11 +81,35 @@
         <image>assets/hamburguinho.png</image>
     </item>
     <item>
-        <id>6</id>
-        <name>Suco de Laranja Natural</name>
+        <id>13</id>
+        <name>Coca-Cola 200ml</name>
         <category>drinks</category>
-        <price>12.00</price>
-        <description>Suco 100% natural, espremido na hora. 500ml.</description>
-        <image>https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+        <price>6.00</price>
+        <description>Refrigerante Coca-Cola original gelado. Garrafa 200ml.</description>
+        <image>https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+    </item>
+    <item>
+        <id>14</id>
+        <name>Coca-Cola Zero 200ml</name>
+        <category>drinks</category>
+        <price>6.00</price>
+        <description>Refrigerante Coca-Cola sem açúcar gelado. Garrafa 200ml.</description>
+        <image>https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+    </item>
+    <item>
+        <id>15</id>
+        <name>Sprite 200ml</name>
+        <category>drinks</category>
+        <price>6.00</price>
+        <description>Refrigerante Sprite sabor limão gelado. Garrafa 200ml.</description>
+        <image>https://images.unsplash.com/photo-1625772290748-390b1dfa539e?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+    </item>
+    <item>
+        <id>16</id>
+        <name>Água Mineral</name>
+        <category>drinks</category>
+        <price>4.50</price>
+        <description>Água mineral natural cristalina e refrescante. 500ml.</description>
+        <image>https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
     </item>
 </menu>

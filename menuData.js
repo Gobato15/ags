@@ -20,7 +20,7 @@ window.menuItemsData = [
         name: "Bolinho de Carne",
         category: "bolinho",
         price: 9.00,
-        description: "Bolinho de carne artesanal, temperado with ervas e frito até ficar crocante.",
+        description: "Bolinho de carne artesanal, temperado com ervas e frito até ficar crocante.",
         image: "assets/bolinho_carne.png"
     },
     {
@@ -80,11 +80,35 @@ window.menuItemsData = [
         image: "assets/hamburguinho.png"
     },
     {
-        id: "6",
-        name: "Suco de Laranja Natural",
+        id: "13",
+        name: "Coca-Cola 200ml",
         category: "drinks",
-        price: 12.00,
-        description: "Suco 100% natural, espremido na hora. 500ml.",
-        image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&w=400&q=80"
+        price: 6.00,
+        description: "Refrigerante Coca-Cola original gelado. Garrafa 200ml.",
+        image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        id: "14",
+        name: "Coca-Cola Zero 200ml",
+        category: "drinks",
+        price: 6.00,
+        description: "Refrigerante Coca-Cola sem açúcar gelado. Garrafa 200ml.",
+        image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        id: "15",
+        name: "Sprite 200ml",
+        category: "drinks",
+        price: 6.00,
+        description: "Refrigerante Sprite sabor limão gelado. Garrafa 200ml.",
+        image: "https://images.unsplash.com/photo-1625772290748-390b1dfa539e?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        id: "16",
+        name: "Água Mineral",
+        category: "drinks",
+        price: 4.50,
+        description: "Água mineral natural cristalina e refrescante. 500ml.",
+        image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=400&q=80"
     }
 ];
