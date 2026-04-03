@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
     <item>
-        <id>1</id>
-        <name>Hamburguinho</name>
+        <id>0</id>
+        <name>Hamburguinho Artesanal</name>
         <category>burgers</category>
-        <price>8.00</price>
-        <description>Carne de 56g, presunto, mussarela, tomate, oregano e cheddar </description>
+        <price>18.00</price>
+        <description>Pão de hambúrguer artesanal, levemente glasado com manteiga e ervas finas. Maciez incomparável.</description>
         <image>assets/hamburguinho.png</image>
+    </item>
+    <item>
+        <id>1</id>
+        <name>Coxinha</name>
+        <category>burgers</category>
+        <price>7.00</price>
+        <description>Coxinha de Frango de 100g.</description>
+        <image>assets/burger_premium.png</image>
     </item>
     <item>
         <id>2</id>
@@ -30,7 +38,7 @@
         <category>burgers</category>
         <price>11.50</price>
         <description>Duas Carnes de 56g, bacon, presunto, mussarela, tomate, oregano e cheddar</description>
-        <image>assets/burger_premium.png</image>
+        <image>assets/hamburguinho.png</image>
     </item>
     <item>
         <id>5</id>
