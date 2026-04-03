@@ -2,10 +2,10 @@
 <menu>
     <item>
         <id>0</id>
-        <name>Hamburguinho Artesanal</name>
+        <name>Hamburguinho</name>
         <category>burgers</category>
-        <price>18.00</price>
-        <description>Pão de hambúrguer artesanal, levemente glasado com manteiga e ervas finas. Maciez incomparável.</description>
+        <price>8.00</price>
+        <description>carne de 56g, mussarela, presunto, oregano, tomate e cheddar .</description>
         <image>assets/hamburguinho.png</image>
     </item>
     <item>
