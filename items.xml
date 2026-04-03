@@ -10,26 +10,26 @@
     </item>
     <item>
         <id>1</id>
-        <name>Coxinha</name>
+        <name>Coxinha Especial</name>
         <category>burgers</category>
         <price>7.00</price>
-        <description>Coxinha de Frango de 100g.</description>
+        <description>Coxinha de Frango cremosa de 100g, receita da casa.</description>
         <image>assets/burger_premium.png</image>
     </item>
     <item>
         <id>2</id>
-        <name>Pizza Margherita Premium</name>
-        <category>pizzas</category>
-        <price>54.90</price>
-        <description>Molho de tomate artesanal, muçarela de búfala, manjericão fresco e azeite extravirgem.</description>
+        <name>Esfirra de Carne Premium</name>
+        <category>esfirra</category>
+        <price>8.50</price>
+        <description>Massa leve e fofinha, recheio de carne temperada com especiarias árabes.</description>
         <image>assets/pizza_premium.png</image>
     </item>
     <item>
         <id>3</id>
-        <name>Combo Sushi Zen</name>
-        <category>sushi</category>
-        <price>78.00</price>
-        <description>Seleção do chef com 16 peças: nigiri de salmão, maki de abacate e uramaki Filadélfia.</description>
+        <name>Croissant de Salmão</name>
+        <category>croissant</category>
+        <price>15.00</price>
+        <description>Folhado francês crocante com recheio cremoso de salmão e cream cheese.</description>
         <image>assets/sushi_premium.png</image>
     </item>
     <item>
@@ -37,15 +37,15 @@
         <name>Hamburguinho Duplo Bacon</name>
         <category>burgers</category>
         <price>11.50</price>
-        <description>Duas Carnes de 56g, bacon, presunto, mussarela, tomate, oregano e cheddar</description>
+        <description>Duas carnes, bacon crocante, presunto, mussarela e cheddar no pão artesanal.</description>
         <image>assets/hamburguinho.png</image>
     </item>
     <item>
         <id>5</id>
-        <name>Pizza Calabresa Especial</name>
-        <category>pizzas</category>
-        <price>49.90</price>
-        <description>Calabresa artesanal, cebola roxa, azeitonas pretas e orégano fresco.</description>
+        <name>Esfirra de Queijo</name>
+        <category>esfirra</category>
+        <price>7.90</price>
+        <description>Mistura de queijos especiais derretidos em massa artesanal.</description>
         <image>assets/pizza_premium.png</image>
     </item>
     <item>

@@ -9,42 +9,42 @@ window.menuItemsData = [
     },
     {
         id: "1",
-        name: "Coxinha",
+        name: "Coxinha Especial",
         category: "burgers",
         price: 7.00,
-        description: "Coxinha de Frango de 100g.",
+        description: "Coxinha de Frango cremosa de 100g, receita da casa.",
         image: "assets/burger_premium.png"
     },
     {
         id: "2",
-        name: "Pizza Margherita Premium",
-        category: "pizzas",
-        price: 54.90,
-        description: "Molho de tomate artesanal, muçarela de búfala, manjericão fresco e azeite extravirgem.",
+        name: "Esfirra de Carne Premium",
+        category: "esfirra",
+        price: 8.50,
+        description: "Massa leve e fofinha, recheio de carne temperada com especiarias árabes.",
         image: "assets/pizza_premium.png"
     },
     {
         id: "3",
-        name: "Combo Sushi Zen",
-        category: "sushi",
-        price: 78.00,
-        description: "Seleção do chef com 16 peças: nigiri de salmão, maki de abacate e uramaki Filadélfia.",
+        name: "Croissant de Salmão",
+        category: "croissant",
+        price: 15.00,
+        description: "Folhado francês crocante com recheio cremoso de salmão e cream cheese.",
         image: "assets/sushi_premium.png"
     },
     {
         id: "4",
-        name: "Double Bacon Burger",
+        name: "Hamburguinho Duplo Bacon",
         category: "burgers",
-        price: 38.50,
-        description: "Dois hambúrgueres de 120g, muito bacon crocante, cebola caramelizada e maionese defumada.",
-        image: "assets/burger_premium.png"
+        price: 11.50,
+        description: "Duas carnes, bacon crocante, presunto, mussarela e cheddar no pão artesanal.",
+        image: "assets/hamburguinho.png"
     },
     {
         id: "5",
-        name: "Pizza Calabresa Especial",
-        category: "pizzas",
-        price: 49.90,
-        description: "Calabresa artesanal, cebola roxa, azeitonas pretas e orégano fresco.",
+        name: "Esfirra de Queijo",
+        category: "esfirra",
+        price: 7.90,
+        description: "Mistura de queijos especiais derretidos em massa artesanal.",
         image: "assets/pizza_premium.png"
     },
     {
