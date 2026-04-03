@@ -1,10 +1,10 @@
 window.menuItemsData = [
     {
         id: "1",
-        name: "Coxinha do Gobatinho",
+        name: "Coxinha",
         category: "burgers",
-        price: 8.00,
-        description: "Blend especial de 160g, queijo cheddar derretido, alface crespa e molho secreto no pão brioche.",
+        price: 7.00,
+        description: "Coxinha de Frango de 100g.",
         image: "assets/burger_premium.png"
     },
     {
