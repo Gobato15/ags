@@ -30,7 +30,7 @@
         <category>bolinho</category>
         <price>9.00</price>
         <description>Ovo cozido envolvido em massa de carne suculenta e empanado.</description>
-        <image>https://images.unsplash.com/photo-1579207010427-b50a36e52002?q=60&amp;w=400</image>
+        <image>https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=60&amp;w=400</image>
     </item>
     <item>
         <id>2</id>
@@ -102,7 +102,7 @@
         <category>drinks</category>
         <price>6.00</price>
         <description>Refrigerante Sprite sabor limão gelado. Garrafa 200ml.</description>
-        <image>https://images.unsplash.com/photo-1625772290748-390b1dfa539e?q=60&amp;w=400</image>
+        <image>https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=60&amp;w=400</image>
     </item>
     <item>
         <id>16</id>
@@ -111,5 +111,29 @@
         <price>4.50</price>
         <description>Água mineral natural cristalina e refrescante. 500ml.</description>
         <image>https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=60&amp;w=400</image>
+    </item>
+    <item>
+        <id>17</id>
+        <name>Pudim de Leite Moça</name>
+        <category>desserts</category>
+        <price>12.00</price>
+        <description>Pudim de leite condensado super cremoso com calda de caramelo artesanal.</description>
+        <image>https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=60&amp;w=400</image>
+    </item>
+    <item>
+        <id>18</id>
+        <name>Bolo de Pote Prestígio</name>
+        <category>desserts</category>
+        <price>10.00</price>
+        <description>Bolo de pote suculento com camadas de chocolate e coco fresco.</description>
+        <image>https://images.unsplash.com/photo-1596451190630-186aff535bf2?q=60&amp;w=400</image>
+    </item>
+    <item>
+        <id>19</id>
+        <name>Bolo de Pote Maracujá</name>
+        <category>desserts</category>
+        <price>10.00</price>
+        <description>Refrescante bolo de pote com mousse de maracujá e calda crocante.</description>
+        <image>https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=60&amp;w=400</image>
     </item>
 </menu>

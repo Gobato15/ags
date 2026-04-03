@@ -29,14 +29,14 @@ window.menuItemsData = [
         category: "bolinho",
         price: 9.00,
         description: "Ovo cozido envolvido em massa de carne suculenta e empanado.",
-        image: "https://images.unsplash.com/photo-1579207010427-b50a36e52002?q=60&w=400"
+        image: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=60&w=400"
     },
     {
         id: "2",
         name: "Esfirra de Carne",
         category: "esfirra",
         price: 8.50,
-        description: "Massa leve e fofinha, recheio de carne temperada com especiarias.",
+        description: "Massa leve e fofinha, recheio de carne temperada with especiarias.",
         image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&w=400"
     },
     {
@@ -101,7 +101,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 6.00,
         description: "Refrigerante Sprite sabor limão gelado. Garrafa 200ml.",
-        image: "https://images.unsplash.com/photo-1625772290748-390b1dfa539e?q=60&w=400"
+        image: "https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=60&w=400"
     },
     {
         id: "16",
@@ -110,5 +110,29 @@ window.menuItemsData = [
         price: 4.50,
         description: "Água mineral natural cristalina e refrescante. 500ml.",
         image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=60&w=400"
+    },
+    {
+        id: "17",
+        name: "Pudim de Leite Moça",
+        category: "desserts",
+        price: 12.00,
+        description: "Pudim de leite condensado super cremoso com calda de caramelo artesanal.",
+        image: "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?q=60&w=400"
+    },
+    {
+        id: "18",
+        name: "Bolo de Pote Prestígio",
+        category: "desserts",
+        price: 10.00,
+        description: "Bolo de pote suculento com camadas de chocolate e coco fresco.",
+        image: "https://images.unsplash.com/photo-1596451190630-186aff535bf2?q=60&w=400"
+    },
+    {
+        id: "19",
+        name: "Bolo de Pote Maracujá",
+        category: "desserts",
+        price: 10.00,
+        description: "Refrescante bolo de pote com mousse de maracujá e calda crocante.",
+        image: "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?q=60&w=400"
     }
 ];
