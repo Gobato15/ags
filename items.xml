@@ -2,11 +2,11 @@
 <menu>
     <item>
         <id>1</id>
-        <name>Classic Smash Burgerrrrr</name>
+        <name>Hamburguinho</name>
         <category>burgers</category>
-        <price>32.90</price>
-        <description>Blend especial de 160g, queijo cheddar derretido, alface crespa e molho secreto no pão brioche.</description>
-        <image>assets/burger_premium.png</image>
+        <price>8.00</price>
+        <description>Carne de 56g, presunto, mussarela, tomate, oregano e cheddar </description>
+        <image>assets/hamburguinho.png</image>
     </item>
     <item>
         <id>2</id>
@@ -26,10 +26,10 @@
     </item>
     <item>
         <id>4</id>
-        <name>Double Bacon Burger</name>
+        <name>Hamburguinho Duplo Bacon</name>
         <category>burgers</category>
-        <price>38.50</price>
-        <description>Dois hambúrgueres de 120g, muito bacon crocante, cebola caramelizada e maionese defumada.</description>
+        <price>11.50</price>
+        <description>Duas Carnes de 56g, bacon, presunto, mussarela, tomate, oregano e cheddar</description>
         <image>assets/burger_premium.png</image>
     </item>
     <item>
