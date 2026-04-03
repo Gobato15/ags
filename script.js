@@ -9,8 +9,8 @@ const searchInput = document.getElementById('searchInput');
 const categoryLabels = {
     'all': 'Todos',
     'burgers': 'Burgers',
-    'pizzas': 'Pizzas',
-    'sushi': 'Sushi',
+    'esfirra': 'Esfirra',
+    'croissant': 'Croissant',
     'drinks': 'Bebidas',
     'desserts': 'Sobremesas'
 };
