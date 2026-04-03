@@ -10,6 +10,7 @@ const categoryLabels = {
     'all': 'Todos',
     'burgers': 'Burgers',
     'coxinha': 'Coxinha',
+    'bolinho': 'Bolinho',
     'esfirra': 'Esfirra',
     'croissant': 'Croissant',
     'drinks': 'Bebidas',

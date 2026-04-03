@@ -1,10 +1,10 @@
 window.menuItemsData = [
     {
         id: "0",
-        name: "Hamburguinho Artesanal",
+        name: "Hamburguinho",
         category: "burgers",
-        price: 18.00,
-        description: "Pão de hambúrguer artesanal, levemente glasado com manteiga e ervas finas. Maciez incomparável.",
+        price: 8.00,
+        description: "carne de 56g, mussarela, presunto, oregano, tomate e cheddar .",
         image: "assets/hamburguinho.png"
     },
     {
@@ -14,6 +14,22 @@ window.menuItemsData = [
         price: 7.00,
         description: "Coxinha de Frango cremosa de 100g, receita da casa com massa de batata.",
         image: "assets/coxinha_premium.png"
+    },
+    {
+        id: "7",
+        name: "Bolinho de Carne",
+        category: "bolinho",
+        price: 9.00,
+        description: "Bolinho de carne artesanal, temperado com ervas e frito até ficar crocante.",
+        image: "assets/bolinho_carne.png"
+    },
+    {
+        id: "8",
+        name: "Bolinho de Ovo",
+        category: "bolinho",
+        price: 12.00,
+        description: "Ovo cozido envolvido em massa de carne suculenta e empanado.",
+        image: "https://images.unsplash.com/photo-1579207010427-b50a36e52002?auto=format&fit=crop&w=400&q=80"
     },
     {
         id: "2",

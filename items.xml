@@ -17,6 +17,22 @@
         <image>assets/coxinha_premium.png</image>
     </item>
     <item>
+        <id>7</id>
+        <name>Bolinho de Carne</name>
+        <category>bolinho</category>
+        <price>9.00</price>
+        <description>Bolinho de carne artesanal, temperado com ervas e frito até ficar crocante.</description>
+        <image>assets/bolinho_carne.png</image>
+    </item>
+    <item>
+        <id>8</id>
+        <name>Bolinho de Ovo</name>
+        <category>bolinho</category>
+        <price>12.00</price>
+        <description>Ovo cozido envolvido em massa de carne suculenta e empanado.</description>
+        <image>https://images.unsplash.com/photo-1579207010427-b50a36e52002?auto=format&amp;fit=crop&amp;w=400&amp;q=80</image>
+    </item>
+    <item>
         <id>2</id>
         <name>Esfirra de Carne Premium</name>
         <category>esfirra</category>
