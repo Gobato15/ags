@@ -1,5 +1,13 @@
 window.menuItemsData = [
     {
+        id: "0",
+        name: "Hamburguinho Artesanal",
+        category: "burgers",
+        price: 18.00,
+        description: "Pão de hambúrguer artesanal, levemente glasado com manteiga e ervas finas. Maciez incomparável.",
+        image: "assets/hamburguinho.png"
+    },
+    {
         id: "1",
         name: "Coxinha do Gobatinho",
         category: "burgers",

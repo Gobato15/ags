@@ -107,20 +107,37 @@ function renderMenu(filter = 'all', searchQuery = '') {
 
     filteredItems.forEach(item => {
         const card = document.createElement('div');
-        card.className = 'product-card glass';
+        card.className = 'product-card';
         card.innerHTML = `
-            <img src="${item.image}" alt="${item.name}" class="product-image">
+            <div class="product-image-container">
+                <img src="${item.image}" alt="${item.name}" class="product-image">
+            </div>
             <div class="product-info">
                 <h3>${item.name}</h3>
                 <p>${item.description}</p>
                 <div class="product-footer">
                     <span class="price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                    <button class="add-btn" aria-label="Adicionar ao carrinho">
+                        <i class="fas fa-plus"></i>
+                    </button>
                 </div>
             </div>
         `;
         menuGrid.appendChild(card);
     });
 }
+
+// Header Scroll Effect
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 20) {
+        header.classList.add('scrolled');
+        header.classList.add('glass');
+    } else {
+        header.classList.remove('scrolled');
+        header.classList.remove('glass');
+    }
+});
 
 searchInput.addEventListener('input', (e) => {
     const activePill = document.querySelector('.category-pill.active');
