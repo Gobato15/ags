@@ -10,10 +10,10 @@ window.menuItemsData = [
     {
         id: "1",
         name: "Coxinha Especial",
-        category: "burgers",
+        category: "coxinha",
         price: 7.00,
-        description: "Coxinha de Frango cremosa de 100g, receita da casa.",
-        image: "assets/burger_premium.png"
+        description: "Coxinha de Frango cremosa de 100g, receita da casa com massa de batata.",
+        image: "assets/coxinha_premium.png"
     },
     {
         id: "2",

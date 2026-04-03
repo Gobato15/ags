@@ -11,10 +11,10 @@
     <item>
         <id>1</id>
         <name>Coxinha Especial</name>
-        <category>burgers</category>
+        <category>coxinha</category>
         <price>7.00</price>
-        <description>Coxinha de Frango cremosa de 100g, receita da casa.</description>
-        <image>assets/burger_premium.png</image>
+        <description>Coxinha de Frango cremosa de 100g, receita da casa com massa de batata.</description>
+        <image>assets/coxinha_premium.png</image>
     </item>
     <item>
         <id>2</id>

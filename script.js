@@ -9,6 +9,7 @@ const searchInput = document.getElementById('searchInput');
 const categoryLabels = {
     'all': 'Todos',
     'burgers': 'Burgers',
+    'coxinha': 'Coxinha',
     'esfirra': 'Esfirra',
     'croissant': 'Croissant',
     'drinks': 'Bebidas',
