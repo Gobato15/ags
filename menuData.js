@@ -13,7 +13,7 @@ window.menuItemsData = [
         category: "burgers",
         price: 11.50,
         description: "Duas carnes de 56g, muito bacon crocante, presunto, mussarela e cheddar cremoso.",
-        image: "assets/hamburguinho.png"
+        image: "assets/hamburguinho_duplo.png"
     },
     {
         id: "1",
@@ -37,7 +37,7 @@ window.menuItemsData = [
         category: "bolinho",
         price: 7.00,
         description: "O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.",
-        image: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=60&w=400"
+        image: "assets/bolovo.png"
     },
     {
         id: "2",
@@ -45,7 +45,7 @@ window.menuItemsData = [
         category: "esfirra",
         price: 3.50,
         description: "Massa árabe fofinha com recheio de carne bovina temperada e limão.",
-        image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
+        image: "assets/esfirra_carne.jpg"
     },
     {
         id: "9",
@@ -53,7 +53,7 @@ window.menuItemsData = [
         category: "esfirra",
         price: 3.50,
         description: "Massa leve com recheio generoso de frango desfiado temperado.",
-        image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
+        image: "assets/esfirra_frango.jpg"
     },
     {
         id: "10",
@@ -61,7 +61,7 @@ window.menuItemsData = [
         category: "esfirra",
         price: 3.50,
         description: "Deliciosa calabresa moída com temperos especiais em massa artesanal.",
-        image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
+        image: "assets/esfirra_queijo.jpg"
     },
     {
         id: "11",
@@ -85,7 +85,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 3.80,
         description: "Refrigerante Coca-Cola sabor original e refrescante. Mini lata 220ml.",
-        image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=400"
+        image: "assets/coca_original.png"
     },
     {
         id: "14",
@@ -117,14 +117,14 @@ window.menuItemsData = [
         category: "desserts",
         price: 12.00,
         description: "Fatia generosa de pudim de leite condensado super liso com calda de caramelo.",
-        image: "https://images.pexels.com/photos/10186981/pexels-photo-10186981.jpeg?auto=compress&cs=tinysrgb&w=400"
+        image: "assets/pudim.png"
     },
     {
         id: "18",
         name: "Bolo de Pote Prestígio",
         category: "desserts",
         price: 8.00,
-        description: "Camadas de bolo de chocolate com recheio cremoso de coco fresco.",
+        description: "Camadas de bolo de chocolate with recheio cremoso de coco fresco.",
         image: "assets/bolo_prestigio.png"
     },
     {
