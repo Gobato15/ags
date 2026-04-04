@@ -40,7 +40,7 @@
         <category>bolinho</category>
         <price>7.00</price>
         <description>O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.</description>
-        <image>assets/bolinho_carne.png</image>
+        <image>assets/bolinho.png</image>
     </item>
 
     <item>
@@ -91,7 +91,7 @@
         <category>drinks</category>
         <price>3.80</price>
         <description>Refrigerante Coca-Cola sabor original e refrescante. Mini lata 220ml.</description>
-        <image>assets/coca_original.png</image>
+        <image>https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=400</image>
     </item>
     <item>
         <id>14</id>

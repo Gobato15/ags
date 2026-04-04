@@ -85,7 +85,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 3.80,
         description: "Refrigerante Coca-Cola sabor original e refrescante. Mini lata 220ml.",
-        image: "assets/coca_original.png"
+        image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=400"
     },
     {
         id: "14",
