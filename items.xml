@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <menu>
-    <!-- Burgers -->
     <item>
         <id>0</id>
         <name>Hamburguinho</name>
@@ -18,7 +17,6 @@
         <image>assets/hamburguinho.png</image>
     </item>
 
-    <!-- Coxinha -->
     <item>
         <id>1</id>
         <name>Coxinha de Frango</name>
@@ -28,7 +26,6 @@
         <image>assets/coxinha_premium.png</image>
     </item>
 
-    <!-- Bolinho -->
     <item>
         <id>7</id>
         <name>Bolinho de Carne</name>
@@ -46,7 +43,6 @@
         <image>https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=60&amp;w=400</image>
     </item>
 
-    <!-- Esfirra -->
     <item>
         <id>2</id>
         <name>Esfirra de Carne</name>
@@ -72,7 +68,6 @@
         <image>https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
 
-    <!-- Croissant -->
     <item>
         <id>11</id>
         <name>Croissant de Queijo</name>
@@ -90,7 +85,6 @@
         <image>https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
 
-    <!-- Drinks -->
     <item>
         <id>13</id>
         <name>Coca-Cola 220ml</name>
@@ -104,13 +98,8 @@
         <name>Coca-Cola Zero 220ml</name>
         <category>drinks</category>
         <price>3.80</price>
-<<<<<<< HEAD
-        <description>Refrigerante Coca-Cola sem açúcar gelada. Mini lata 220ml.</description>
-        <image>assets/coca_zero.png</image>
-=======
         <description>Refrigerante Coca-Cola sem açúcar, sabor original. Mini lata 220ml.</description>
-        <image>https://github.com/Gobato15/ags/blob/main/assets/coca_zero.png</image>
->>>>>>> fbbf40313d30a603b0ab5708e600fdb606cdbdd2
+        <image>https://sua-url-hospedada.com/assets/coca_zero.png</image>
     </item>
     <item>
         <id>15</id>
@@ -118,7 +107,7 @@
         <category>drinks</category>
         <price>3.80</price>
         <description>Refrigerante Sprite sabor limão gelada. Mini lata 220ml.</description>
-        <image>assets/sprite.png</image>
+        <image>https://sua-url-hospedada.com/assets/sprite_acucar.png</image>
     </item>
     <item>
         <id>16</id>
@@ -129,7 +118,6 @@
         <image>https://images.pexels.com/photos/11101/pexels-photo-11101.jpg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
 
-    <!-- Desserts -->
     <item>
         <id>17</id>
         <name>Pudim de Leite Moça</name>
@@ -144,7 +132,7 @@
         <category>desserts</category>
         <price>8.00</price>
         <description>Camadas de bolo de chocolate com recheio cremoso de coco fresco.</description>
-        <image>assets/bolo_prestigio.png</image>
+        <image>https://sua-url-hospedada.com/assets/bolo_pote_prestigio.png</image>
     </item>
     <item>
         <id>19</id>
@@ -152,6 +140,6 @@
         <category>desserts</category>
         <price>8.00</price>
         <description>Bolo branco com camadas de mousse de maracujá fresco e delicioso.</description>
-        <image>assets/bolo_maracuja.png</image>
+        <image>https://sua-url-hospedada.com/assets/bolo_pote_maracuja.png</image>
     </item>
 </menu>
