@@ -43,7 +43,7 @@
         <category>bolinho</category>
         <price>9.00</price>
         <description>O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.</description>
-        <image>https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/10543264/pexels-photo-10543264.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
 
     <!-- Esfirra -->
@@ -53,7 +53,7 @@
         <category>esfirra</category>
         <price>8.50</price>
         <description>Massa árabe fofinha com recheio de carne bovina temperada e limão.</description>
-        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
     <item>
         <id>9</id>
@@ -61,7 +61,7 @@
         <category>esfirra</category>
         <price>8.50</price>
         <description>Massa leve com recheio generoso de frango desfiado temperado.</description>
-        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
     <item>
         <id>10</id>
@@ -69,7 +69,7 @@
         <category>esfirra</category>
         <price>8.50</price>
         <description>Deliciosa calabresa moída com temperos especiais em massa artesanal.</description>
-        <image>https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
 
     <!-- Croissant -->
@@ -79,7 +79,7 @@
         <category>croissant</category>
         <price>15.00</price>
         <description>Massa folhada francesa amanteigada e crocante com recheio de mussarela.</description>
-        <image>https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
     <item>
         <id>12</id>
@@ -87,7 +87,7 @@
         <category>croissant</category>
         <price>16.50</price>
         <description>O clássico folhado recheado com presunto fatiado e queijo derretido.</description>
-        <image>https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
 
     <!-- Drinks -->
@@ -97,7 +97,7 @@
         <category>drinks</category>
         <price>6.00</price>
         <description>Refrigerante Coca-Cola Original estupidamente gelada.</description>
-        <image>https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/5059339/pexels-photo-5059339.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
     <item>
         <id>14</id>
@@ -105,7 +105,7 @@
         <category>drinks</category>
         <price>6.00</price>
         <description>Refrigerante Coca-Cola sem açúcar, sabor original, gelada.</description>
-        <image>https://images.unsplash.com/photo-1629203851022-39c6f2c79835?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/2652981/pexels-photo-2652981.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
     <item>
         <id>15</id>
@@ -113,7 +113,7 @@
         <category>drinks</category>
         <price>6.00</price>
         <description>Refrigerante Sprite de limão, refrescante e muito gelada.</description>
-        <image>https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/4038902/pexels-photo-4038902.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
     <item>
         <id>16</id>
@@ -121,7 +121,7 @@
         <category>drinks</category>
         <price>4.50</price>
         <description>Água mineral natural, ideal para hidratar com frescor.</description>
-        <image>https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/11101/pexels-photo-11101.jpg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
 
     <!-- Desserts -->
@@ -131,7 +131,7 @@
         <category>desserts</category>
         <price>12.00</price>
         <description>Fatia generosa de pudim de leite condensado super liso com calda de caramelo.</description>
-        <image>https://images.unsplash.com/photo-1590080874088-eec64895b423?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/10186981/pexels-photo-10186981.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
     <item>
         <id>18</id>
@@ -139,7 +139,7 @@
         <category>desserts</category>
         <price>10.00</price>
         <description>Camadas de bolo de chocolate fofinho com recheio cremoso de coco.</description>
-        <image>https://images.unsplash.com/photo-1587314168485-3236d6710814?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/8134769/pexels-photo-8134769.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
     <item>
         <id>19</id>
@@ -147,6 +147,6 @@
         <category>desserts</category>
         <price>10.00</price>
         <description>Bolo branco com camadas de mousse de maracujá fresco e azedinho na medida certa.</description>
-        <image>https://images.unsplash.com/photo-1587314168485-3236d6710814?q=60&amp;w=400</image>
+        <image>https://images.pexels.com/photos/8134769/pexels-photo-8134769.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
 </menu>

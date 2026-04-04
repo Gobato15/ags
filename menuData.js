@@ -37,7 +37,7 @@ window.menuItemsData = [
         category: "bolinho",
         price: 9.00,
         description: "O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.",
-        image: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=60&w=400"
+        image: "https://images.pexels.com/photos/10543264/pexels-photo-10543264.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "2",
@@ -45,7 +45,7 @@ window.menuItemsData = [
         category: "esfirra",
         price: 8.50,
         description: "Massa árabe fofinha com recheio de carne bovina temperada e limão.",
-        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&w=400"
+        image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "9",
@@ -53,7 +53,7 @@ window.menuItemsData = [
         category: "esfirra",
         price: 8.50,
         description: "Massa leve com recheio generoso de frango desfiado temperado.",
-        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&w=400"
+        image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "10",
@@ -61,7 +61,7 @@ window.menuItemsData = [
         category: "esfirra",
         price: 8.50,
         description: "Deliciosa calabresa moída com temperos especiais em massa artesanal.",
-        image: "https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=60&w=400"
+        image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "11",
@@ -69,7 +69,7 @@ window.menuItemsData = [
         category: "croissant",
         price: 15.00,
         description: "Massa folhada francesa amanteigada e crocante com recheio de mussarela.",
-        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=60&w=400"
+        image: "https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "12",
@@ -77,7 +77,7 @@ window.menuItemsData = [
         category: "croissant",
         price: 16.50,
         description: "O clássico folhado recheado com presunto fatiado e queijo derretido.",
-        image: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=60&w=400"
+        image: "https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "13",
@@ -85,7 +85,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 6.00,
         description: "Refrigerante Coca-Cola Original estupidamente gelada.",
-        image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=60&w=400"
+        image: "https://images.pexels.com/photos/5059339/pexels-photo-5059339.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "14",
@@ -93,7 +93,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 6.00,
         description: "Refrigerante Coca-Cola sem açúcar, sabor original, gelada.",
-        image: "https://images.unsplash.com/photo-1629203851022-39c6f2c79835?q=60&w=400"
+        image: "https://images.pexels.com/photos/2652981/pexels-photo-2652981.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "15",
@@ -101,7 +101,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 6.00,
         description: "Refrigerante Sprite de limão, refrescante e muito gelada.",
-        image: "https://images.unsplash.com/photo-1624517452488-04869289c4ca?q=60&w=400"
+        image: "https://images.pexels.com/photos/4038902/pexels-photo-4038902.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "16",
@@ -109,7 +109,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 4.50,
         description: "Água mineral natural, ideal para hidratar com frescor.",
-        image: "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=60&w=400"
+        image: "https://images.pexels.com/photos/11101/pexels-photo-11101.jpg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "17",
@@ -117,7 +117,7 @@ window.menuItemsData = [
         category: "desserts",
         price: 12.00,
         description: "Fatia generosa de pudim de leite condensado super liso com calda de caramelo.",
-        image: "https://images.unsplash.com/photo-1590080874088-eec64895b423?q=60&w=400"
+        image: "https://images.pexels.com/photos/10186981/pexels-photo-10186981.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "18",
@@ -125,7 +125,7 @@ window.menuItemsData = [
         category: "desserts",
         price: 10.00,
         description: "Camadas de bolo de chocolate fofinho com recheio cremoso de coco.",
-        image: "https://images.unsplash.com/photo-1587314168485-3236d6710814?q=60&w=400"
+        image: "https://images.pexels.com/photos/8134769/pexels-photo-8134769.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "19",
@@ -133,6 +133,6 @@ window.menuItemsData = [
         category: "desserts",
         price: 10.00,
         description: "Bolo branco com camadas de mousse de maracujá fresco e azedinho na medida certa.",
-        image: "https://images.unsplash.com/photo-1587314168485-3236d6710814?q=60&w=400"
+        image: "https://images.pexels.com/photos/8134769/pexels-photo-8134769.jpeg?auto=compress&cs=tinysrgb&w=400"
     }
 ];
