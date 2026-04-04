@@ -36,11 +36,11 @@
     </item>
     <item>
         <id>8</id>
-        <name>Bolinho de Ovo (Bolovo)</name>
+        <name>Bolinho de Ovo</name>
         <category>bolinho</category>
         <price>7.00</price>
         <description>O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.</description>
-        <image>https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=60&amp;w=400</image>
+        <image>assets/sprite.png</image>
     </item>
 
     <item>
@@ -65,7 +65,7 @@
         <category>esfirra</category>
         <price>3.50</price>
         <description>Deliciosa calabresa moída com temperos especiais em massa artesanal.</description>
-        <image>https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
+        <image>https://i.imgur.com/xyz123.png</image>
     </item>
 
     <item>
@@ -107,7 +107,7 @@
         <category>drinks</category>
         <price>3.80</price>
         <description>Refrigerante Sprite sabor limão gelada. Mini lata 220ml.</description>
-        <image>https://sua-url-hospedada.com/assets/sprite_acucar.png</image>
+        <image>assets/sprite.png</image>
     </item>
     <item>
         <id>16</id>
