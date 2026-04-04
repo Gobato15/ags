@@ -21,7 +21,7 @@
     <!-- Coxinha -->
     <item>
         <id>1</id>
-        <name>Coxinha</name>
+        <name>Coxinha de Frango</name>
         <category>coxinha</category>
         <price>7.00</price>
         <description>Coxinha de frango cremosa de 100g, feita com massa artesanal de batata. Receita da casa.</description>
@@ -43,7 +43,7 @@
         <category>bolinho</category>
         <price>7.00</price>
         <description>O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.</description>
-        <image>https://images.pexels.com/photos/10543264/pexels-photo-10543264.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
+        <image>https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=60&amp;w=400</image>
     </item>
 
     <!-- Esfirra -->
@@ -85,7 +85,7 @@
         <id>12</id>
         <name>Croissant Presunto e Queijo</name>
         <category>croissant</category>
-        <price>16.50</price>
+        <price>9.00</price>
         <description>O clássico folhado recheado com presunto fatiado e queijo derretido.</description>
         <image>https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
@@ -104,16 +104,16 @@
         <name>Coca-Cola Zero 220ml</name>
         <category>drinks</category>
         <price>3.80</price>
-        <description>Refrigerante Coca-Cola sem açúcar, sabor original. Mini lata 220ml.</description>
-        <image>https://images.unsplash.com/photo-1629203851022-39c6f2c79835?q=60&amp;w=400</image>
+        <description>Refrigerante Coca-Cola sem açúcar gelada. Mini lata 220ml.</description>
+        <image>assets/coca_zero.png</image>
     </item>
     <item>
         <id>15</id>
         <name>Sprite 220ml</name>
         <category>drinks</category>
         <price>3.80</price>
-        <description>Refrigerante Sprite sabor limão, refrescante e gelada. Mini lata 220ml.</description>
-        <image>https://images.unsplash.com/photo-1625772290748-390b1dfa539e?q=60&amp;w=400</image>
+        <description>Refrigerante Sprite sabor limão gelada. Mini lata 220ml.</description>
+        <image>assets/sprite.png</image>
     </item>
     <item>
         <id>16</id>
@@ -138,7 +138,7 @@
         <name>Bolo de Pote Prestígio</name>
         <category>desserts</category>
         <price>8.00</price>
-        <description>Camadas de bolo de chocolate fofinho com recheio cremoso de coco fresco.</description>
+        <description>Camadas de bolo de chocolate com recheio cremoso de coco fresco.</description>
         <image>assets/bolo_prestigio.png</image>
     </item>
     <item>
@@ -146,7 +146,7 @@
         <name>Bolo de Pote Maracujá</name>
         <category>desserts</category>
         <price>8.00</price>
-        <description>Bolo branco com camadas de mousse de maracujá fresco e azedinho na medida certa.</description>
+        <description>Bolo branco com camadas de mousse de maracujá fresco e delicioso.</description>
         <image>assets/bolo_maracuja.png</image>
     </item>
 </menu>

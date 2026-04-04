@@ -17,7 +17,7 @@ window.menuItemsData = [
     },
     {
         id: "1",
-        name: "Coxinha",
+        name: "Coxinha de Frango",
         category: "coxinha",
         price: 7.00,
         description: "Coxinha de frango cremosa de 100g, feita com massa artesanal de batata. Receita da casa.",
@@ -36,15 +36,15 @@ window.menuItemsData = [
         name: "Bolinho de Ovo (Bolovo)",
         category: "bolinho",
         price: 7.00,
-        description: "O clássico bolinho de carne with um ovo cozido inteiro no centro. Sabor irresistível.",
-        image: "https://images.pexels.com/photos/10543264/pexels-photo-10543264.jpeg?auto=compress&cs=tinysrgb&w=400"
+        description: "O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.",
+        image: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=60&w=400"
     },
     {
         id: "2",
         name: "Esfirra de Carne",
         category: "esfirra",
         price: 3.50,
-        description: "Massa árabe fofinha with recheio de carne bovina temperada e limão.",
+        description: "Massa árabe fofinha com recheio de carne bovina temperada e limão.",
         image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
@@ -52,7 +52,7 @@ window.menuItemsData = [
         name: "Esfirra de Frango",
         category: "esfirra",
         price: 3.50,
-        description: "Massa leve with recheio generoso de frango desfiado temperado.",
+        description: "Massa leve com recheio generoso de frango desfiado temperado.",
         image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
@@ -60,7 +60,7 @@ window.menuItemsData = [
         name: "Esfirra de Calabresa",
         category: "esfirra",
         price: 3.50,
-        description: "Deliciosa calabresa moída with temperos especiais em massa artesanal.",
+        description: "Deliciosa calabresa moída com temperos especiais em massa artesanal.",
         image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
@@ -68,15 +68,15 @@ window.menuItemsData = [
         name: "Croissant de Queijo",
         category: "croissant",
         price: 9.00,
-        description: "Massa folhada francesa amanteigada e crocante with recheio de mussarela.",
+        description: "Massa folhada francesa amanteigada e crocante com recheio de mussarela.",
         image: "https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "12",
         name: "Croissant Presunto e Queijo",
         category: "croissant",
-        price: 16.50,
-        description: "O clássico folhado recheado with presunto fatiado e queijo derretido.",
+        price: 9.00,
+        description: "O clássico folhado recheado com presunto fatiado e queijo derretido.",
         image: "https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
@@ -92,16 +92,16 @@ window.menuItemsData = [
         name: "Coca-Cola Zero 220ml",
         category: "drinks",
         price: 3.80,
-        description: "Refrigerante Coca-Cola sem açúcar, sabor original. Mini lata 220ml.",
-        image: "https://images.unsplash.com/photo-1629203851022-39c6f2c79835?q=60&w=400"
+        description: "Refrigerante Coca-Cola sem açúcar gelada. Mini lata 220ml.",
+        image: "assets/coca_zero.png"
     },
     {
         id: "15",
         name: "Sprite 220ml",
         category: "drinks",
         price: 3.80,
-        description: "Refrigerante Sprite sabor limão, refrescante e gelada. Mini lata 220ml.",
-        image: "https://images.unsplash.com/photo-1625772290748-390b1dfa539e?q=80&w=400"
+        description: "Refrigerante Sprite sabor limão gelada. Mini lata 220ml.",
+        image: "assets/sprite.png"
     },
     {
         id: "16",
@@ -116,7 +116,7 @@ window.menuItemsData = [
         name: "Pudim de Leite Moça",
         category: "desserts",
         price: 12.00,
-        description: "Fatia generosa de pudim de leite condensado super liso with calda de caramelo.",
+        description: "Fatia generosa de pudim de leite condensado super liso com calda de caramelo.",
         image: "https://images.pexels.com/photos/10186981/pexels-photo-10186981.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
@@ -124,7 +124,7 @@ window.menuItemsData = [
         name: "Bolo de Pote Prestígio",
         category: "desserts",
         price: 8.00,
-        description: "Camadas de bolo de chocolate fofinho with recheio cremoso de coco fresco.",
+        description: "Camadas de bolo de chocolate com recheio cremoso de coco fresco.",
         image: "assets/bolo_prestigio.png"
     },
     {
@@ -132,7 +132,7 @@ window.menuItemsData = [
         name: "Bolo de Pote Maracujá",
         category: "desserts",
         price: 8.00,
-        description: "Bolo branco com camadas de mousse de maracujá fresco e azedinho na medida certa.",
+        description: "Bolo branco com camadas de mousse de maracujá fresco e delicioso.",
         image: "assets/bolo_maracuja.png"
     }
 ];
