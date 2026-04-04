@@ -36,11 +36,11 @@
     </item>
     <item>
         <id>8</id>
-        <name>Bolinho de Ovo (Bolovo)</name>
+        <name>Bolinho de Ovo</name>
         <category>bolinho</category>
         <price>7.00</price>
         <description>O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.</description>
-        <image>https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?q=60&amp;w=400</image>
+        <image>assets/sprite.png</image>
     </item>
 
     <item>
