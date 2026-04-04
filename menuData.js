@@ -33,11 +33,11 @@ window.menuItemsData = [
     },
     {
         id: "8",
-        name: "Bolinho de Ovo (Bolovo)",
+        name: "Bolinho de Ovo",
         category: "bolinho",
         price: 7.00,
         description: "O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.",
-        image: "assets/bolovo.png"
+        image: "assets/bolinho.png"
     },
     {
         id: "2",
