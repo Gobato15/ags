@@ -27,7 +27,7 @@ window.menuItemsData = [
         id: "7",
         name: "Bolinho de Carne",
         category: "bolinho",
-        price: 9.00,
+        price: 7.00,
         description: "Bolinho artesanal de carne temperado com especiarias, frito na hora com casquinha crocante.",
         image: "assets/bolinho_carne.png"
     },
@@ -35,40 +35,40 @@ window.menuItemsData = [
         id: "8",
         name: "Bolinho de Ovo (Bolovo)",
         category: "bolinho",
-        price: 9.00,
-        description: "O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.",
+        price: 7.00,
+        description: "O clássico bolinho de carne with um ovo cozido inteiro no centro. Sabor irresistível.",
         image: "https://images.pexels.com/photos/10543264/pexels-photo-10543264.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "2",
         name: "Esfirra de Carne",
         category: "esfirra",
-        price: 8.50,
-        description: "Massa árabe fofinha com recheio de carne bovina temperada e limão.",
+        price: 3.50,
+        description: "Massa árabe fofinha with recheio de carne bovina temperada e limão.",
         image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "9",
         name: "Esfirra de Frango",
         category: "esfirra",
-        price: 8.50,
-        description: "Massa leve com recheio generoso de frango desfiado temperado.",
+        price: 3.50,
+        description: "Massa leve with recheio generoso de frango desfiado temperado.",
         image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "10",
         name: "Esfirra de Calabresa",
         category: "esfirra",
-        price: 8.50,
-        description: "Deliciosa calabresa moída com temperos especiais em massa artesanal.",
+        price: 3.50,
+        description: "Deliciosa calabresa moída with temperos especiais em massa artesanal.",
         image: "https://images.pexels.com/photos/10660309/pexels-photo-10660309.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "11",
         name: "Croissant de Queijo",
         category: "croissant",
-        price: 15.00,
-        description: "Massa folhada francesa amanteigada e crocante com recheio de mussarela.",
+        price: 9.00,
+        description: "Massa folhada francesa amanteigada e crocante with recheio de mussarela.",
         image: "https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
@@ -76,39 +76,39 @@ window.menuItemsData = [
         name: "Croissant Presunto e Queijo",
         category: "croissant",
         price: 16.50,
-        description: "O clássico folhado recheado com presunto fatiado e queijo derretido.",
+        description: "O clássico folhado recheado with presunto fatiado e queijo derretido.",
         image: "https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "13",
-        name: "Coca-Cola 200ml",
+        name: "Coca-Cola 220ml",
         category: "drinks",
-        price: 6.00,
-        description: "Refrigerante Coca-Cola Original estupidamente gelada.",
-        image: "https://images.pexels.com/photos/5059339/pexels-photo-5059339.jpeg?auto=compress&cs=tinysrgb&w=400"
+        price: 3.80,
+        description: "Refrigerante Coca-Cola sabor original e refrescante. Mini lata 220ml.",
+        image: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&w=400"
     },
     {
         id: "14",
-        name: "Coca-Cola Zero 200ml",
+        name: "Coca-Cola Zero 220ml",
         category: "drinks",
-        price: 6.00,
-        description: "Refrigerante Coca-Cola sem açúcar, sabor original, gelada.",
-        image: "https://images.pexels.com/photos/2652981/pexels-photo-2652981.jpeg?auto=compress&cs=tinysrgb&w=400"
+        price: 3.80,
+        description: "Refrigerante Coca-Cola sem açúcar, sabor original. Mini lata 220ml.",
+        image: "https://images.unsplash.com/photo-1629203851022-39c6f2c79835?q=60&w=400"
     },
     {
         id: "15",
-        name: "Sprite 200ml",
+        name: "Sprite 220ml",
         category: "drinks",
-        price: 6.00,
-        description: "Refrigerante Sprite de limão, refrescante e muito gelada.",
-        image: "https://images.pexels.com/photos/4038902/pexels-photo-4038902.jpeg?auto=compress&cs=tinysrgb&w=400"
+        price: 3.80,
+        description: "Refrigerante Sprite sabor limão, refrescante e gelada. Mini lata 220ml.",
+        image: "https://images.unsplash.com/photo-1625772290748-390b1dfa539e?q=80&w=400"
     },
     {
         id: "16",
         name: "Água Mineral 500ml",
         category: "drinks",
-        price: 4.50,
-        description: "Água mineral natural, ideal para hidratar com frescor.",
+        price: 3.00,
+        description: "Água mineral natural cristalina e refrescante.",
         image: "https://images.pexels.com/photos/11101/pexels-photo-11101.jpg?auto=compress&cs=tinysrgb&w=400"
     },
     {
@@ -116,23 +116,23 @@ window.menuItemsData = [
         name: "Pudim de Leite Moça",
         category: "desserts",
         price: 12.00,
-        description: "Fatia generosa de pudim de leite condensado super liso com calda de caramelo.",
+        description: "Fatia generosa de pudim de leite condensado super liso with calda de caramelo.",
         image: "https://images.pexels.com/photos/10186981/pexels-photo-10186981.jpeg?auto=compress&cs=tinysrgb&w=400"
     },
     {
         id: "18",
         name: "Bolo de Pote Prestígio",
         category: "desserts",
-        price: 10.00,
-        description: "Camadas de bolo de chocolate fofinho com recheio cremoso de coco.",
-        image: "https://images.pexels.com/photos/8134769/pexels-photo-8134769.jpeg?auto=compress&cs=tinysrgb&w=400"
+        price: 8.00,
+        description: "Camadas de bolo de chocolate fofinho with recheio cremoso de coco fresco.",
+        image: "assets/bolo_prestigio.png"
     },
     {
         id: "19",
         name: "Bolo de Pote Maracujá",
         category: "desserts",
-        price: 10.00,
+        price: 8.00,
         description: "Bolo branco com camadas de mousse de maracujá fresco e azedinho na medida certa.",
-        image: "https://images.pexels.com/photos/8134769/pexels-photo-8134769.jpeg?auto=compress&cs=tinysrgb&w=400"
+        image: "assets/bolo_maracuja.png"
     }
 ];

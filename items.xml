@@ -85,7 +85,7 @@
         <id>12</id>
         <name>Croissant Presunto e Queijo</name>
         <category>croissant</category>
-        <price>9.00</price>
+        <price>16.50</price>
         <description>O clássico folhado recheado com presunto fatiado e queijo derretido.</description>
         <image>https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
@@ -93,34 +93,34 @@
     <!-- Drinks -->
     <item>
         <id>13</id>
-        <name>Coca-Cola 200ml</name>
+        <name>Coca-Cola 220ml</name>
         <category>drinks</category>
         <price>3.80</price>
-        <description>Refrigerante Coca-Cola Original estupidamente gelada.</description>
-        <image>https://images.pexels.com/photos/5059339/pexels-photo-5059339.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
+        <description>Refrigerante Coca-Cola sabor original e refrescante. Mini lata 220ml.</description>
+        <image>https://images.unsplash.com/photo-1622483767028-3f66f32aef97?q=80&amp;w=400</image>
     </item>
     <item>
         <id>14</id>
-        <name>Coca-Cola Zero 200ml</name>
+        <name>Coca-Cola Zero 220ml</name>
         <category>drinks</category>
         <price>3.80</price>
-        <description>Refrigerante Coca-Cola sem açúcar, sabor original, gelada.</description>
-        <image>https://images.pexels.com/photos/2652981/pexels-photo-2652981.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
+        <description>Refrigerante Coca-Cola sem açúcar, sabor original. Mini lata 220ml.</description>
+        <image>https://images.unsplash.com/photo-1629203851022-39c6f2c79835?q=60&amp;w=400</image>
     </item>
     <item>
         <id>15</id>
-        <name>Sprite 200ml</name>
+        <name>Sprite 220ml</name>
         <category>drinks</category>
         <price>3.80</price>
-        <description>Refrigerante Sprite de limão, refrescante e muito gelada.</description>
-        <image>https://images.pexels.com/photos/4038902/pexels-photo-4038902.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
+        <description>Refrigerante Sprite sabor limão, refrescante e gelada. Mini lata 220ml.</description>
+        <image>https://images.unsplash.com/photo-1625772290748-390b1dfa539e?q=60&amp;w=400</image>
     </item>
     <item>
         <id>16</id>
         <name>Água Mineral 500ml</name>
         <category>drinks</category>
         <price>3.00</price>
-        <description>Água mineral natural, ideal para hidratar com frescor.</description>
+        <description>Água mineral natural cristalina e refrescante.</description>
         <image>https://images.pexels.com/photos/11101/pexels-photo-11101.jpg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
     </item>
 
@@ -130,38 +130,23 @@
         <name>Pudim de Leite Moça</name>
         <category>desserts</category>
         <price>12.00</price>
-<<<<<<< HEAD
         <description>Fatia generosa de pudim de leite condensado super liso com calda de caramelo.</description>
         <image>https://images.pexels.com/photos/10186981/pexels-photo-10186981.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
-=======
-        <description>Pudim de leite condensado super liso com calda de caramelo.</description>
-        <image>https://images.unsplash.com/photo-1590080874088-eec64895b423?q=60&amp;w=400</image>
->>>>>>> 4dd37908dd3c8cce1a935b55dfaa8b5bc539be71
     </item>
     <item>
         <id>18</id>
         <name>Bolo de Pote Prestígio</name>
         <category>desserts</category>
-        <price>10.00</price>
-<<<<<<< HEAD
-        <description>Camadas de bolo de chocolate fofinho com recheio cremoso de coco.</description>
-        <image>https://images.pexels.com/photos/8134769/pexels-photo-8134769.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
-=======
-        <description>Bolo de massa de chocolate fofinho com recheio cremoso de coco.</description>
-        <image>https://images.unsplash.com/photo-1587314168485-3236d6710814?q=60&amp;w=400</image>
->>>>>>> 4dd37908dd3c8cce1a935b55dfaa8b5bc539be71
+        <price>8.00</price>
+        <description>Camadas de bolo de chocolate fofinho com recheio cremoso de coco fresco.</description>
+        <image>assets/bolo_prestigio.png</image>
     </item>
     <item>
         <id>19</id>
         <name>Bolo de Pote Maracujá</name>
         <category>desserts</category>
-        <price>10.00</price>
-<<<<<<< HEAD
+        <price>8.00</price>
         <description>Bolo branco com camadas de mousse de maracujá fresco e azedinho na medida certa.</description>
-        <image>https://images.pexels.com/photos/8134769/pexels-photo-8134769.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=400</image>
-=======
-        <description>Bolo de massa preta com camadas de mousse de maracujá fresco e azedinho na medida certa.</description>
-        <image>https://images.unsplash.com/photo-1587314168485-3236d6710814?q=60&amp;w=400</image>
->>>>>>> 4dd37908dd3c8cce1a935b55dfaa8b5bc539be71
+        <image>assets/bolo_maracuja.png</image>
     </item>
 </menu>
