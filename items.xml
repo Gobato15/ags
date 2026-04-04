@@ -93,7 +93,7 @@
     <!-- Drinks -->
     <item>
         <id>13</id>
-        <name>Coca-Cola 200ml</name>
+        <name>Coca-Cola 220ml</name>
         <category>drinks</category>
         <price>3.80</price>
         <description>Refrigerante Coca-Cola Original estupidamente gelada.</description>
@@ -101,7 +101,7 @@
     </item>
     <item>
         <id>14</id>
-        <name>Coca-Cola Zero 200ml</name>
+        <name>Coca-Cola Zero 220ml</name>
         <category>drinks</category>
         <price>3.80</price>
         <description>Refrigerante Coca-Cola sem açúcar, sabor original, gelada.</description>
@@ -109,7 +109,7 @@
     </item>
     <item>
         <id>15</id>
-        <name>Sprite 200ml</name>
+        <name>Sprite 220ml</name>
         <category>drinks</category>
         <price>3.80</price>
         <description>Refrigerante Sprite de limão, refrescante e muito gelada.</description>
