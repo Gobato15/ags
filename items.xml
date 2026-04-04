@@ -104,8 +104,13 @@
         <name>Coca-Cola Zero 220ml</name>
         <category>drinks</category>
         <price>3.80</price>
+<<<<<<< HEAD
         <description>Refrigerante Coca-Cola sem açúcar gelada. Mini lata 220ml.</description>
         <image>assets/coca_zero.png</image>
+=======
+        <description>Refrigerante Coca-Cola sem açúcar, sabor original. Mini lata 220ml.</description>
+        <image>https://github.com/Gobato15/ags/blob/main/assets/coca_zero.png</image>
+>>>>>>> fbbf40313d30a603b0ab5708e600fdb606cdbdd2
     </item>
     <item>
         <id>15</id>
