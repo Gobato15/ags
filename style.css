@@ -102,13 +102,41 @@ header.scrolled {
     box-shadow: 0 0 0 4px rgba(245, 61, 45, 0.1);
 }
 
-/* Hero Section */
 .hero {
+    position: relative;
     margin-top: 80px;
-    padding: 6rem 8% 4rem;
+    padding: 8rem 8% 6rem;
     text-align: center;
-    background: radial-gradient(circle at top right, rgba(245, 61, 45, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at bottom left, rgba(255, 183, 3, 0.05) 0%, transparent 40%);
+    background: transparent;
+}
+
+.hero::before, .hero::after {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    animation: blobBounce 8s infinite alternate ease-in-out;
+}
+
+.hero::before {
+    top: -50px;
+    right: 5%;
+    background: rgba(245, 61, 45, 0.2);
+}
+
+.hero::after {
+    bottom: -50px;
+    left: 5%;
+    background: rgba(255, 183, 3, 0.2);
+    animation-delay: -4s;
+}
+
+@keyframes blobBounce {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(-50px) scale(1.2); }
 }
 
 .hero h1 {
@@ -120,10 +148,16 @@ header.scrolled {
 }
 
 .hero h1 span {
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, #f53d2d, #ffb703, #f53d2d);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
 }
 
 .hero p {
@@ -182,21 +216,23 @@ header.scrolled {
     padding: 2rem 8% 8rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2.5rem;
+    gap: 3rem;
 }
 
 .product-card {
     border-radius: var(--radius);
     overflow: hidden;
-    transition: var(--transition);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     background: white;
-    border: 1px solid #f1f1f1;
+    border: 1px solid rgba(0,0,0,0.03);
     position: relative;
+    box-shadow: 0 10px 20px -5px rgba(0,0,0,0.04);
 }
 
 .product-card:hover {
-    transform: translateY(-12px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-15px);
+    box-shadow: 0 25px 40px -10px rgba(245, 61, 45, 0.15);
+    border-color: rgba(245, 61, 45, 0.1);
 }
 
 .product-image-container {
@@ -264,13 +300,14 @@ header.scrolled {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: none;
     box-shadow: 0 4px 10px rgba(245, 61, 45, 0.3);
 }
 
 .add-btn:hover {
     transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 10px 20px rgba(245, 61, 45, 0.5);
 }
 
 /* Animations */
