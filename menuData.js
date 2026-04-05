@@ -141,7 +141,7 @@ window.menuItemsData = [
         name: "Pudim de Padaria",
         category: "desserts",
         price: 6.00,
-        description: "Delicioso pudim de pão caseiro com calda de caramelo, macio e saboroso.",
+        description: "Delicioso pudim de padaria caseiro com calda de caramelo, macio e saboroso.",
         image: "assets/pudim_pao.jpg"
     }
 ];
