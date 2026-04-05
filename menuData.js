@@ -57,10 +57,10 @@ window.menuItemsData = [
     },
     {
         id: "10",
-        name: "Esfirra de Calabresa",
+        name: "Esfirra de Queijo",
         category: "esfirra",
         price: 3.50,
-        description: "Deliciosa calabresa moída com temperos especiais em massa artesanal.",
+        description: "Massa macia com recheio generoso de mussarela e orégano.",
         image: "assets/esfirra_queijo.jpg"
     },
     {
@@ -93,7 +93,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 3.80,
         description: "Refrigerante Coca-Cola sem açúcar gelada. Mini lata 220ml.",
-        image: "assets/coca_zero.png"
+        image: "assets/coca_zero.webp"
     },
     {
         id: "15",
@@ -134,5 +134,13 @@ window.menuItemsData = [
         price: 8.00,
         description: "Bolo branco com camadas de mousse de maracujá fresco e delicioso.",
         image: "assets/bolo_maracuja.png"
+    },
+    {
+        id: "20",
+        name: "Burger Premium",
+        category: "burgers",
+        price: 15.00,
+        description: "Hambúrguer artesanal gourmet de 150g, queijo cheddar especial, bacon crocante e molho secreto.",
+        image: "assets/burger_premium.png"
     }
 ];
