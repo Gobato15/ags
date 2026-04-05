@@ -134,7 +134,7 @@ window.menuItemsData = [
         category: "desserts",
         price: 8.00,
         description: "Bolo branco com camadas de mousse de maracujá fresco e delicioso.",
-        image: "assets/bolo_pote_maracuja.jpg"
+        image: "assets/bolo_pote_maracuja.png"
     },
     {
         id: "20",
