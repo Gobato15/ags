@@ -5,42 +5,46 @@ const menuGrid = document.getElementById('menuGrid');
 const categoryContainer = document.getElementById('categoryContainer');
 const searchInput = document.getElementById('searchInput');
 
-// Labels para as categorias (opcional, para exibir nomes mais bonitos)
+// Labels com emoji para as categorias
 const categoryLabels = {
-    'all': 'Todos',
-    'burgers': 'Burgers',
+    'all': '🍽️ Todos',
+    'burgers': '🍔 Burgers',
+    'coxinha': '🍗 Coxinha',
+    'bolinho': '🥟 Bolinho',
+    'esfirra': '🫓 Esfirra',
+    'croissant': '🥐 Croissant',
+    'drinks': '🥤 Bebidas',
+    'desserts': '🍮 Sobremesas'
+};
+
+// Badge curto para o card
+const categoryBadgeLabels = {
+    'burgers': 'Burger',
     'coxinha': 'Coxinha',
     'bolinho': 'Bolinho',
     'esfirra': 'Esfirra',
     'croissant': 'Croissant',
-    'drinks': 'Bebidas',
-    'desserts': 'Sobremesas'
+    'drinks': 'Bebida',
+    'desserts': 'Sobremesa'
 };
 
-// Fetch and Parse XML
+// Fetch e parse do XML
 async function loadMenu() {
-    console.log("Iniciando carregamento do cardápio...");
-
     try {
-        console.log("Tentando carregar items.xml...");
         const response = await fetch('items.xml?v=' + Date.now());
-        
         if (response.ok) {
             const str = await response.text();
             const data = new window.DOMParser().parseFromString(str, "text/xml");
-            
             const parseError = data.getElementsByTagName("parsererror");
             if (parseError.length > 0) throw new Error("Erro de XML");
 
             const items = data.getElementsByTagName("item");
-
             if (items.length > 0) {
                 menuItems = Array.from(items).map(item => {
                     const getTagValue = (tagName) => {
                         const el = item.getElementsByTagName(tagName)[0];
                         return el ? el.textContent : '';
                     };
-
                     return {
                         id: getTagValue("id"),
                         name: getTagValue("name"),
@@ -50,16 +54,16 @@ async function loadMenu() {
                         image: getTagValue("image")
                     };
                 });
-                
                 renderCategories();
                 renderMenu();
                 return;
             }
         }
     } catch (e) {
-        console.warn("Fetch XML falhou, tentando fallback...", e.message);
+        console.warn("Fetch XML falhou, usando fallback...", e.message);
     }
 
+    // Fallback para menuData.js
     if (window.menuItemsData) {
         menuItems = window.menuItemsData;
         renderCategories();
@@ -67,35 +71,31 @@ async function loadMenu() {
     }
 }
 
-// Generate Categories dynamically
+// Gera os filtros de categoria
 function renderCategories() {
     const categories = ['all', ...new Set(menuItems.map(item => item.category))];
-    
     categoryContainer.innerHTML = '';
-    
+
     categories.forEach(cat => {
         const pill = document.createElement('div');
         pill.className = `category-pill ${cat === 'all' ? 'active' : ''}`;
         pill.dataset.category = cat;
-        
-        // Usa o label mapeado ou coloca a primeira letra em maiúsculo
-        const label = categoryLabels[cat] || cat.charAt(0).toUpperCase() + cat.slice(1);
-        pill.textContent = label;
-        
+        pill.textContent = categoryLabels[cat] || cat.charAt(0).toUpperCase() + cat.slice(1);
+
         pill.addEventListener('click', () => {
             document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
             pill.classList.add('active');
             renderMenu(cat, searchInput.value);
         });
-        
+
         categoryContainer.appendChild(pill);
     });
 }
 
-// Initial Render
+// Renderiza os cards do menu
 function renderMenu(filter = 'all', searchQuery = '') {
     menuGrid.innerHTML = '';
-    
+
     const filteredItems = menuItems.filter(item => {
         const matchesCategory = filter === 'all' || item.category === filter;
         const matchesSearch = item.name.toLowerCase().includes(searchQuery.toLowerCase());
@@ -103,23 +103,37 @@ function renderMenu(filter = 'all', searchQuery = '') {
     });
 
     if (filteredItems.length === 0) {
-        menuGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 3rem;">Nenhum item encontrado.</p>';
+        menuGrid.innerHTML = `
+            <div class="empty-state">
+                <i class="fas fa-search"></i>
+                <p>Nenhum item encontrado para "<strong>${searchQuery}</strong>"</p>
+            </div>`;
         return;
     }
 
-    filteredItems.forEach(item => {
+    filteredItems.forEach((item, index) => {
+        // Só aplica cache-bust em imagens locais (assets/...), não em URLs externas
+        const isLocal = item.image && item.image.startsWith('assets/');
+        const imgSrc = isLocal ? `${item.image}?v=3` : item.image;
+        const badge = categoryBadgeLabels[item.category] || item.category;
+
         const card = document.createElement('div');
         card.className = 'product-card';
+        card.style.animationDelay = `${index * 0.06}s`;
         card.innerHTML = `
             <div class="product-image-container">
-                <img src="${item.image}?v=${Date.now()}" alt="${item.name}" class="product-image">
+                <span class="category-badge">${badge}</span>
+                <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy">
             </div>
             <div class="product-info">
                 <h3>${item.name}</h3>
                 <p>${item.description}</p>
                 <div class="product-footer">
-                    <span class="price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
-                    <button class="add-btn" aria-label="Adicionar ao carrinho">
+                    <div class="price-wrapper">
+                        <span class="price-label">a partir de</span>
+                        <span class="price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                    </div>
+                    <button class="add-btn" aria-label="Adicionar ${item.name} ao carrinho">
                         <i class="fas fa-plus"></i>
                     </button>
                 </div>
@@ -129,25 +143,22 @@ function renderMenu(filter = 'all', searchQuery = '') {
     });
 }
 
-// Header Scroll Effect
+// Efeito de scroll no header
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
     if (window.scrollY > 20) {
-        header.classList.add('scrolled');
-        header.classList.add('glass');
+        header.classList.add('scrolled', 'glass');
     } else {
-        header.classList.remove('scrolled');
-        header.classList.remove('glass');
+        header.classList.remove('scrolled', 'glass');
     }
 });
 
+// Pesquisa em tempo real
 searchInput.addEventListener('input', (e) => {
     const activePill = document.querySelector('.category-pill.active');
     const activeCategory = activePill ? activePill.dataset.category : 'all';
     renderMenu(activeCategory, e.target.value);
 });
 
-// Initial load
-window.onload = () => {
-    loadMenu();
-};
+// Carregamento inicial
+window.onload = () => loadMenu();
