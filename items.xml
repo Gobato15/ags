@@ -6,7 +6,7 @@
         <category>burgers</category>
         <price>8.00</price>
         <description>Carne suculenta de 56g, mussarela derretida, presunto, tomate, orégano e cheddar no pão macio.</description>
-        <image>assets/hamburguinho.png</image>
+        <image>assets/hamburguinho_forno.jpg</image>
     </item>
     <item>
         <id>4</id>
@@ -40,7 +40,7 @@
         <category>bolinho</category>
         <price>7.00</price>
         <description>O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.</description>
-        <image>assets/bolinho.png</image>
+        <image>assets/bolinho_ovo.jpg</image>
     </item>
 
     <item>
@@ -107,7 +107,7 @@
         <category>drinks</category>
         <price>3.80</price>
         <description>Refrigerante Sprite sabor limão gelada. Mini lata 220ml.</description>
-        <image>assets/sprite.png</image>
+        <image>assets/sprite_220ml.png</image>
     </item>
     <item>
         <id>16</id>

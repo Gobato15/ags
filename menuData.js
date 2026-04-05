@@ -5,7 +5,7 @@ window.menuItemsData = [
         category: "burgers",
         price: 8.00,
         description: "Carne suculenta de 56g, mussarela derretida, presunto, tomate, orégano e cheddar no pão macio.",
-        image: "assets/hamburguinho.png"
+        image: "assets/hamburguinho_forno.jpg"
     },
     {
         id: "4",
@@ -37,7 +37,7 @@ window.menuItemsData = [
         category: "bolinho",
         price: 7.00,
         description: "O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.",
-        image: "assets/bolinho.png"
+        image: "assets/bolinho_ovo.jpg"
     },
     {
         id: "2",
@@ -101,7 +101,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 3.80,
         description: "Refrigerante Sprite sabor limão gelada. Mini lata 220ml.",
-        image: "assets/sprite.png"
+        image: "assets/sprite_220ml.png"
     },
     {
         id: "16",
