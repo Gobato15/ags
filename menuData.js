@@ -116,7 +116,7 @@ window.menuItemsData = [
         id: "17",
         name: "Pudim de Leite Moça",
         category: "desserts",
-        price: 12.00,
+        price: 6.00,
         description: "Fatia generosa de pudim de leite condensado super liso com calda de caramelo.",
         image: "assets/pudim.png"
     },
@@ -125,7 +125,7 @@ window.menuItemsData = [
         name: "Bolo de Pote Prestígio",
         category: "desserts",
         price: 8.00,
-        description: "Camadas de bolo de chocolate with recheio cremoso de coco fresco.",
+        description: "Camadas de bolo de chocolate com recheio cremoso de coco fresco.",
         image: "assets/bolo_prestigio.png"
     },
     {

@@ -112,7 +112,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
         card.className = 'product-card';
         card.innerHTML = `
             <div class="product-image-container">
-                <img src="${item.image}" alt="${item.name}" class="product-image">
+                <img src="${item.image}?v=${Date.now()}" alt="${item.name}" class="product-image">
             </div>
             <div class="product-info">
                 <h3>${item.name}</h3>
