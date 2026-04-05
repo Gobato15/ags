@@ -134,13 +134,5 @@ window.menuItemsData = [
         price: 8.00,
         description: "Bolo branco com camadas de mousse de maracujá fresco e delicioso.",
         image: "assets/bolo_maracuja.png"
-    },
-    {
-        id: "20",
-        name: "Burger Premium",
-        category: "burgers",
-        price: 15.00,
-        description: "Hambúrguer artesanal gourmet de 150g, queijo cheddar especial, bacon crocante e molho secreto.",
-        image: "assets/burger_premium.png"
     }
 ];

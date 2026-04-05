@@ -142,12 +142,4 @@
         <description>Bolo branco com camadas de mousse de maracujá fresco e delicioso.</description>
         <image>assets/bolo_maracuja.png</image>
     </item>
-    <item>
-        <id>20</id>
-        <name>Burger Premium</name>
-        <category>burgers</category>
-        <price>15.00</price>
-        <description>Hambúrguer artesanal gourmet de 150g, queijo cheddar especial, bacon crocante e molho secreto.</description>
-        <image>assets/burger_premium.png</image>
-    </item>
 </menu>
