@@ -13,8 +13,9 @@ window.menuItemsData = [
         category: "burgers",
         price: 11.50,
         description: "Duas carnes de 56g, muito bacon crocante, presunto, mussarela e cheddar cremoso.",
-        image: "assets/hamburguinho_duplo.png"
+        image: "assets/hamburguinho_duplo.jpg"
     },
+
     {
         id: "1",
         name: "Coxinha de Frango",
