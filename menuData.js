@@ -135,5 +135,13 @@ window.menuItemsData = [
         price: 8.00,
         description: "Bolo branco com camadas de mousse de maracujá fresco e delicioso.",
         image: "assets/bolo_maracuja.png"
+    },
+    {
+        id: "20",
+        name: "Pudim de Pão",
+        category: "desserts",
+        price: 6.00,
+        description: "Delicioso pudim de pão caseiro com calda de caramelo, macio e saboroso.",
+        image: "assets/pudim_pao.png"
     }
 ];

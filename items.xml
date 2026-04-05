@@ -142,4 +142,12 @@
         <description>Bolo branco com camadas de mousse de maracujá fresco e delicioso.</description>
         <image>assets/bolo_maracuja.png</image>
     </item>
+    <item>
+        <id>20</id>
+        <name>Pudim de Pão</name>
+        <category>desserts</category>
+        <price>6.00</price>
+        <description>Delicioso pudim de pão caseiro com calda de caramelo, macio e saboroso.</description>
+        <image>assets/pudim_pao.png</image>
+    </item>
 </menu>
