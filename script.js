@@ -122,7 +122,6 @@ function renderMenu(filter = 'all', searchQuery = '') {
         card.style.animationDelay = `${index * 0.06}s`;
         card.innerHTML = `
             <div class="product-image-container">
-                <span class="category-badge">${badge}</span>
                 <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy">
             </div>
             <div class="product-info">

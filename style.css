@@ -258,14 +258,7 @@ header.scrolled {
     background: #f0f0f0;
 }
 
-.product-image-container::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.35) 100%);
-    pointer-events: none;
-    z-index: 1;
-}
+/* overlay removido */
 
 .product-image {
     width: 100%;
