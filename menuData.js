@@ -70,7 +70,7 @@ window.menuItemsData = [
         category: "croissant",
         price: 9.00,
         description: "Massa folhada francesa amanteigada e crocante com recheio de mussarela.",
-        image: "https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&cs=tinysrgb&w=400"
+        image: "assets/croissant_artesanal.jpg"
     },
     {
         id: "12",
@@ -78,7 +78,7 @@ window.menuItemsData = [
         category: "croissant",
         price: 9.00,
         description: "O clássico folhado recheado com presunto fatiado e queijo derretido.",
-        image: "https://images.pexels.com/photos/3892469/pexels-photo-3892469.jpeg?auto=compress&cs=tinysrgb&w=400"
+        image: "assets/croissant_artesanal.jpg"
     },
     {
         id: "13",
