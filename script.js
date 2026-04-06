@@ -5,7 +5,7 @@ const menuGrid = document.getElementById('menuGrid');
 const categoryContainer = document.getElementById('categoryContainer');
 const searchInput = document.getElementById('searchInput');
 
-// Labels com emoji para as categorias
+// Configurações de Labels
 const categoryLabels = {
     'all': '🍽️ Todos',
     'burgers': '🍔 Burgers',
@@ -17,61 +17,48 @@ const categoryLabels = {
     'desserts': '🍮 Sobremesas'
 };
 
-// Badge curto para o card
-const categoryBadgeLabels = {
-    'burgers': 'Burger',
-    'coxinha': 'Coxinha',
-    'bolinho': 'Bolinho',
-    'esfirra': 'Esfirra',
-    'croissant': 'Croissant',
-    'drinks': 'Bebida',
-    'desserts': 'Sobremesa'
-};
-
-// Fetch e parse do XML
+// Carregamento do Menu
 async function loadMenu() {
     try {
+        // Tenta carregar o XML
         const response = await fetch('items.xml?v=' + Date.now());
         if (response.ok) {
             const str = await response.text();
             const data = new window.DOMParser().parseFromString(str, "text/xml");
-            const parseError = data.getElementsByTagName("parsererror");
-            if (parseError.length > 0) throw new Error("Erro de XML");
-
             const items = data.getElementsByTagName("item");
+
             if (items.length > 0) {
-                menuItems = Array.from(items).map(item => {
-                    const getTagValue = (tagName) => {
-                        const el = item.getElementsByTagName(tagName)[0];
-                        return el ? el.textContent : '';
-                    };
-                    return {
-                        id: getTagValue("id"),
-                        name: getTagValue("name"),
-                        category: getTagValue("category"),
-                        price: parseFloat(getTagValue("price")) || 0,
-                        description: getTagValue("description"),
-                        image: getTagValue("image")
-                    };
-                });
-                renderCategories();
-                renderMenu();
+                menuItems = Array.from(items).map(item => ({
+                    id: item.getElementsByTagName("id")[0]?.textContent || '',
+                    name: item.getElementsByTagName("name")[0]?.textContent || '',
+                    category: item.getElementsByTagName("category")[0]?.textContent || '',
+                    price: parseFloat(item.getElementsByTagName("price")[0]?.textContent) || 0,
+                    description: item.getElementsByTagName("description")[0]?.textContent || '',
+                    image: item.getElementsByTagName("image")[0]?.textContent || ''
+                }));
+                renderAll();
                 return;
             }
         }
     } catch (e) {
-        console.warn("Fetch XML falhou, usando fallback...", e.message);
+        console.warn("XML não encontrado ou erro no parse. Usando dados locais.");
     }
 
-    // Fallback para menuData.js
-    if (window.menuItemsData) {
+    // Se o XML falhar, tenta usar a variável global do menuData.js
+    if (window.menuItemsData && window.menuItemsData.length > 0) {
         menuItems = window.menuItemsData;
-        renderCategories();
-        renderMenu();
+        renderAll();
+    } else {
+        menuGrid.innerHTML = '<p style="text-align:center; padding:20px;">Erro ao carregar produtos. Verifique o arquivo items.xml ou menuData.js</p>';
     }
 }
 
-// Gera os filtros de categoria
+// Função auxiliar para renderizar categorias e menu de uma vez
+function renderAll() {
+    renderCategories();
+    renderMenu();
+}
+
 function renderCategories() {
     const categories = ['all', ...new Set(menuItems.map(item => item.category))];
     categoryContainer.innerHTML = '';
@@ -80,19 +67,17 @@ function renderCategories() {
         const pill = document.createElement('div');
         pill.className = `category-pill ${cat === 'all' ? 'active' : ''}`;
         pill.dataset.category = cat;
-        pill.textContent = categoryLabels[cat] || cat.charAt(0).toUpperCase() + cat.slice(1);
+        pill.textContent = categoryLabels[cat] || cat;
 
         pill.addEventListener('click', () => {
             document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
             pill.classList.add('active');
             renderMenu(cat, searchInput.value);
         });
-
         categoryContainer.appendChild(pill);
     });
 }
 
-// Renderiza os cards do menu
 function renderMenu(filter = 'all', searchQuery = '') {
     menuGrid.innerHTML = '';
 
@@ -103,11 +88,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
     });
 
     if (filteredItems.length === 0) {
-        menuGrid.innerHTML = `
-            <div class="empty-state">
-                <i class="fas fa-search"></i>
-                <p>Nenhum item encontrado para "<strong>${searchQuery}</strong>"</p>
-            </div>`;
+        menuGrid.innerHTML = `<div class="empty-state"><p>Nenhum item encontrado.</p></div>`;
         return;
     }
 
@@ -117,10 +98,10 @@ function renderMenu(filter = 'all', searchQuery = '') {
 
         const card = document.createElement('div');
         card.className = 'product-card';
-        card.style.animationDelay = `${index * 0.06}s`;
+        card.style.animationDelay = `${index * 0.05}s`;
         card.innerHTML = `
             <div class="product-image-container">
-                <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy">
+                <img src="${imgSrc}" alt="${item.name}" class="product-image" onerror="this.src='https://via.placeholder.com/150'">
             </div>
             <div class="product-info">
                 <h3>${item.name}</h3>
@@ -135,40 +116,38 @@ function renderMenu(filter = 'all', searchQuery = '') {
         `;
         menuGrid.appendChild(card);
     });
-// Banner de convite para o grupo do WhatsApp
+
+    // Banner do WhatsApp (Adicionado apenas se houver itens)
+    renderWhatsAppBanner();
+}
+
+function renderWhatsAppBanner() {
     const banner = document.createElement('div');
     banner.className = 'whatsapp-group-banner';
     banner.innerHTML = `
         <div class="wg-banner-content">
             <div class="wg-icon"><i class="fab fa-whatsapp"></i></div>
             <div class="wg-text">
-                <strong>Quer receber nossas ofertas diárias? 🎉</strong>
-                <span>Entre no nosso grupo do WhatsApp e fique por dentro de todas as promoções!</span>
+                <strong>Quer receber nossas ofertas diárias? 🎉</strong><br>
+                <span>Entre no nosso grupo e aproveite!</span>
             </div>
-            <a href="https://chat.whatsapp.com/SEU_LINK_AQUI" target="_blank" rel="noopener" class="wg-btn">
-                Entrar no Grupo
-            </a>
+            <a href="https://chat.whatsapp.com/HgplOITiLRwKua9uh7a7Qv" target="_blank" class="wg-btn">Entrar</a>
         </div>
     `;
     menuGrid.appendChild(banner);
 }
 
-// Efeito de scroll no header
+// Eventos
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
-    if (window.scrollY > 20) {
-        header.classList.add('scrolled', 'glass');
-    } else {
-        header.classList.remove('scrolled', 'glass');
+    if (header) {
+        window.scrollY > 20 ? header.classList.add('scrolled', 'glass') : header.classList.remove('scrolled', 'glass');
     }
 });
 
-// Pesquisa em tempo real
 searchInput.addEventListener('input', (e) => {
     const activePill = document.querySelector('.category-pill.active');
-    const activeCategory = activePill ? activePill.dataset.category : 'all';
-    renderMenu(activeCategory, e.target.value);
+    renderMenu(activePill ? activePill.dataset.category : 'all', e.target.value);
 });
 
-// Carregamento inicial
-window.onload = () => loadMenu();
+window.onload = loadMenu;
