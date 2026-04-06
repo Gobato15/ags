@@ -135,6 +135,23 @@ function renderMenu(filter = 'all', searchQuery = '') {
         `;
         menuGrid.appendChild(card);
     });
+// Banner de convite para o grupo do WhatsApp
+    const banner = document.createElement('div');
+    banner.className = 'whatsapp-group-banner';
+    banner.innerHTML = `
+        <div class="wg-banner-content">
+            <div class="wg-icon"><i class="fab fa-whatsapp"></i></div>
+            <div class="wg-text">
+                <strong>Quer receber nossas ofertas diárias? 🎉</strong>
+                <span>Entre no nosso grupo do WhatsApp e fique por dentro de todas as promoções!</span>
+            </div>
+            <a href="https://chat.whatsapp.com/SEU_LINK_AQUI" target="_blank" rel="noopener" class="wg-btn">
+                Entrar no Grupo
+            </a>
+        </div>
+    `;
+    menuGrid.appendChild(banner);
+}
 
 // Efeito de scroll no header
 window.addEventListener('scroll', () => {
