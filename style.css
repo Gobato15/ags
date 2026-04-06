@@ -769,6 +769,40 @@ footer {
         padding: 1.8rem 1.5rem;
         gap: 1.2rem;
     }
+    .footer-ags {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.footer-whatsapp {
+    background-color: #25d366;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.footer-whatsapp:hover {
+    transform: scale(1.05);
+}
+
+.footer-copy {
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
 
     .wg-btn {
         width: 100%;
