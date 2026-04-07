@@ -495,9 +495,33 @@ footer {
 
 .promo-items {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
+    /* Reduzindo a largura mínima de 280px para 220px para os cards ficarem menores e encaixarem mais no painel */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
     padding-bottom: 0.5rem;
+}
+
+/* Modificadores para diminuir o tamanho dos cards apenas dentro das promoções */
+.promo-product-card {
+    border-radius: 12px;
+}
+.promo-product-card .product-image-container {
+    height: 150px; /* Bem menor que os 240px originais */
+}
+.promo-product-card .product-info {
+    padding: 1.2rem;
+}
+.promo-product-card .product-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+.promo-product-card .product-info p {
+    font-size: 0.85rem;
+    height: 2.6rem;
+    margin-bottom: 1rem;
+}
+.promo-product-card .price {
+    font-size: 1.35rem;
 }
 
 .promo-card {

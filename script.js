@@ -135,9 +135,9 @@ function renderDailyPromos() {
             const originalPriceHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
             
             itemsHTML += `
-                <div class="product-card" style="box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                <div class="product-card promo-product-card" style="box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
                     <div class="product-image-container">
-                        <div style="position:absolute; top:10px; right:10px; background: linear-gradient(135deg, #ff5252 0%, #e8321f 100%); color:white; padding:6px 14px; border-radius:30px; font-weight:900; font-size:0.85rem; z-index:10; box-shadow: 0 6px 15px rgba(255, 82, 82, 0.5); letter-spacing: 1px;">HOJE</div>
+                        <div style="position:absolute; top:8px; right:8px; background: linear-gradient(135deg, #ff5252 0%, #e8321f 100%); color:white; padding:4px 10px; border-radius:30px; font-weight:900; font-size:0.75rem; z-index:10; box-shadow: 0 4px 10px rgba(255, 82, 82, 0.5); letter-spacing: 1px;">HOJE</div>
                         <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
                     </div>
                     <div class="product-info">
