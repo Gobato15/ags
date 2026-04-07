@@ -100,7 +100,7 @@ window.menuItemsData = [
         id: "15",
         name: "Sprite 220ml",
         category: "drinks",
-        price: 3.80,
+        price: 3.00,
         description: "Refrigerante Sprite sabor limão gelada. Mini lata 220ml.",
         image: "assets/sprite_220ml.png"
     },
