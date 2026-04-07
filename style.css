@@ -487,15 +487,10 @@ footer {
 }
 
 .promo-items {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
-    overflow-x: auto;
     padding-bottom: 0.5rem;
-    scrollbar-width: none;
-}
-
-.promo-items::-webkit-scrollbar {
-    display: none;
 }
 
 .promo-card {
@@ -504,7 +499,6 @@ footer {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 15px;
     padding: 1rem;
-    min-width: 260px;
     display: flex;
     align-items: center;
     gap: 1rem;
