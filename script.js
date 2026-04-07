@@ -21,7 +21,7 @@ const searchInput = document.getElementById('searchInput');
 const dailyPromotions = {
     1: [ // Segunda: Hamburguinhos
         { id: "0", promoPrice: 8.00 },
-        { id: "4", promoPrice: 10.00 }
+        { id: "4", promoPrice: 9.00 }
     ],
     2: [ // Terça: Croissant e Bauru
         { id: "12", promoPrice: 8.00 },

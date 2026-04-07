@@ -11,7 +11,7 @@ window.menuItemsData = [
         id: "4",
         name: "Hamburguinho Duplo Bacon",
         category: "burgers",
-        price: 11.50,
+        price: 10.00,
         description: "Duas carnes de 56g, muito bacon crocante, presunto, mussarela e cheddar cremoso.",
         image: "assets/hamburguinho_duplo.jpg"
     },
