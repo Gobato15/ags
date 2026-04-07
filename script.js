@@ -21,7 +21,7 @@ const searchInput = document.getElementById('searchInput');
 const dailyPromotions = {
     1: [ // Segunda: Hamburguinhos
         { id: "0", promoPrice: 8.00 },
-        { id: "4", promoPrice: 9.00 }
+        { id: "4", promoPrice: 10.00 }
     ],
     2: [ // Terça: Croissant e Bauru
         { id: "12", promoPrice: 8.00 },
@@ -163,7 +163,7 @@ function renderDailyPromos() {
 
     promoContainer.innerHTML = `
         <div class="promo-day-selector">
-            <span style="color:var(--text-muted); font-size:0.9rem; margin-right:5px; font-weight:600; display:flex; align-items:center;">Ver promos de:</span>
+            <span style="color:var(--text-muted); font-size:1rem; margin-right:10px; font-weight:700; display:flex; align-items:center;">Confira as promoções da semana:</span>
             ${dayBtnsHTML}
         </div>
         <div class="promo-banner" style="background: ${gradients[today]};">
