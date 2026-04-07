@@ -436,7 +436,7 @@ footer {
 .promo-banner {
     background: linear-gradient(135deg, var(--primary) 0%, #ff5252 100%);
     border-radius: var(--radius);
-    padding: 2rem;
+    padding: 1.2rem 1.5rem;
     color: white;
     box-shadow: var(--shadow-lg);
     position: relative;

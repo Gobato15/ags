@@ -105,6 +105,30 @@ window.menuItemsData = [
         image: "assets/bauru_pizza.jpg"
     },
     {
+        id: "25",
+        name: "Pizza Brotinho Portuguesa",
+        category: "pizzas",
+        price: 8.00,
+        description: "Molho de tomate, mussarela, presunto, ovos, cebola, azeitona e orégano na massa crocante.",
+        image: "assets/pizza_brotinho_portuguesa.jpg"
+    },
+    {
+        id: "26",
+        name: "Pizza Brotinho Mussarela",
+        category: "pizzas",
+        price: 8.00,
+        description: "Molho de tomate especial, bastante mussarela derretida, rodelas de tomate e orégano na massa crocante.",
+        image: "assets/pizza_brotinho_mussarela.jpg"
+    },
+    {
+        id: "27",
+        name: "Pizza Brotinho Calabresa",
+        category: "pizzas",
+        price: 8.00,
+        description: "Molho de tomate, mussarela, generosa porção de calabresa fatiada, cebola e orégano na massa crocante.",
+        image: "assets/pizza_brotinho_calabresa.jpg"
+    },
+    {
         id: "13",
         name: "Coca-Cola 220ml",
         category: "drinks",

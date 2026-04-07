@@ -111,6 +111,31 @@
     </item>
 
     <item>
+        <id>25</id>
+        <name>Pizza Brotinho Portuguesa</name>
+        <category>pizzas</category>
+        <price>8.00</price>
+        <description>Molho de tomate, mussarela, presunto, ovos, cebola, azeitona e orégano na massa crocante.</description>
+        <image>assets/pizza_brotinho_portuguesa.jpg</image>
+    </item>
+    <item>
+        <id>26</id>
+        <name>Pizza Brotinho Mussarela</name>
+        <category>pizzas</category>
+        <price>8.00</price>
+        <description>Molho de tomate especial, bastante mussarela derretida, rodelas de tomate e orégano na massa crocante.</description>
+        <image>assets/pizza_brotinho_mussarela.jpg</image>
+    </item>
+    <item>
+        <id>27</id>
+        <name>Pizza Brotinho Calabresa</name>
+        <category>pizzas</category>
+        <price>8.00</price>
+        <description>Molho de tomate, mussarela, generosa porção de calabresa fatiada, cebola e orégano na massa crocante.</description>
+        <image>assets/pizza_brotinho_calabresa.jpg</image>
+    </item>
+
+    <item>
         <id>13</id>
         <name>Coca-Cola 220ml</name>
         <category>drinks</category>

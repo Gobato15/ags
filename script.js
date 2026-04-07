@@ -19,9 +19,11 @@ const dailyPromotions = {
         { id: "21", promoPrice: 8.00 },
         { id: "22", promoPrice: 8.00 }
     ],
-    4: [ // Quinta: Coxinha e Bolinho
+    4: [ // Quinta: Coxinha e Pizzas Brotinho
         { id: "1", promoPrice: 7.00 },
-        { id: "7", promoPrice: 6.00 }
+        { id: "25", promoPrice: 7.00 },
+        { id: "26", promoPrice: 7.00 },
+        { id: "27", promoPrice: 7.00 }
     ],
     5: [ // Sexta: Sobremesas
         { id: "20", promoPrice: 5.00 },
@@ -37,6 +39,7 @@ const categoryLabels = {
     'bolinho': '🥟 Bolinho',
     'esfirra': '🫓 Esfirra',
     'croissant': '🥐 Croissant',
+    'pizzas': '🍕 Pizzas',
     'lanches': '🥪 Naturais',
     'drinks': '🥤 Bebidas',
     'desserts': '🍮 Sobremesas'
@@ -131,9 +134,19 @@ function renderDailyPromos() {
 
     if (itemsHTML === '') return;
 
+    const gradients = {
+        1: 'linear-gradient(135deg, #FF9800 0%, #FF5722 100%)', // Segunda: Laranja
+        2: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)', // Terça: Vermelho (AGS default)
+        3: 'linear-gradient(135deg, #00BCD4 0%, #2196F3 100%)', // Quarta: Azul
+        4: 'linear-gradient(135deg, #4CAF50 0%, #009688 100%)', // Quinta: Verde
+        5: 'linear-gradient(135deg, #9C27B0 0%, #E91E63 100%)', // Sexta: Roxo
+        0: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)', // Domingo
+        6: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)'  // Sábado
+    };
+
     promoContainer.innerHTML = `
-        <div class="promo-banner">
-            <h2><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
+        <div class="promo-banner" style="background: ${gradients[today]};">
+            <h2 style="font-size: 1.5rem;"><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
             <div class="promo-items">
                 ${itemsHTML}
             </div>
