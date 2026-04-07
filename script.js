@@ -5,7 +5,7 @@ const menuGrid = document.getElementById('menuGrid');
 const categoryContainer = document.getElementById('categoryContainer');
 const searchInput = document.getElementById('searchInput');
 
-// Configurações de Labels
+// Configurações de Labels (Devem ser iguais às categorias do seu XML/menuData)
 const categoryLabels = {
     'all': '🍽️ Todos',
     'burgers': '🍔 Burgers',
@@ -20,8 +20,8 @@ const categoryLabels = {
 // Carregamento do Menu
 async function loadMenu() {
     try {
-        // Tenta carregar o XML
-        const response = await fetch('items.xml?v=' + Date.now());
+        // No GitHub Pages, usamos caminhos relativos ./
+        const response = await fetch('./items.xml?v=' + Date.now());
         if (response.ok) {
             const str = await response.text();
             const data = new window.DOMParser().parseFromString(str, "text/xml");
@@ -31,7 +31,7 @@ async function loadMenu() {
                 menuItems = Array.from(items).map(item => ({
                     id: item.getElementsByTagName("id")[0]?.textContent || '',
                     name: item.getElementsByTagName("name")[0]?.textContent || '',
-                    category: item.getElementsByTagName("category")[0]?.textContent || '',
+                    category: item.getElementsByTagName("category")[0]?.textContent?.toLowerCase() || '',
                     price: parseFloat(item.getElementsByTagName("price")[0]?.textContent) || 0,
                     description: item.getElementsByTagName("description")[0]?.textContent || '',
                     image: item.getElementsByTagName("image")[0]?.textContent || ''
@@ -41,19 +41,17 @@ async function loadMenu() {
             }
         }
     } catch (e) {
-        console.warn("XML não encontrado ou erro no parse. Usando dados locais.");
+        console.warn("XML não encontrado. Tentando menuData.js...");
     }
 
-    // Se o XML falhar, tenta usar a variável global do menuData.js
     if (window.menuItemsData && window.menuItemsData.length > 0) {
         menuItems = window.menuItemsData;
         renderAll();
     } else {
-        menuGrid.innerHTML = '<p style="text-align:center; padding:20px;">Erro ao carregar produtos. Verifique o arquivo items.xml ou menuData.js</p>';
+        menuGrid.innerHTML = '<p style="text-align:center; color:white;">Erro ao carregar produtos.</p>';
     }
 }
 
-// Função auxiliar para renderizar categorias e menu de uma vez
 function renderAll() {
     renderCategories();
     renderMenu();
@@ -87,21 +85,22 @@ function renderMenu(filter = 'all', searchQuery = '') {
         return matchesCategory && matchesSearch;
     });
 
-    if (filteredItems.length === 0) {
-        menuGrid.innerHTML = `<div class="empty-state"><p>Nenhum item encontrado.</p></div>`;
-        return;
-    }
-
     filteredItems.forEach((item, index) => {
-        const isLocal = item.image && item.image.startsWith('assets/');
-        const imgSrc = isLocal ? `${item.image}?v=3` : item.image;
+        // Correção de caminho para o GitHub Pages
+        let imgSrc = item.image;
+        
+        // Se a imagem começa com 'assets/', garantimos que o caminho comece com './assets/'
+        if (imgSrc.startsWith('assets/')) {
+            imgSrc = './' + imgSrc;
+        }
 
         const card = document.createElement('div');
         card.className = 'product-card';
         card.style.animationDelay = `${index * 0.05}s`;
         card.innerHTML = `
             <div class="product-image-container">
-                <img src="${imgSrc}" alt="${item.name}" class="product-image" onerror="this.src='https://via.placeholder.com/150'">
+                <img src="${imgSrc}" alt="${item.name}" class="product-image" 
+                     onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel';">
             </div>
             <div class="product-info">
                 <h3>${item.name}</h3>
@@ -117,7 +116,6 @@ function renderMenu(filter = 'all', searchQuery = '') {
         menuGrid.appendChild(card);
     });
 
-    // Banner do WhatsApp (Adicionado apenas se houver itens)
     renderWhatsAppBanner();
 }
 
@@ -137,14 +135,7 @@ function renderWhatsAppBanner() {
     menuGrid.appendChild(banner);
 }
 
-// Eventos
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (header) {
-        window.scrollY > 20 ? header.classList.add('scrolled', 'glass') : header.classList.remove('scrolled', 'glass');
-    }
-});
-
+// Eventos e Inicialização
 searchInput.addEventListener('input', (e) => {
     const activePill = document.querySelector('.category-pill.active');
     renderMenu(activePill ? activePill.dataset.category : 'all', e.target.value);
