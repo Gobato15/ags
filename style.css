@@ -435,8 +435,7 @@ footer {
 /* Daily Promo */
 .daily-promo-section {
     padding: 0 8% 2rem;
-    margin: -3rem auto 0;
-    max-width: 1200px;
+    margin-top: -3rem;
     position: relative;
     z-index: 10;
 }
@@ -444,7 +443,7 @@ footer {
 .promo-banner {
     background: linear-gradient(135deg, var(--primary) 0%, #ff5252 100%);
     border-radius: var(--radius);
-    padding: 1.5rem;
+    padding: 2rem;
     color: white;
     box-shadow: var(--shadow-lg);
     position: relative;
@@ -496,9 +495,8 @@ footer {
 
 .promo-items {
     display: grid;
-    /* Ajustado o minmax com min(100%, 260px) para evitar overflow lateral no grid se a tela for muito estreita */
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
-    gap: 1rem; /* Gap um pouco menor para economizar espaço no celular */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
     padding-bottom: 0.5rem;
 }
 
