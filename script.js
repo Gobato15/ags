@@ -5,7 +5,7 @@ const menuGrid = document.getElementById('menuGrid');
 const categoryContainer = document.getElementById('categoryContainer');
 const searchInput = document.getElementById('searchInput');
 
-// Configurações de Labels (Devem ser iguais às categorias do seu XML/menuData)
+// Labels com emoji para as categorias
 const categoryLabels = {
     'all': '🍽️ Todos',
     'burgers': '🍔 Burgers',
@@ -17,26 +17,15 @@ const categoryLabels = {
     'desserts': '🍮 Sobremesas'
 };
 
-// Badge curto para o card
-const categoryBadgeLabels = {
-    'burgers': 'Burger',
-    'coxinha': 'Coxinha',
-    'bolinho': 'Bolinho',
-    'esfirra': 'Esfirra',
-    'croissant': 'Croissant',
-    'drinks': 'Bebida',
-    'desserts': 'Sobremesa'
-};
-
 // Fetch e parse do XML
 async function loadMenu() {
     try {
-        const response = await fetch('items.xml?v=' + Date.now());
+        const response = await fetch('./items.xml?v=' + Date.now());
         if (response.ok) {
             const str = await response.text();
             const data = new window.DOMParser().parseFromString(str, "text/xml");
-            const parseError = data.getElementsByTagName("parsererror");
-            if (parseError.length > 0) throw new Error("Erro de XML");
+
+            if (data.getElementsByTagName("parsererror").length > 0) throw new Error("Erro de XML");
 
             const items = data.getElementsByTagName("item");
 
@@ -55,8 +44,7 @@ async function loadMenu() {
                         image: getTagValue("image")
                     };
                 });
-                renderCategories();
-                renderMenu();
+                renderAll();
                 return;
             }
         }
@@ -67,8 +55,7 @@ async function loadMenu() {
     // Fallback para menuData.js
     if (window.menuItemsData) {
         menuItems = window.menuItemsData;
-        renderCategories();
-        renderMenu();
+        renderAll();
     }
 }
 
@@ -91,10 +78,10 @@ function renderCategories() {
             document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
             pill.classList.add('active');
             renderMenu(cat, searchInput.value);
-        });
+        };
 
-    categoryContainer.appendChild(pill);
-});
+        categoryContainer.appendChild(pill);
+    });
 }
 
 function renderMenu(filter = 'all', searchQuery = '') {
@@ -109,22 +96,25 @@ function renderMenu(filter = 'all', searchQuery = '') {
     if (filteredItems.length === 0) {
         menuGrid.innerHTML = `
             <div class="empty-state">
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search" style="display:block; font-size: 2rem; margin-bottom: 10px;"></i>
                 <p>Nenhum item encontrado para "<strong>${searchQuery}</strong>"</p>
             </div>`;
         return;
     }
 
     filteredItems.forEach((item, index) => {
-        const isLocal = item.image && item.image.startsWith('assets/');
-        const imgSrc = isLocal ? `${item.image}?v=3` : item.image;
+        // Correção de caminho para GitHub Pages
+        let imgSrc = item.image;
+        if (imgSrc.startsWith('assets/')) {
+            imgSrc = './' + imgSrc;
+        }
 
         const card = document.createElement('div');
         card.className = 'product-card';
         card.style.animationDelay = `${index * 0.05}s`;
         card.innerHTML = `
             <div class="product-image-container">
-                <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy">
+                <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
             </div>
             <div class="product-info">
                 <h3>${item.name}</h3>
@@ -132,7 +122,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
                 <div class="product-footer">
                     <div class="price-wrapper">
                         <span class="price-label">a partir de</span>
-                        <span class="price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                        <span class="price">R$ ${item.price.toFixed(2).replace('.', themes = ',')}</span>
                     </div>
                 </div>
             </div>
@@ -153,7 +143,7 @@ function renderWhatsAppBanner() {
                 <strong>Quer receber nossas ofertas diárias? 🎉</strong>
                 <span>Entre no nosso grupo do WhatsApp e fique por dentro de todas as promoções!</span>
             </div>
-            <a href="https://chat.whatsapp.com/SEU_LINK_AQUI" target="_blank" rel="noopener" class="wg-btn">
+            <a href="https://chat.whatsapp.com/HgplOITiLRwKua9uh7a7Qv" target="_blank" rel="noopener" class="wg-btn">
                 Entrar no Grupo
             </a>
         </div>
@@ -164,10 +154,8 @@ function renderWhatsAppBanner() {
 // Efeito de scroll no header
 window.addEventListener('scroll', () => {
     const header = document.querySelector('header');
-    if (window.scrollY > 20) {
-        header.classList.add('scrolled', 'glass');
-    } else {
-        header.classList.remove('scrolled', 'glass');
+    if (header) {
+        window.scrollY > 20 ? header.classList.add('scrolled', 'glass') : header.classList.remove('scrolled', 'glass');
     }
 });
 
@@ -179,4 +167,4 @@ searchInput.addEventListener('input', (e) => {
 });
 
 // Carregamento inicial
-window.onload = () => loadMenu();
+window.onload = loadMenu;
