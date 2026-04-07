@@ -102,7 +102,7 @@ window.menuItemsData = [
         category: "lanches",
         price: 9.00,
         description: "Delicioso bauru de forno sabor pizza com presunto, queijo, tomate e orégano.",
-        image: "assets/bauru_pizza.jpg"
+        image: "assets/bauru_pizza.png"
     },
     {
         id: "25",
@@ -110,7 +110,7 @@ window.menuItemsData = [
         category: "pizzas",
         price: 8.00,
         description: "Molho de tomate, mussarela, presunto, ovos, cebola, azeitona e orégano na massa crocante.",
-        image: "assets/pizza_brotinho_portuguesa.jpg"
+        image: "assets/pizza_brotinho_portuguesa.png"
     },
     {
         id: "26",
@@ -118,7 +118,7 @@ window.menuItemsData = [
         category: "pizzas",
         price: 8.00,
         description: "Molho de tomate especial, bastante mussarela derretida, rodelas de tomate e orégano na massa crocante.",
-        image: "assets/pizza_brotinho_mussarela.jpg"
+        image: "assets/pizza_brotinho_mussarela.png"
     },
     {
         id: "27",
@@ -126,7 +126,7 @@ window.menuItemsData = [
         category: "pizzas",
         price: 8.00,
         description: "Molho de tomate, mussarela, generosa porção de calabresa fatiada, cebola e orégano na massa crocante.",
-        image: "assets/pizza_brotinho_calabresa.jpg"
+        image: "assets/pizza_brotinho_calabresa.png"
     },
     {
         id: "13",
@@ -198,6 +198,6 @@ window.menuItemsData = [
         category: "desserts",
         price: 3.00,
         description: "Cremoso arroz doce feito com paçoca de amendoim, uma sobremesa tradicional e irresistível.",
-        image: "assets/arroz_doce_pacoca.jpg"
+        image: "assets/arroz_doce_pacoca.png"
     }
 ];

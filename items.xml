@@ -107,7 +107,7 @@
         <category>lanches</category>
         <price>9.00</price>
         <description>Delicioso bauru de forno sabor pizza com presunto, queijo, tomate e orégano.</description>
-        <image>assets/bauru_pizza.jpg</image>
+        <image>assets/bauru_pizza.png</image>
     </item>
 
     <item>
@@ -116,7 +116,7 @@
         <category>pizzas</category>
         <price>8.00</price>
         <description>Molho de tomate, mussarela, presunto, ovos, cebola, azeitona e orégano na massa crocante.</description>
-        <image>assets/pizza_brotinho_portuguesa.jpg</image>
+        <image>assets/pizza_brotinho_portuguesa.png</image>
     </item>
     <item>
         <id>26</id>
@@ -124,7 +124,7 @@
         <category>pizzas</category>
         <price>8.00</price>
         <description>Molho de tomate especial, bastante mussarela derretida, rodelas de tomate e orégano na massa crocante.</description>
-        <image>assets/pizza_brotinho_mussarela.jpg</image>
+        <image>assets/pizza_brotinho_mussarela.png</image>
     </item>
     <item>
         <id>27</id>
@@ -132,7 +132,7 @@
         <category>pizzas</category>
         <price>8.00</price>
         <description>Molho de tomate, mussarela, generosa porção de calabresa fatiada, cebola e orégano na massa crocante.</description>
-        <image>assets/pizza_brotinho_calabresa.jpg</image>
+        <image>assets/pizza_brotinho_calabresa.png</image>
     </item>
 
     <item>
@@ -206,6 +206,6 @@
         <category>desserts</category>
         <price>3.00</price>
         <description>Cremoso arroz doce feito com paçoca de amendoim, uma sobremesa tradicional e irresistível.</description>
-        <image>assets/arroz_doce_pacoca.jpg</image>
+        <image>assets/arroz_doce_pacoca.png</image>
     </item>
 </menu>
