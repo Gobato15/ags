@@ -113,8 +113,11 @@ function renderMenu(filter = 'all', searchQuery = '') {
         const card = document.createElement('div');
         card.className = 'product-card';
         card.style.animationDelay = `${index * 0.05}s`;
+        const badgeText = categoryLabels[item.category] ? categoryLabels[item.category].replace(/.*? /, '') : item.category;
+
         card.innerHTML = `
             <div class="product-image-container">
+                <span class="category-badge">${badgeText}</span>
                 <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
             </div>
             <div class="product-info">
@@ -123,7 +126,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
                 <div class="product-footer">
                     <div class="price-wrapper">
                         <span class="price-label">a partir de</span>
-                        <span class="price">R$ ${item.price.toFixed(2).replace('.', themes = ',')}</span>
+                        <span class="price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
                     </div>
                 </div>
             </div>
