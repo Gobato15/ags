@@ -1,5 +1,17 @@
 let menuItems = [];
 
+// Estado da aba de promoções
+let currentPromoDay = new Date().getDay();
+if (currentPromoDay < 1 || currentPromoDay > 5) currentPromoDay = 1;
+
+window.setPromoDay = function(day) {
+    currentPromoDay = day;
+    renderDailyPromos();
+    const activePill = document.querySelector('.category-pill.active');
+    const activeCategory = activePill ? activePill.dataset.category : 'all';
+    renderMenu(activeCategory, searchInput.value);
+};
+
 // Elementos do DOM
 const menuGrid = document.getElementById('menuGrid');
 const categoryContainer = document.getElementById('categoryContainer');
@@ -97,7 +109,7 @@ function renderDailyPromos() {
     const promoContainer = document.getElementById('dailyPromoContainer');
     if (!promoContainer) return;
     
-    const today = new Date().getDay(); // 0(Dom) a 6(Sab)
+    const today = currentPromoDay;
     const todaysPromos = dailyPromotions[today];
     
     if (!todaysPromos || todaysPromos.length === 0) {
@@ -144,7 +156,16 @@ function renderDailyPromos() {
         6: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)'  // Sábado
     };
 
+    const dayBtnsHTML = [1, 2, 3, 4, 5].map(d => {
+        const names = ['', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+        return `<button class="day-btn ${d === currentPromoDay ? 'active' : ''}" onclick="setPromoDay(${d})">${names[d]}</button>`;
+    }).join('');
+
     promoContainer.innerHTML = `
+        <div class="promo-day-selector">
+            <span style="color:var(--text-muted); font-size:0.9rem; margin-right:5px; font-weight:600; display:flex; align-items:center;">Ver promos de:</span>
+            ${dayBtnsHTML}
+        </div>
         <div class="promo-banner" style="background: ${gradients[today]};">
             <h2 style="font-size: 1.5rem;"><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
             <div class="promo-items">
@@ -192,7 +213,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
         return;
     }
 
-    const today = new Date().getDay();
+    const today = currentPromoDay;
     const todaysPromos = dailyPromotions[today] || [];
 
     filteredItems.forEach((item, index) => {
