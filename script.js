@@ -132,14 +132,23 @@ function renderDailyPromos() {
             let imgSrc = item.image;
             if (imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
             
+            const originalPriceHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
+            
             itemsHTML += `
-                <div class="promo-card">
-                    <img src="${imgSrc}" alt="${item.name}" class="promo-img" onerror="this.src='https://via.placeholder.com/60x60'">
-                    <div class="promo-details">
-                        <h4>${item.name}</h4>
-                        <div>
-                            <span class="promo-price">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
-                            <span class="original-price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                <div class="product-card" style="box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                    <div class="product-image-container">
+                        <div style="position:absolute; top:10px; right:10px; background: linear-gradient(135deg, #ff5252 0%, #e8321f 100%); color:white; padding:6px 14px; border-radius:30px; font-weight:900; font-size:0.85rem; z-index:10; box-shadow: 0 6px 15px rgba(255, 82, 82, 0.5); letter-spacing: 1px;">HOJE</div>
+                        <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
+                    </div>
+                    <div class="product-info">
+                        <h3 style="color: var(--secondary);">${item.name}</h3>
+                        <p style="color: var(--text-muted);">${item.description}</p>
+                        <div class="product-footer">
+                            <div class="price-wrapper" style="text-align: left;">
+                                <span class="price-label" style="color: #888; font-size: 0.75rem; text-transform: uppercase; font-weight: 700;">a partir de</span><br>
+                                ${originalPriceHTML}
+                                <span class="price" style="color: #ff5252;">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
