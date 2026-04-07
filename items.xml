@@ -105,7 +105,7 @@
         <id>15</id>
         <name>Sprite 220ml</name>
         <category>drinks</category>
-        <price>3.80</price>
+        <price>3.00</price>
         <description>Refrigerante Sprite sabor limão gelada. Mini lata 220ml.</description>
         <image>assets/sprite_220ml.png</image>
     </item>
@@ -113,7 +113,7 @@
         <id>16</id>
         <name>Água Mineral 500ml</name>
         <category>drinks</category>
-        <price>3.00</price>
+        <price>2.50</price>
         <description>Água mineral natural cristalina e refrescante.</description>
         <image>assets/agua_mineral.jpg</image>
     </item>
