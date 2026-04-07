@@ -13,6 +13,7 @@ const categoryLabels = {
     'bolinho': '🥟 Bolinho',
     'esfirra': '🫓 Esfirra',
     'croissant': '🥐 Croissant',
+    'lanches': '🥪 Naturais',
     'drinks': '🥤 Bebidas',
     'desserts': '🍮 Sobremesas'
 };
@@ -129,26 +130,6 @@ function renderMenu(filter = 'all', searchQuery = '') {
         `;
         menuGrid.appendChild(card);
     });
-
-    renderWhatsAppBanner();
-}
-
-function renderWhatsAppBanner() {
-    const banner = document.createElement('div');
-    banner.className = 'whatsapp-group-banner';
-    banner.innerHTML = `
-        <div class="wg-banner-content">
-            <div class="wg-icon"><i class="fab fa-whatsapp"></i></div>
-            <div class="wg-text">
-                <strong>Quer receber nossas ofertas diárias? 🎉</strong>
-                <span>Entre no nosso grupo do WhatsApp e fique por dentro de todas as promoções!</span>
-            </div>
-            <a href="https://chat.whatsapp.com/HgplOITiLRwKua9uh7a7Qv" target="_blank" rel="noopener" class="wg-btn">
-                Entrar no Grupo
-            </a>
-        </div>
-    `;
-    menuGrid.appendChild(banner);
 }
 
 // Efeito de scroll no header

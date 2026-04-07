@@ -81,6 +81,22 @@ window.menuItemsData = [
         image: "assets/croissant_artesanal.jpg"
     },
     {
+        id: "21",
+        name: "Lanche Natural de Frango",
+        category: "lanches",
+        price: 10.00,
+        description: "Lanche natural com frango desfiado, maionese, alface e cenoura ralada no pão de forma macio.",
+        image: "assets/lanche_natural_frango_1775526655720.png"
+    },
+    {
+        id: "22",
+        name: "Lanche Natural de Sardinha",
+        category: "lanches",
+        price: 10.00,
+        description: "Lanche natural com patê de sardinha, alface fresca, cenoura e tomate no pão de forma macio.",
+        image: "assets/lanche_natural_sardinha_1775526677773.png"
+    },
+    {
         id: "13",
         name: "Coca-Cola 220ml",
         category: "drinks",
