@@ -5,6 +5,30 @@ const menuGrid = document.getElementById('menuGrid');
 const categoryContainer = document.getElementById('categoryContainer');
 const searchInput = document.getElementById('searchInput');
 
+// Configuração das promoções da semana
+const dailyPromotions = {
+    1: [ // Segunda: Hamburguinhos
+        { id: "0", promoPrice: 8.00 },
+        { id: "4", promoPrice: 9.00 }
+    ],
+    2: [ // Terça: Croissant e Bauru
+        { id: "12", promoPrice: 8.00 },
+        { id: "23", promoPrice: 8.00 }
+    ],
+    3: [ // Quarta: Lanches Naturais
+        { id: "21", promoPrice: 8.00 },
+        { id: "22", promoPrice: 8.00 }
+    ],
+    4: [ // Quinta: Coxinha e Bolinho
+        { id: "1", promoPrice: 7.00 },
+        { id: "7", promoPrice: 6.00 }
+    ],
+    5: [ // Sexta: Sobremesas
+        { id: "20", promoPrice: 5.00 },
+        { id: "18", promoPrice: 7.00 }
+    ]
+};
+
 // Labels com emoji para as categorias
 const categoryLabels = {
     'all': '🍽️ Todos',
@@ -61,8 +85,60 @@ async function loadMenu() {
 }
 
 function renderAll() {
+    renderDailyPromos();
     renderCategories();
     renderMenu();
+}
+
+function renderDailyPromos() {
+    const promoContainer = document.getElementById('dailyPromoContainer');
+    if (!promoContainer) return;
+    
+    const today = new Date().getDay(); // 0(Dom) a 6(Sab)
+    const todaysPromos = dailyPromotions[today];
+    
+    if (!todaysPromos || todaysPromos.length === 0) {
+        promoContainer.style.display = 'none';
+        return;
+    }
+    
+    promoContainer.style.display = 'block';
+    const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+    const diaNome = diasSemana[today];
+
+    let itemsHTML = '';
+    
+    todaysPromos.forEach(promo => {
+        const item = menuItems.find(i => i.id === promo.id);
+        if (item) {
+            let imgSrc = item.image;
+            if (imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
+            
+            itemsHTML += `
+                <div class="promo-card">
+                    <img src="${imgSrc}" alt="${item.name}" class="promo-img" onerror="this.src='https://via.placeholder.com/60x60'">
+                    <div class="promo-details">
+                        <h4>${item.name}</h4>
+                        <div>
+                            <span class="promo-price">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+                            <span class="original-price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    });
+
+    if (itemsHTML === '') return;
+
+    promoContainer.innerHTML = `
+        <div class="promo-banner">
+            <h2><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
+            <div class="promo-items">
+                ${itemsHTML}
+            </div>
+        </div>
+    `;
 }
 
 function renderCategories() {
@@ -103,6 +179,9 @@ function renderMenu(filter = 'all', searchQuery = '') {
         return;
     }
 
+    const today = new Date().getDay();
+    const todaysPromos = dailyPromotions[today] || [];
+
     filteredItems.forEach((item, index) => {
         // Correção de caminho para GitHub Pages
         let imgSrc = item.image;
@@ -110,11 +189,19 @@ function renderMenu(filter = 'all', searchQuery = '') {
             imgSrc = './' + imgSrc;
         }
 
+        const promo = todaysPromos.find(p => p.id === item.id);
+        const isPromo = !!promo;
+        const displayPrice = isPromo ? promo.promoPrice : item.price;
+        const promoStyles = isPromo ? `color: #ff5252;` : '';
+        const originalPriceHTML = isPromo ? `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>` : '';
+
         const card = document.createElement('div');
         card.className = 'product-card';
+        if (isPromo) card.style.border = '2px solid #ff5252';
         card.style.animationDelay = `${index * 0.05}s`;
         card.innerHTML = `
             <div class="product-image-container">
+                ${isPromo ? '<div style="position:absolute; top:10px; right:10px; background: linear-gradient(135deg, #ff5252 0%, #e8321f 100%); color:white; padding:6px 14px; border-radius:30px; font-weight:900; font-size:0.85rem; z-index:10; box-shadow: 0 6px 15px rgba(255, 82, 82, 0.5); letter-spacing: 1px;">PROMOÇÃO</div>' : ''}
                 <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
             </div>
             <div class="product-info">
@@ -122,8 +209,9 @@ function renderMenu(filter = 'all', searchQuery = '') {
                 <p>${item.description}</p>
                 <div class="product-footer">
                     <div class="price-wrapper">
-                        <span class="price-label">a partir de</span>
-                        <span class="price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                        <span class="price-label">a partir de</span><br>
+                        ${originalPriceHTML}
+                        <span class="price" style="${promoStyles}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
                     </div>
                 </div>
             </div>

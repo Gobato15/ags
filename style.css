@@ -424,3 +424,92 @@ footer {
         text-align: center;
     }
 }
+
+/* Daily Promo */
+.daily-promo-section {
+    padding: 0 8% 2rem;
+    margin-top: -3rem;
+    position: relative;
+    z-index: 10;
+}
+
+.promo-banner {
+    background: linear-gradient(135deg, var(--primary) 0%, #ff5252 100%);
+    border-radius: var(--radius);
+    padding: 2rem;
+    color: white;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.promo-banner h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.promo-items {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none;
+}
+
+.promo-items::-webkit-scrollbar {
+    display: none;
+}
+
+.promo-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 1rem;
+    min-width: 260px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: var(--transition);
+}
+
+.promo-card:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-5px);
+}
+
+.promo-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.promo-details {
+    flex: 1;
+}
+
+.promo-details h4 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.promo-price {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--accent);
+}
+
+.original-price {
+    text-decoration: line-through;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-left: 0.5rem;
+}

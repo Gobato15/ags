@@ -97,6 +97,14 @@ window.menuItemsData = [
         image: "assets/lanche_natural_sardinha_1775526677773.png"
     },
     {
+        id: "23",
+        name: "Bauru de Pizza",
+        category: "lanches",
+        price: 9.00,
+        description: "Delicioso bauru de forno sabor pizza com presunto, queijo, tomate e orégano.",
+        image: "assets/bauru_pizza.jpg"
+    },
+    {
         id: "13",
         name: "Coca-Cola 220ml",
         category: "drinks",
@@ -159,5 +167,13 @@ window.menuItemsData = [
         price: 6.00,
         description: "Delicioso pudim de padaria caseiro com calda de caramelo, macio e saboroso.",
         image: "assets/pudim_pao.jpg"
+    },
+    {
+        id: "24",
+        name: "Arroz Doce de Paçoca",
+        category: "desserts",
+        price: 3.00,
+        description: "Cremoso arroz doce feito com paçoca de amendoim, uma sobremesa tradicional e irresistível.",
+        image: "assets/arroz_doce_pacoca.jpg"
     }
 ];
