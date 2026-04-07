@@ -172,7 +172,7 @@ function renderDailyPromos() {
             ${dayBtnsHTML}
         </div>
         <div class="promo-banner" style="background: ${gradients[today]};">
-            <h2 style="font-size: 1.5rem;"><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
+            <h2 class="promo-title"><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
             <div class="promo-items">
                 ${itemsHTML}
             </div>
