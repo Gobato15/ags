@@ -208,5 +208,4 @@ window.menuItemsData = [
     description: "Delicioso doce de abacaxi caseiro, equilibrando perfeitamente a acidez da fruta com a doçura da calda.",
     image: "assets/doce_abacaxi.png"
 }
-
 ];
