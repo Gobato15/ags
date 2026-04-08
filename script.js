@@ -41,7 +41,7 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 }
     ],
     5: [ // Sexta: Sobremesas
-        { id: "20", promoPrice: 5.00 },
+        { id: "20", promoPrice: 6.00 },
         { id: "18", promoPrice: 7.00 }
     ]
 };
