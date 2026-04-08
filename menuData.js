@@ -110,7 +110,7 @@ window.menuItemsData = [
         category: "lanches",
         price: 8.00,
         description: "Maravilhoso cachorro quente com salsicha, molho especial da casa, purê, batata palha, ketchup e mostarda no pão macio.",
-        image: "assets/cachorro_quente.png"
+        image: "assets/cachorro_quente_caseiro.png"
     },
     {
         id: "25",
