@@ -204,16 +204,8 @@ window.menuItemsData = [
         id: "28",
         name: "Doce de Abacaxi",
         category: "desserts",
-        price: 6.00,
-        description: "Delicioso e cremoso doce de abacaxi caseiro em linda apresentação. Um sabor incrivelmente refrescante.",
+        price: 7.00,
+        description: "Delicioso doce de abacaxi caseiro, equilibrando perfeitamente a acidez da fruta com a doçura da calda.",
         image: "assets/doce_abacaxi.png"
     }
-{
-    id: "25",
-    name: "Doce de Abacaxi",
-    category: "desserts",
-    price: 7.00,
-    description: "Delicioso doce de abacaxi caseiro, equilibrando perfeitamente a acidez da fruta com a doçura da calda.",
-    image: "assets/doce_abacaxi.png"
-}
 ];
