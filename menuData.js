@@ -106,10 +106,10 @@ window.menuItemsData = [
     },
     {
         id: "29",
-        name: "Cachorro Quente Completo",
+        name: "Cachorro Quente",
         category: "lanches",
         price: 8.00,
-        description: "Maravilhoso cachorro quente artesanal com salsicha, molho especial da casa, purê, batata palha, ketchup e mostarda no pão macio.",
+        description: "Maravilhoso cachorro quente com salsicha, molho especial da casa, purê, batata palha, ketchup e mostarda no pão macio.",
         image: "assets/cachorro_quente.png"
     },
     {
