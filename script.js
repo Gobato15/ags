@@ -20,7 +20,7 @@ const searchInput = document.getElementById('searchInput');
 // Configuração das promoções da semana
 const dailyPromotions = {
     1: [ // Segunda: Hamburguinhos
-        { id: "0", promoPrice: 8.00 },
+        { id: "0", promoPrice: 7.00 },
         { id: "4", promoPrice: 9.00 }
     ],
     2: [ // Terça: Croissant, Bauru e Pizzas Brotinho
