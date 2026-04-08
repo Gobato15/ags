@@ -199,5 +199,13 @@ window.menuItemsData = [
         price: 3.00,
         description: "Cremoso arroz doce feito com paçoca de amendoim, uma sobremesa tradicional e irresistível.",
         image: "assets/arroz_doce_pacoca.png"
+    },
+    {
+        id: "28",
+        name: "Doce de Abacaxi",
+        category: "desserts",
+        price: 6.00,
+        description: "Delicioso e cremoso doce de abacaxi caseiro em linda apresentação. Um sabor incrivelmente refrescante.",
+        image: "assets/doce_abacaxi.png"
     }
 ];
