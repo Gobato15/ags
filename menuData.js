@@ -84,7 +84,7 @@ window.menuItemsData = [
         id: "21",
         name: "Lanche Natural de Frango",
         category: "lanches",
-        price: 10.00,
+        price: 9.00,
         description: "Lanche natural com frango desfiado, maionese, alface e cenoura ralada no pão de forma macio.",
         image: "assets/lanche_natural_frango_1775526655720.png"
     },
@@ -92,7 +92,7 @@ window.menuItemsData = [
         id: "22",
         name: "Lanche Natural de Sardinha",
         category: "lanches",
-        price: 10.00,
+        price: 9.00,
         description: "Lanche natural com patê de sardinha, alface fresca, cenoura e tomate no pão de forma macio.",
         image: "assets/lanche_natural_sardinha_1775526677773.png"
     },
@@ -103,6 +103,14 @@ window.menuItemsData = [
         price: 9.00,
         description: "Delicioso bauru de forno sabor pizza com presunto, queijo, tomate e orégano.",
         image: "assets/bauru_pizza.png"
+    },
+    {
+        id: "30",
+        name: "Torta de Frango Caseira",
+        category: "tortas",
+        price: 8.00,
+        description: "Deliciosa e cremosa torta de frango com massa caseira derretendo na boca. Receita especial muito bem recheada!",
+        image: "assets/torta_frango_caseira.png"
     },
     {
         id: "29",

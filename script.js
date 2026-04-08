@@ -23,12 +23,13 @@ const dailyPromotions = {
         { id: "0", promoPrice: 7.00 },
         { id: "4", promoPrice: 9.00 }
     ],
-    2: [ // Terça: Croissant, Bauru e Pizzas Brotinho
+    2: [ // Terça: Croissant, Bauru, Pizzas Brotinho e Torta
         { id: "12", promoPrice: 8.00 },
         { id: "23", promoPrice: 8.00 },
         { id: "25", promoPrice: 7.00 },
         { id: "26", promoPrice: 7.00 },
-        { id: "27", promoPrice: 7.00 }
+        { id: "27", promoPrice: 7.00 },
+        { id: "30", promoPrice: 7.00 }
     ],
     3: [ // Quarta: Lanches Naturais
         { id: "21", promoPrice: 8.00 },
@@ -57,6 +58,7 @@ const categoryLabels = {
     'croissant': '🥐 Croissant',
     'pizzas': '🍕 Pizzas',
     'lanches': '🥪 Naturais',
+    'tortas': '🥧 Tortas',
     'drinks': '🥤 Bebidas',
     'desserts': '🍮 Sobremesas'
 };

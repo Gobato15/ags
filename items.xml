@@ -89,7 +89,7 @@
         <id>21</id>
         <name>Lanche Natural de Frango</name>
         <category>lanches</category>
-        <price>10.00</price>
+        <price>9.00</price>
         <description>Lanche natural com frango desfiado, maionese, alface e cenoura ralada no pão de forma macio.</description>
         <image>assets/lanche_natural_frango_1775526655720.png</image>
     </item>
@@ -97,7 +97,7 @@
         <id>22</id>
         <name>Lanche Natural de Sardinha</name>
         <category>lanches</category>
-        <price>10.00</price>
+        <price>9.00</price>
         <description>Lanche natural com patê de sardinha, alface fresca, cenoura e tomate no pão de forma macio.</description>
         <image>assets/lanche_natural_sardinha_1775526677773.png</image>
     </item>
@@ -108,6 +108,14 @@
         <price>9.00</price>
         <description>Delicioso bauru de forno sabor pizza com presunto, queijo, tomate e orégano.</description>
         <image>assets/bauru_pizza.png</image>
+    </item>
+    <item>
+        <id>30</id>
+        <name>Torta de Frango Caseira</name>
+        <category>tortas</category>
+        <price>8.00</price>
+        <description>Deliciosa e cremosa torta de frango com massa caseira derretendo na boca. Receita especial muito bem recheada!</description>
+        <image>assets/torta_frango_caseira.png</image>
     </item>
     <item>
         <id>29</id>
