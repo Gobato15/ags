@@ -105,6 +105,14 @@ window.menuItemsData = [
         image: "assets/bauru_pizza.png"
     },
     {
+        id: "29",
+        name: "Cachorro Quente Completo",
+        category: "lanches",
+        price: 8.00,
+        description: "Maravilhoso cachorro quente artesanal com salsicha, molho especial da casa, purê, batata palha, ketchup e mostarda no pão macio.",
+        image: "assets/cachorro_quente.png"
+    },
+    {
         id: "25",
         name: "Pizza Brotinho Portuguesa",
         category: "pizzas",

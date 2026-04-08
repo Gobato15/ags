@@ -109,6 +109,14 @@
         <description>Delicioso bauru de forno sabor pizza com presunto, queijo, tomate e orégano.</description>
         <image>assets/bauru_pizza.png</image>
     </item>
+    <item>
+        <id>29</id>
+        <name>Cachorro Quente Completo</name>
+        <category>lanches</category>
+        <price>8.00</price>
+        <description>Maravilhoso cachorro quente artesanal com salsicha, molho especial da casa, purê, batata palha, ketchup e mostarda no pão macio.</description>
+        <image>assets/cachorro_quente.png</image>
+    </item>
 
     <item>
         <id>25</id>

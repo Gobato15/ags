@@ -34,11 +34,12 @@ const dailyPromotions = {
         { id: "21", promoPrice: 8.00 },
         { id: "22", promoPrice: 8.00 }
     ],
-    4: [ // Quinta: Coxinha e Pizzas Brotinho
+    4: [ // Quinta: Coxinha, Pizzas Brotinho e Cachorro Quente
         { id: "1", promoPrice: 7.00 },
         { id: "25", promoPrice: 7.00 },
         { id: "26", promoPrice: 7.00 },
-        { id: "27", promoPrice: 7.00 }
+        { id: "27", promoPrice: 7.00 },
+        { id: "29", promoPrice: 7.00 }
     ],
     5: [ // Sexta: Sobremesas
         { id: "20", promoPrice: 6.00 },
