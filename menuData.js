@@ -20,7 +20,7 @@ window.menuItemsData = [
         id: "1",
         name: "Coxinha de Frango",
         category: "coxinha",
-        price: 7.00,
+        price: 8.00,
         description: "Coxinha de frango cremosa de 100g, feita com massa artesanal de batata. Receita da casa.",
         image: "assets/coxinha_premium.png"
     },
@@ -28,7 +28,7 @@ window.menuItemsData = [
         id: "7",
         name: "Bolinho de Carne",
         category: "bolinho",
-        price: 7.00,
+        price: 8.00,
         description: "Bolinho artesanal de carne temperado com especiarias, frito na hora com casquinha crocante.",
         image: "assets/bolinho_carne.png"
     },
@@ -36,7 +36,7 @@ window.menuItemsData = [
         id: "8",
         name: "Bolinho de Ovo",
         category: "bolinho",
-        price: 7.00,
+        price: 8.00,
         description: "O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.",
         image: "assets/bolinho_ovo.jpg"
     },
@@ -164,7 +164,7 @@ window.menuItemsData = [
         id: "17",
         name: "Pudim de Leite Moça",
         category: "desserts",
-        price: 6.00,
+        price: 7.00,
         description: "Fatia generosa de pudim de leite condensado super liso com calda de caramelo.",
         image: "assets/pudim.png"
     },
@@ -188,7 +188,7 @@ window.menuItemsData = [
         id: "20",
         name: "Pudim de Padaria",
         category: "desserts",
-        price: 6.00,
+        price: 7.00,
         description: "Delicioso pudim de padaria caseiro com calda de caramelo, macio e saboroso.",
         image: "assets/pudim_pao.jpg"
     },
@@ -196,7 +196,7 @@ window.menuItemsData = [
         id: "24",
         name: "Arroz Doce de Paçoca",
         category: "desserts",
-        price: 3.00,
+        price: 3.50,
         description: "Cremoso arroz doce feito com paçoca de amendoim, uma sobremesa tradicional e irresistível.",
         image: "assets/arroz_doce_pacoca.png"
     }
