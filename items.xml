@@ -21,7 +21,7 @@
         <id>1</id>
         <name>Coxinha de Frango</name>
         <category>coxinha</category>
-        <price>7.00</price>
+        <price>8.00</price>
         <description>Coxinha de frango cremosa de 100g, feita com massa artesanal de batata. Receita da casa.</description>
         <image>assets/coxinha_premium.png</image>
     </item>
@@ -30,7 +30,7 @@
         <id>7</id>
         <name>Bolinho de Carne</name>
         <category>bolinho</category>
-        <price>7.00</price>
+        <price>8.00</price>
         <description>Bolinho artesanal de carne temperado com especiarias, frito na hora com casquinha crocante.</description>
         <image>assets/bolinho_carne.png</image>
     </item>
@@ -38,7 +38,7 @@
         <id>8</id>
         <name>Bolinho de Ovo</name>
         <category>bolinho</category>
-        <price>7.00</price>
+        <price>8.00</price>
         <description>O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.</description>
         <image>assets/bolinho_ovo.jpg</image>
     </item>
@@ -172,7 +172,7 @@
         <id>17</id>
         <name>Pudim de Leite Moça</name>
         <category>desserts</category>
-        <price>6.00</price>
+        <price>7.00</price>
         <description>Fatia generosa de pudim de leite condensado super liso com calda de caramelo.</description>
         <image>assets/pudim.png</image>
     </item>
@@ -196,7 +196,7 @@
         <id>20</id>
         <name>Pudim de Padaria</name>
         <category>desserts</category>
-        <price>6.00</price>
+        <price>7.00</price>
         <description>Delicioso pudim de padaria caseiro com calda de caramelo, macio e saboroso.</description>
         <image>assets/pudim_pao.jpg</image>
     </item>
@@ -204,7 +204,7 @@
         <id>24</id>
         <name>Arroz Doce de Paçoca</name>
         <category>desserts</category>
-        <price>3.00</price>
+        <price>3.50</price>
         <description>Cremoso arroz doce feito com paçoca de amendoim, uma sobremesa tradicional e irresistível.</description>
         <image>assets/arroz_doce_pacoca.png</image>
     </item>
