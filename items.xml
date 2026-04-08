@@ -207,5 +207,14 @@
         <price>3.50</price>
         <description>Cremoso arroz doce feito com paçoca de amendoim, uma sobremesa tradicional e irresistível.</description>
         <image>assets/arroz_doce_pacoca.png</image>
-    </item>
+    </item>  
+    <Item>
+        <id>25</id>
+        <name>Doce de Abacaxi</name>
+        <category>desserts</category>
+        <price>7.00</price>
+        <description>Delicioso doce de abacaxi caseiro com pedaços da fruta em uma calda leve e brilhante.</description>
+        <image>assets/doce_abacaxi.png</image>
+</Item>
+
 </menu>
