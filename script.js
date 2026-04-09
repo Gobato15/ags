@@ -19,9 +19,10 @@ const searchInput = document.getElementById('searchInput');
 
 // Configuração das promoções da semana
 const dailyPromotions = {
-    1: [ // Segunda: Hamburguinhos
+    1: [ // Segunda: Hamburguinhos e Pão Caseiro
         { id: "0", promoPrice: 7.00 },
-        { id: "4", promoPrice: 9.00 }
+        { id: "4", promoPrice: 9.00 },
+        { id: "31", promoPrice: 10.00 }
     ],
     2: [ // Terça: Croissant, Bauru, Pizzas Brotinho e Torta
         { id: "12", promoPrice: 8.00 },
@@ -59,6 +60,7 @@ const categoryLabels = {
     'pizzas': '🍕 Pizzas',
     'lanches': '🥪 Naturais',
     'tortas': '🥧 Tortas',
+    'paes': '🍞 Pães',
     'drinks': '🥤 Bebidas',
     'desserts': '🍮 Sobremesas'
 };

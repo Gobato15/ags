@@ -34,11 +34,11 @@ window.menuItemsData = [
     },
     {
         id: "8",
-        name: "Bolinho de Ovo",
+        name: "Bolinho de Costela",
         category: "bolinho",
         price: 8.00,
-        description: "O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.",
-        image: "assets/bolinho_ovo.jpg"
+        description: "Bolinho com casquinha super crocante e recheio suculento de pura costela bovina desfiada.",
+        image: "assets/bolinho_costela.png"
     },
     {
         id: "2",
@@ -223,5 +223,13 @@ window.menuItemsData = [
         price: 7.00,
         description: "Delicioso doce de abacaxi caseiro, equilibrando perfeitamente a acidez da fruta com a doçura da calda.",
         image: "assets/doce_abacaxi.png"
+    },
+    {
+        id: "31",
+        name: "Pão Caseiro",
+        category: "paes",
+        price: 12.50,
+        description: "Pão caseiro fresquinho, macio por dentro e com casquinha dourada. Perfeito para qualquer hora do dia.",
+        image: "assets/pao_caseiro.png"
     }
 ];

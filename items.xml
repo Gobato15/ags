@@ -36,11 +36,11 @@
     </item>
     <item>
         <id>8</id>
-        <name>Bolinho de Ovo</name>
+        <name>Bolinho de Costela</name>
         <category>bolinho</category>
         <price>8.00</price>
-        <description>O clássico bolinho de carne com um ovo cozido inteiro no centro. Sabor irresistível.</description>
-        <image>assets/bolinho_ovo.jpg</image>
+        <description>Bolinho com casquinha super crocante e recheio suculento de pura costela bovina desfiada.</description>
+        <image>assets/bolinho_costela.png</image>
     </item>
 
     <item>
@@ -231,5 +231,13 @@
         <price>7.00</price>
         <description>Delicioso doce de abacaxi caseiro, equilibrando perfeitamente a acidez da fruta com a doçura da calda.</description>
         <image>assets/doce_abacaxi.png</image>
+    </item>
+    <item>
+        <id>31</id>
+        <name>Pão Caseiro</name>
+        <category>paes</category>
+        <price>12.50</price>
+        <description>Pão caseiro fresquinho, macio por dentro e com casquinha dourada. Perfeito para qualquer hora do dia.</description>
+        <image>assets/pao_caseiro.png</image>
     </item>
 </menu>
