@@ -33,10 +33,11 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 },
         { id: "30", promoPrice: 7.00 }
     ],
-    3: [ // Quarta: Coxinha e Lanches Naturais
+    3: [ // Quarta: Coxinha, Lanches Naturais e Bolo de Maracujá
         { id: "1", promoPrice: 7.00 },
         { id: "21", promoPrice: 8.00 },
-        { id: "22", promoPrice: 8.00 }
+        { id: "22", promoPrice: 8.00 },
+        { id: "19", promoPrice: 7.00 }
     ],
     4: [ // Quinta: Pizzas Brotinho e Cachorro Quente
         { id: "25", promoPrice: 7.00 },
