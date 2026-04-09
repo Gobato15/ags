@@ -494,11 +494,16 @@ footer {
 }
 
 .promo-items {
-    display: grid;
-    /* Reduzindo a largura mínima de 280px para 220px para os cards ficarem menores e encaixarem mais no painel */
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem;
     padding-bottom: 0.5rem;
+}
+
+.promo-items .product-card {
+    flex: 1 1 220px;
+    max-width: 280px;
 }
 
 /* Modificadores para diminuir o tamanho dos cards apenas dentro das promoções */
