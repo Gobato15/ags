@@ -238,6 +238,22 @@
         <category>paes</category>
         <price>12.50</price>
         <description>Pão caseiro fresquinho, macio por dentro e com casquinha dourada. Perfeito para qualquer hora do dia.</description>
-        <image>assets/pao_caseiro.png</image>
+        <image>assets/pao_caseiro_novo.png</image>
+    </item>
+    <item>
+        <id>32</id>
+        <name>Kibe</name>
+        <category>salgados</category>
+        <price>9.00</price>
+        <description>Clássico kibe brasileiro, temperado com especiarias e hortelã, fritinho com casquinha morena e crocante.</description>
+        <image>assets/kibe.png</image>
+    </item>
+    <item>
+        <id>33</id>
+        <name>Enroladinho de Presunto e Queijo</name>
+        <category>salgados</category>
+        <price>8.00</price>
+        <description>Delicioso enroladinho assado, massa fofinha com recheio derretido de presunto e muito queijo.</description>
+        <image>assets/enroladinho.png</image>
     </item>
 </menu>

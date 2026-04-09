@@ -43,9 +43,11 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 },
         { id: "29", promoPrice: 7.00 }
     ],
-    5: [ // Sexta: Sobremesas
+    5: [ // Sexta: Sobremesas, Kibe e Enroladinho
         { id: "20", promoPrice: 6.00 },
-        { id: "18", promoPrice: 7.00 }
+        { id: "18", promoPrice: 7.00 },
+        { id: "32", promoPrice: 8.00 },
+        { id: "33", promoPrice: 7.00 }
     ]
 };
 
@@ -61,6 +63,7 @@ const categoryLabels = {
     'lanches': '🥪 Naturais',
     'tortas': '🥧 Tortas',
     'paes': '🍞 Pães',
+    'salgados': '🍘 Salgados',
     'drinks': '🥤 Bebidas',
     'desserts': '🍮 Sobremesas'
 };

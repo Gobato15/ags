@@ -230,6 +230,22 @@ window.menuItemsData = [
         category: "paes",
         price: 12.50,
         description: "Pão caseiro fresquinho, macio por dentro e com casquinha dourada. Perfeito para qualquer hora do dia.",
-        image: "assets/pao_caseiro.png"
+        image: "assets/pao_caseiro_novo.png"
+    },
+    {
+        id: "32",
+        name: "Kibe",
+        category: "salgados",
+        price: 9.00,
+        description: "Clássico kibe brasileiro, temperado com especiarias e hortelã, fritinho com casquinha morena e crocante.",
+        image: "assets/kibe.png"
+    },
+    {
+        id: "33",
+        name: "Enroladinho de Presunto e Queijo",
+        category: "salgados",
+        price: 8.00,
+        description: "Delicioso enroladinho assado, massa fofinha com recheio derretido de presunto e muito queijo.",
+        image: "assets/enroladinho.png"
     }
 ];
