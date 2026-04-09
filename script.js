@@ -32,12 +32,12 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 },
         { id: "30", promoPrice: 7.00 }
     ],
-    3: [ // Quarta: Lanches Naturais
+    3: [ // Quarta: Coxinha e Lanches Naturais
+        { id: "1", promoPrice: 7.00 },
         { id: "21", promoPrice: 8.00 },
         { id: "22", promoPrice: 8.00 }
     ],
-    4: [ // Quinta: Coxinha, Pizzas Brotinho e Cachorro Quente
-        { id: "1", promoPrice: 7.00 },
+    4: [ // Quinta: Pizzas Brotinho e Cachorro Quente
         { id: "25", promoPrice: 7.00 },
         { id: "26", promoPrice: 7.00 },
         { id: "27", promoPrice: 7.00 },
