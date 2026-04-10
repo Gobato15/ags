@@ -174,7 +174,7 @@ window.menuItemsData = [
         category: "drinks",
         price: 2.50,
         description: "Água mineral natural cristalina e refrescante.",
-        image: "assets/agua_mineral.jpg"
+        image: "assets/agua_mineral.png"
     },
     {
         id: "17",
