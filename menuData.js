@@ -38,7 +38,7 @@ window.menuItemsData = [
         category: "esfirra",
         price: 3.50,
         description: "Massa árabe fofinha com recheio de carne bovina temperada e limão.",
-        image: "assets/esfirra_carne.jpg"
+        image: "assets/esfirra_carne_nova.png"
     },
     {
         id: "9",
@@ -46,7 +46,7 @@ window.menuItemsData = [
         category: "esfirra",
         price: 3.50,
         description: "Massa leve com recheio generoso de frango desfiado temperado.",
-        image: "assets/esfirra_frango.jpg"
+        image: "assets/esfirra_frango_nova.png"
     },
     {
         id: "10",
@@ -54,7 +54,7 @@ window.menuItemsData = [
         category: "esfirra",
         price: 3.50,
         description: "Massa macia com recheio generoso de mussarela e orégano.",
-        image: "assets/esfirra_queijo.jpg"
+        image: "assets/esfirra_queijo_nova.png"
     },
     {
         id: "11",
@@ -118,7 +118,7 @@ window.menuItemsData = [
         category: "pizzas",
         price: 8.00,
         description: "Molho de tomate, mussarela, presunto, ovos, cebola, azeitona e orégano na massa crocante.",
-        image: "assets/pizza_brotinho_portuguesa.png"
+        image: "assets/pizza_brotinho_portuguesa_nova.png"
     },
     {
         id: "26",
@@ -126,7 +126,7 @@ window.menuItemsData = [
         category: "pizzas",
         price: 8.00,
         description: "Molho de tomate especial, bastante mussarela derretida, rodelas de tomate e orégano na massa crocante.",
-        image: "assets/pizza_brotinho_mussarela.png"
+        image: "assets/pizza_brotinho_mussarela_nova.png"
     },
     {
         id: "27",
@@ -134,7 +134,7 @@ window.menuItemsData = [
         category: "pizzas",
         price: 8.00,
         description: "Molho de tomate, mussarela, generosa porção de calabresa fatiada, cebola e orégano na massa crocante.",
-        image: "assets/pizza_brotinho_calabresa.png"
+        image: "assets/pizza_brotinho_calabresa_nova.png"
     },
     {
         id: "13",
@@ -230,7 +230,7 @@ window.menuItemsData = [
         category: "salgados",
         price: 9.00,
         description: "Clássico kibe brasileiro, temperado com especiarias e hortelã, fritinho com casquinha morena e crocante.",
-        image: "assets/kibe.png"
+        image: "assets/kibe_nova.png"
     },
     {
         id: "33",
@@ -238,6 +238,6 @@ window.menuItemsData = [
         category: "salgados",
         price: 8.00,
         description: "Delicioso enroladinho assado, massa fofinha com recheio derretido de presunto e muito queijo.",
-        image: "assets/enroladinho.png"
+        image: "assets/enroladinho_nova.png"
     }
 ];

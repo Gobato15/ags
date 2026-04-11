@@ -41,7 +41,7 @@
         <category>esfirra</category>
         <price>3.50</price>
         <description>Massa árabe fofinha com recheio de carne bovina temperada e limão.</description>
-        <image>assets/esfirra_carne.jpg</image>
+        <image>assets/esfirra_carne_nova.png</image>
     </item>
     <item>
         <id>9</id>
@@ -49,7 +49,7 @@
         <category>esfirra</category>
         <price>3.50</price>
         <description>Massa leve com recheio generoso de frango desfiado temperado.</description>
-        <image>assets/esfirra_frango.jpg</image>
+        <image>assets/esfirra_frango_nova.png</image>
     </item>
     <item>
         <id>10</id>
@@ -57,7 +57,7 @@
         <category>esfirra</category>
         <price>3.50</price>
         <description>Massa macia com recheio generoso de mussarela e orégano.</description>
-        <image>assets/esfirra_queijo.jpg</image>
+        <image>assets/esfirra_queijo_nova.png</image>
     </item>
 
     <item>
@@ -124,7 +124,7 @@
         <category>pizzas</category>
         <price>8.00</price>
         <description>Molho de tomate, mussarela, presunto, ovos, cebola, azeitona e orégano na massa crocante.</description>
-        <image>assets/pizza_brotinho_portuguesa.png</image>
+        <image>assets/pizza_brotinho_portuguesa_nova.png</image>
     </item>
     <item>
         <id>26</id>
@@ -132,7 +132,7 @@
         <category>pizzas</category>
         <price>8.00</price>
         <description>Molho de tomate especial, bastante mussarela derretida, rodelas de tomate e orégano na massa crocante.</description>
-        <image>assets/pizza_brotinho_mussarela.png</image>
+        <image>assets/pizza_brotinho_mussarela_nova.png</image>
     </item>
     <item>
         <id>27</id>
@@ -140,7 +140,7 @@
         <category>pizzas</category>
         <price>8.00</price>
         <description>Molho de tomate, mussarela, generosa porção de calabresa fatiada, cebola e orégano na massa crocante.</description>
-        <image>assets/pizza_brotinho_calabresa.png</image>
+        <image>assets/pizza_brotinho_calabresa_nova.png</image>
     </item>
 
     <item>
@@ -238,7 +238,7 @@
         <category>salgados</category>
         <price>9.00</price>
         <description>Clássico kibe brasileiro, temperado com especiarias e hortelã, fritinho com casquinha morena e crocante.</description>
-        <image>assets/kibe.png</image>
+        <image>assets/kibe_nova.png</image>
     </item>
     <item>
         <id>33</id>
@@ -246,6 +246,6 @@
         <category>salgados</category>
         <price>8.00</price>
         <description>Delicioso enroladinho assado, massa fofinha com recheio derretido de presunto e muito queijo.</description>
-        <image>assets/enroladinho.png</image>
+        <image>assets/enroladinho_nova.png</image>
     </item>
 </menu>
