@@ -25,14 +25,6 @@ window.menuItemsData = [
         image: "assets/coxinha_premium.png"
     },
     {
-        id: "7",
-        name: "Bolinho de Carne",
-        category: "bolinho",
-        price: 8.00,
-        description: "Bolinho artesanal de carne temperado com especiarias, frito na hora com casquinha crocante.",
-        image: "assets/bolinho_carne.png"
-    },
-    {
         id: "8",
         name: "Bolinho de Costela",
         category: "bolinho",

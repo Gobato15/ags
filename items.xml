@@ -27,14 +27,6 @@
     </item>
 
     <item>
-        <id>7</id>
-        <name>Bolinho de Carne</name>
-        <category>bolinho</category>
-        <price>8.00</price>
-        <description>Bolinho artesanal de carne temperado com especiarias, frito na hora com casquinha crocante.</description>
-        <image>assets/bolinho_carne.png</image>
-    </item>
-    <item>
         <id>8</id>
         <name>Bolinho de Costela</name>
         <category>bolinho</category>
