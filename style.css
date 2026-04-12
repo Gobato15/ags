@@ -524,17 +524,22 @@ footer {
     .promo-title { font-size: 1.2rem; justify-content: center; margin-bottom: 1.5rem; }
 
     .promo-items {
+        display: flex !important;
         flex-direction: column !important;
-        overflow-x: visible !important;
         gap: 1.5rem;
     }
 
-    .promo-items .product-card {
-        flex: 1 1 auto !important;
+    .promo-items.promo-expanded {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .promo-items .product-card,
+    .promo-items.promo-expanded .product-card {
+        flex: none !important;
         width: 100% !important;
         min-width: 100% !important;
-        max-width: 100% !important;
-        scroll-snap-align: none;
+        height: auto !important;
     }
 
     .promo-product-card .product-image-container {
