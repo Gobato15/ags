@@ -380,14 +380,16 @@ header.scrolled {
 }
 
 .promo-items.promo-expanded {
-    justify-content: flex-start;
-    overflow-x: visible; /* Remove barra de rolagem horizontal */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+    overflow: visible;
 }
 
-.promo-items .product-card {
-    flex: 1 1 0; /* Permite que os cards encolham para caber */
-    min-width: 150px;
-    scroll-snap-align: start;
+.promo-items.promo-expanded .product-card {
+    flex: none !important;
+    width: 100% !important;
+    min-width: 120px !important;
 }
 
 /* Promotional Product Card Specifics */
