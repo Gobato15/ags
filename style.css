@@ -381,11 +381,12 @@ header.scrolled {
 
 .promo-items.promo-expanded {
     justify-content: flex-start;
+    overflow-x: visible; /* Remove barra de rolagem horizontal */
 }
 
 .promo-items .product-card {
-    flex: 0 0 240px; /* Largura fixa para garantir que o preço caiba */
-    min-width: 240px;
+    flex: 1 1 0; /* Permite que os cards encolham para caber */
+    min-width: 150px;
     scroll-snap-align: start;
 }
 
@@ -399,7 +400,15 @@ header.scrolled {
 }
 
 .promo-product-card .price {
-    font-size: 1.4rem;
+    font-size: 1.25rem; /* Reduzindo para caber mais itens lado a lado */
+}
+
+.promo-product-card .product-info {
+    padding: 1.2rem; /* Compactando o preenchimento */
+}
+
+.promo-product-card .product-info h3 {
+    font-size: 1.1rem; /* Título mais compacto */
 }
 
 /* Helpers from script.js */
