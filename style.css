@@ -135,8 +135,13 @@ header.scrolled {
 }
 
 @keyframes blobBounce {
-    0% { transform: translateY(0) scale(1); }
-    100% { transform: translateY(-50px) scale(1.2); }
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        transform: translateY(-50px) scale(1.2);
+    }
 }
 
 .hero h1 {
@@ -158,7 +163,9 @@ header.scrolled {
 }
 
 @keyframes shine {
-    to { background-position: 200% center; }
+    to {
+        background-position: 200% center;
+    }
 }
 
 .hero p {
@@ -317,7 +324,9 @@ header.scrolled {
     scrollbar-width: none;
 }
 
-.promo-day-selector::-webkit-scrollbar { display: none; }
+.promo-day-selector::-webkit-scrollbar {
+    display: none;
+}
 
 .day-btn {
     background: white;
@@ -356,8 +365,14 @@ header.scrolled {
     scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
 }
 
-.promo-items::-webkit-scrollbar { height: 5px; }
-.promo-items::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.4); border-radius: 10px; }
+.promo-items::-webkit-scrollbar {
+    height: 5px;
+}
+
+.promo-items::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+}
 
 /* Promotional Product Card Specifics */
 .promo-product-card {
@@ -365,7 +380,8 @@ header.scrolled {
 }
 
 .promo-product-card .product-image-container {
-    height: 180px; /* Altura específica para promos Desktop */
+    height: 180px;
+    /* Altura específica para promos Desktop */
 }
 
 /* Helpers from script.js */
@@ -385,7 +401,10 @@ header.scrolled {
     text-transform: uppercase;
 }
 
-.price-wrapper { text-align: left; }
+.price-wrapper {
+    text-align: left;
+}
+
 .price-label {
     color: var(--text-muted);
     font-size: 0.75rem;
@@ -402,7 +421,11 @@ header.scrolled {
     color: var(--text-muted);
 }
 
-.empty-state i { font-size: 3rem; margin-bottom: 1rem; color: #eee; }
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #eee;
+}
 
 /* WhatsApp Banner */
 .whatsapp-group-banner {
@@ -490,29 +513,83 @@ footer {
         gap: 0.8rem;
     }
 
-    header.scrolled { padding: 0.6rem 5%; }
-    .logo { font-size: 1.5rem; }
+    header.scrolled {
+        padding: 0.6rem 5%;
+    }
 
-    .search-container { margin: 0; width: 100%; max-width: 100%; }
-    .search-container input { padding: 0.7rem 1.2rem 0.7rem 2.8rem; font-size: 0.9rem; }
+    .logo {
+        font-size: 1.5rem;
+    }
 
-    .hero { margin-top: 100px; padding: 4rem 5% 3rem; }
-    .hero h1 { font-size: 2rem; }
-    .hero p { font-size: 1rem; }
+    .search-container {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+    }
 
-    .categories { padding: 0.8rem 5%; top: 115px; gap: 0.6rem; }
-    .category-pill { padding: 0.6rem 1.4rem; font-size: 0.85rem; }
+    .search-container input {
+        padding: 0.7rem 1.2rem 0.7rem 2.8rem;
+        font-size: 0.9rem;
+    }
 
-    .menu-grid { padding: 1.5rem 5% 4rem; grid-template-columns: 1fr; gap: 1.5rem; }
-    
+    .hero {
+        margin-top: 100px;
+        padding: 4rem 5% 3rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .categories {
+        padding: 0.8rem 5%;
+        top: 115px;
+        gap: 0.6rem;
+    }
+
+    .category-pill {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.85rem;
+    }
+
+    .menu-grid {
+        padding: 1.5rem 5% 4rem;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
     /* Garantir altura da imagem no mobile para cards normais */
-    .product-image-container { height: 200px !important; }
+    .product-image-container {
+        height: 200px !important;
+    }
 
-    .daily-promo-section { padding: 0 5% 1.5rem; }
-    .promo-banner { padding: 1.5rem 1rem; }
-    .promo-day-selector { padding: 0 5%; justify-content: flex-start !important; }
-    .day-btn { padding: 0.4rem 1rem; font-size: 0.85rem; }
-    .promo-title { font-size: 1.2rem; justify-content: center; margin-bottom: 1.5rem; }
+    .daily-promo-section {
+        padding: 0 5% 1.5rem;
+    }
+
+    .promo-banner {
+        padding: 1.5rem 1rem;
+    }
+
+    .promo-day-selector {
+        padding: 0 5%;
+        justify-content: flex-start !important;
+    }
+
+    .day-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .promo-title {
+        font-size: 1.2rem;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
 
     /* Restaurando layout vertical nas promoções para mobile */
     .promo-items {
@@ -538,15 +615,14 @@ footer {
         height: 180px !important;
         display: block !important;
     }
-    
+
     .promo-product-card .product-image {
         display: block !important;
         height: 100% !important;
     }
 
-    .whatsapp-group-banner { padding: 1.5rem; }
-    .wg-banner-content { flex-direction: column; text-align: center; gap: 1rem; }
-    .wg-btn { width: 100%; text-align: center; justify-content: center; }
 
-    footer { padding: 3rem 5%; }
+    footer {
+        padding: 3rem 5%;
+    }
 }

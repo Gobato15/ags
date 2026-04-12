@@ -283,24 +283,6 @@ function renderMenu(filter = 'all', searchQuery = '') {
             </div>
         `;
         menuGrid.appendChild(card);
-
-        // Adiciona banner do WhatsApp no meio do grid (apenas se for a categoria 'all')
-        if (filter === 'all' && index === 5) {
-            const banner = document.createElement('div');
-            banner.className = 'whatsapp-group-banner';
-            banner.innerHTML = `
-                <div class="wg-banner-content">
-                    <div class="wg-text">
-                        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 5px;">Participe do nosso Grupo VIP! 🚀</h2>
-                        <p style="opacity: 0.9;">Receba promoções exclusivas e novidades em primeira mão diretamente no seu celular.</p>
-                    </div>
-                    <a href="https://chat.whatsapp.com/HgplOITiLRwKua9uh7a7Qv" target="_blank" class="wg-btn">
-                        <i class="fab fa-whatsapp"></i> QUERO ENTRAR NO GRUPO
-                    </a>
-                </div>
-            `;
-            menuGrid.appendChild(banner);
-        }
     });
 }
 
