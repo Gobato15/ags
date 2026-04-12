@@ -185,13 +185,10 @@ function renderDailyPromos() {
     }).join('');
 
     const promoCount = todaysPromos.length;
-    let promoItemsClass, promoItemsStyle;
     if (promoCount >= 5) {
         promoItemsClass = 'promo-items promo-expanded';
-        promoItemsStyle = 'justify-content:flex-start; overflow-x:auto;';
     } else {
         promoItemsClass = 'promo-items promo-centered';
-        promoItemsStyle = 'justify-content:center; overflow-x:visible;';
     }
 
     promoContainer.innerHTML = `
@@ -203,7 +200,7 @@ function renderDailyPromos() {
         </div>
         <div class="promo-banner" style="background: ${gradients[today]};">
             <h2 class="promo-title"><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
-            <div class="${promoItemsClass}" style="${promoItemsStyle}">
+            <div class="${promoItemsClass}">
                 ${itemsHTML}
             </div>
         </div>
