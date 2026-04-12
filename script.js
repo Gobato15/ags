@@ -170,27 +170,19 @@ function renderDailyPromos() {
     if (itemsHTML === '') return;
 
     const gradients = {
-        1: 'linear-gradient(135deg, #FF9800 0%, #FF5722 100%)', // Segunda: Laranja
-        2: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)', // Terça: Vermelho (AGS default)
-        3: 'linear-gradient(135deg, #00BCD4 0%, #2196F3 100%)', // Quarta: Azul
-        4: 'linear-gradient(135deg, #4CAF50 0%, #009688 100%)', // Quinta: Verde
-        5: 'linear-gradient(135deg, #9C27B0 0%, #E91E63 100%)', // Sexta: Roxo
-        0: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)', // Domingo
-        6: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)'  // Sábado
+        1: 'linear-gradient(135deg, #FF9800 0%, #FF5722 100%)', // Segunda
+        2: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)', // Terça
+        3: 'linear-gradient(135deg, #00BCD4 0%, #2196F3 100%)', // Quarta
+        4: 'linear-gradient(135deg, #4CAF50 0%, #009688 100%)', // Quinta
+        5: 'linear-gradient(135deg, #9C27B0 0%, #E91E63 100%)', // Sexta
+        0: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)',
+        6: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)'
     };
 
     const dayBtnsHTML = [1, 2, 3, 4, 5].map(d => {
         const names = ['', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
         return `<button class="day-btn ${d === currentPromoDay ? 'active' : ''}" onclick="setPromoDay(${d})">${names[d]}</button>`;
     }).join('');
-
-    const promoCount = todaysPromos.length;
-    let promoItemsClass = '';
-    if (promoCount >= 5) {
-        promoItemsClass = 'promo-items promo-expanded';
-    } else {
-        promoItemsClass = 'promo-items promo-centered';
-    }
 
     promoContainer.innerHTML = `
         <div class="promo-section-header" style="text-align:center; margin-bottom:12px;">
@@ -201,7 +193,7 @@ function renderDailyPromos() {
         </div>
         <div class="promo-banner" style="background: ${gradients[today]};">
             <h2 class="promo-title"><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
-            <div class="${promoItemsClass}" style="--promo-count: ${promoCount};">
+            <div class="promo-items">
                 ${itemsHTML}
             </div>
         </div>
@@ -250,7 +242,6 @@ function renderMenu(filter = 'all', searchQuery = '') {
     const todaysPromos = dailyPromotions[today] || [];
 
     filteredItems.forEach((item, index) => {
-        // Correção de caminho para GitHub Pages
         let imgSrc = item.image;
         if (imgSrc.startsWith('assets/')) {
             imgSrc = './' + imgSrc;
