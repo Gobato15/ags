@@ -424,11 +424,24 @@ footer {
         text-align: center;
     }
 
-    .promo-title {
-        font-size: 1.35rem; /* Ajuste para não quebrar a linha ou ficar estranho no Poco X6 */
-        flex-wrap: wrap; /* Permite quebrar a linha do título e do ícone de forma suave */
-        justify-content: center;
-        text-align: center;
+    .promo-banner {
+        padding: 1.5rem;
+    }
+
+    .promo-items {
+        flex-direction: column;
+        flex-wrap: nowrap !important;
+        overflow-x: visible !important;
+        gap: 1.5rem;
+    }
+
+    .promo-items .product-card,
+    .promo-items.promo-centered .product-card,
+    .promo-items.promo-expanded .product-card {
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
     }
 }
 
@@ -506,27 +519,32 @@ footer {
     max-width: 280px;
 }
 
-/* Modificadores para diminuir o tamanho dos cards apenas dentro das promoções */
+/* Modificadores para os cards dentro das promoções - Ajustados para tamanho padrão */
 .promo-product-card {
-    border-radius: 12px;
+    border-radius: var(--radius);
 }
+
 .promo-product-card .product-image-container {
-    height: 150px; /* Bem menor que os 240px originais */
+    height: 240px; /* Tamanho padrão do sistema */
 }
+
 .promo-product-card .product-info {
-    padding: 1.2rem;
+    padding: 1.8rem; /* Tamanho padrão do sistema */
 }
+
 .promo-product-card .product-info h3 {
-    font-size: 1.1rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.3rem; /* Tamanho padrão do sistema */
+    margin-bottom: 0.6rem;
 }
+
 .promo-product-card .product-info p {
-    font-size: 0.85rem;
-    height: 2.6rem;
-    margin-bottom: 1rem;
+    font-size: 0.95rem; /* Tamanho padrão do sistema */
+    height: 3rem;
+    margin-bottom: 1.5rem;
 }
+
 .promo-product-card .price {
-    font-size: 1.35rem;
+    font-size: 1.6rem; /* Tamanho padrão do sistema */
 }
 
 .promo-card {
