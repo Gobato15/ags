@@ -184,6 +184,14 @@ function renderDailyPromos() {
         return `<button class="day-btn ${d === currentPromoDay ? 'active' : ''}" onclick="setPromoDay(${d})">${names[d]}</button>`;
     }).join('');
 
+    const promoCount = todaysPromos.length;
+    let promoItemsClass = '';
+    if (promoCount >= 5) {
+        promoItemsClass = 'promo-items promo-expanded';
+    } else {
+        promoItemsClass = 'promo-items promo-centered';
+    }
+
     promoContainer.innerHTML = `
         <div class="promo-section-header" style="text-align:center; margin-bottom:12px;">
             <span style="color:var(--text-muted); font-size:1.05rem; font-weight:800;">Confira as promoções da semana:</span>
@@ -193,7 +201,7 @@ function renderDailyPromos() {
         </div>
         <div class="promo-banner" style="background: ${gradients[today]};">
             <h2 class="promo-title"><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
-            <div class="promo-items">
+            <div class="${promoItemsClass}" style="--promo-count: ${promoCount};">
                 ${itemsHTML}
             </div>
         </div>
