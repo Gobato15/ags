@@ -256,6 +256,7 @@ header.scrolled {
 
 .product-info h3 {
     font-size: 1.3rem;
+    line-height: 1.3;
     margin-bottom: 0.6rem;
     color: var(--secondary);
     font-weight: 700;
@@ -366,6 +367,18 @@ header.scrolled {
 
 .promo-product-card .product-image-container {
     height: 180px;
+}
+
+.promo-product-card .product-info h3 {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.promo-product-card .product-info p {
+    font-size: 0.9rem;
+    height: auto;
+    min-height: 2.8rem;
 }
 
 /* Helpers from script.js */
