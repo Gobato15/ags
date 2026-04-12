@@ -4,7 +4,7 @@ let menuItems = [];
 let currentPromoDay = new Date().getDay();
 if (currentPromoDay < 1 || currentPromoDay > 5) currentPromoDay = 1;
 
-window.setPromoDay = function(day) {
+window.setPromoDay = function (day) {
     currentPromoDay = day;
     renderDailyPromos();
     const activePill = document.querySelector('.category-pill.active');
@@ -122,29 +122,29 @@ function renderAll() {
 function renderDailyPromos() {
     const promoContainer = document.getElementById('dailyPromoContainer');
     if (!promoContainer) return;
-    
+
     const today = currentPromoDay;
     const todaysPromos = dailyPromotions[today];
-    
+
     if (!todaysPromos || todaysPromos.length === 0) {
         promoContainer.style.display = 'none';
         return;
     }
-    
+
     promoContainer.style.display = 'block';
     const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
     const diaNome = diasSemana[today];
 
     let itemsHTML = '';
-    
+
     todaysPromos.forEach(promo => {
         const item = menuItems.find(i => i.id === promo.id);
         if (item) {
             let imgSrc = item.image;
             if (imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
-            
+
             const originalPriceHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
-            
+
             itemsHTML += `
                 <div class="product-card promo-product-card" style="box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
                     <div class="product-image-container">
@@ -196,9 +196,9 @@ function renderDailyPromos() {
 
     promoContainer.innerHTML = `
         <div style="text-align:center; margin-bottom:12px;">
-            <span style="color:var(--text-muted); font-size:0.9rem; font-weight:800;">Confira as promoções da semana:</span>
+            <span style="color:var(--text-muted); font-size:1.05rem; font-weight:800;">Confira as promoções da semana:</span>
         </div>
-        <div class="promo-day-selector" style="margin-bottom:1.5rem; padding-bottom:5px;">
+        <div class="promo-day-selector" style="justify-content:center; margin-bottom:1.5rem; padding-bottom:5px;">
             ${dayBtnsHTML}
         </div>
         <div class="promo-banner" style="background: ${gradients[today]};">
