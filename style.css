@@ -296,6 +296,7 @@ header.scrolled {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    white-space: nowrap;
 }
 
 /* Daily Promo Section */
@@ -374,6 +375,20 @@ header.scrolled {
     border-radius: 10px;
 }
 
+.promo-items.promo-centered {
+    justify-content: center;
+}
+
+.promo-items.promo-expanded {
+    justify-content: flex-start;
+}
+
+.promo-items .product-card {
+    flex: 0 0 240px; /* Largura fixa para garantir que o preço caiba */
+    min-width: 240px;
+    scroll-snap-align: start;
+}
+
 /* Promotional Product Card Specifics */
 .promo-product-card {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
@@ -381,7 +396,10 @@ header.scrolled {
 
 .promo-product-card .product-image-container {
     height: 180px;
-    /* Altura específica para promos Desktop */
+}
+
+.promo-product-card .price {
+    font-size: 1.4rem;
 }
 
 /* Helpers from script.js */
