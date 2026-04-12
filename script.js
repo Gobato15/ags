@@ -4,7 +4,7 @@ let menuItems = [];
 let currentPromoDay = new Date().getDay();
 if (currentPromoDay < 1 || currentPromoDay > 5) currentPromoDay = 1;
 
-window.setPromoDay = function(day) {
+window.setPromoDay = function (day) {
     currentPromoDay = day;
     renderDailyPromos();
     const activePill = document.querySelector('.category-pill.active');
@@ -19,25 +19,25 @@ const searchInput = document.getElementById('searchInput');
 
 // Configuração das promoções da semana
 const dailyPromotions = {
-    1: [ // Segunda: Hamburguinhos, Pão Caseiro e Arroz Doce
+    1: [ // Segunda: Hamburguinhos, Pão Caseiro e Doce de Abacaxi
         { id: "0", promoPrice: 7.00 },
         { id: "4", promoPrice: 9.00 },
         { id: "31", promoPrice: 11.00 },
-        { id: "24", promoPrice: 3.00 }
+        { id: "28", promoPrice: 6.00 }
     ],
-    2: [ // Terça: Croissant, Bauru, Pizzas Brotinho e Torta
+    2: [ // Terça: Croissant, Bauru e Pizzas Brotinho
         { id: "12", promoPrice: 8.00 },
         { id: "23", promoPrice: 8.00 },
         { id: "25", promoPrice: 7.00 },
         { id: "26", promoPrice: 7.00 },
-        { id: "27", promoPrice: 7.00 },
-        { id: "30", promoPrice: 7.00 }
+        { id: "27", promoPrice: 7.00 }
     ],
-    3: [ // Quarta: Coxinha, Lanches Naturais e Bolo de Maracujá
+    3: [ // Quarta: Coxinha, Lanches Naturais, Bolo de Maracujá e Arroz Doce de Paçoca
         { id: "1", promoPrice: 7.00 },
         { id: "21", promoPrice: 8.00 },
         { id: "22", promoPrice: 8.00 },
-        { id: "19", promoPrice: 7.00 }
+        { id: "19", promoPrice: 7.00 },
+        { id: "24", promoPrice: 3.00 }
     ],
     4: [ // Quinta: Pizzas Brotinho e Cachorro Quente
         { id: "25", promoPrice: 7.00 },
@@ -45,11 +45,12 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 },
         { id: "29", promoPrice: 7.00 }
     ],
-    5: [ // Sexta: Sobremesas, Kibe e Enroladinho
+    5: [ // Sexta: Sobremesas, Kibe, Enroladinho e Torta
         { id: "20", promoPrice: 6.00 },
         { id: "18", promoPrice: 7.00 },
         { id: "32", promoPrice: 8.00 },
-        { id: "33", promoPrice: 7.00 }
+        { id: "33", promoPrice: 7.00 },
+        { id: "30", promoPrice: 7.00 }
     ]
 };
 
@@ -121,29 +122,29 @@ function renderAll() {
 function renderDailyPromos() {
     const promoContainer = document.getElementById('dailyPromoContainer');
     if (!promoContainer) return;
-    
+
     const today = currentPromoDay;
     const todaysPromos = dailyPromotions[today];
-    
+
     if (!todaysPromos || todaysPromos.length === 0) {
         promoContainer.style.display = 'none';
         return;
     }
-    
+
     promoContainer.style.display = 'block';
     const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
     const diaNome = diasSemana[today];
 
     let itemsHTML = '';
-    
+
     todaysPromos.forEach(promo => {
         const item = menuItems.find(i => i.id === promo.id);
         if (item) {
             let imgSrc = item.image;
             if (imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
-            
+
             const originalPriceHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
-            
+
             itemsHTML += `
                 <div class="product-card promo-product-card" style="box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
                     <div class="product-image-container">
@@ -183,6 +184,13 @@ function renderDailyPromos() {
         return `<button class="day-btn ${d === currentPromoDay ? 'active' : ''}" onclick="setPromoDay(${d})">${names[d]}</button>`;
     }).join('');
 
+    const promoCount = todaysPromos.length;
+    if (promoCount >= 5) {
+        promoItemsClass = 'promo-items promo-expanded';
+    } else {
+        promoItemsClass = 'promo-items promo-centered';
+    }
+
     promoContainer.innerHTML = `
         <div style="text-align:center; margin-bottom:12px;">
             <span style="color:var(--text-muted); font-size:1.05rem; font-weight:800;">Confira as promoções da semana:</span>
@@ -192,7 +200,7 @@ function renderDailyPromos() {
         </div>
         <div class="promo-banner" style="background: ${gradients[today]};">
             <h2 class="promo-title"><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
-            <div class="promo-items">
+            <div class="${promoItemsClass}">
                 ${itemsHTML}
             </div>
         </div>

@@ -135,8 +135,13 @@ header.scrolled {
 }
 
 @keyframes blobBounce {
-    0% { transform: translateY(0) scale(1); }
-    100% { transform: translateY(-50px) scale(1.2); }
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        transform: translateY(-50px) scale(1.2);
+    }
 }
 
 .hero h1 {
@@ -158,7 +163,9 @@ header.scrolled {
 }
 
 @keyframes shine {
-    to { background-position: 200% center; }
+    to {
+        background-position: 200% center;
+    }
 }
 
 .hero p {
@@ -191,7 +198,7 @@ header.scrolled {
     border: 1px solid #eee;
     color: var(--text-muted);
     transition: var(--transition);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 }
 
 .category-pill.active {
@@ -424,8 +431,17 @@ footer {
         text-align: center;
     }
 
+    .promo-title {
+        font-size: 1.35rem;
+        /* Ajuste para não quebrar a linha ou ficar estranho no Poco X6 */
+        flex-wrap: wrap;
+        /* Permite quebrar a linha do título e do ícone de forma suave */
+        justify-content: center;
+        text-align: center;
+    }
+
     .promo-banner {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
 
     .promo-items {
@@ -435,7 +451,6 @@ footer {
         gap: 1.5rem;
     }
 
-    .promo-items .product-card,
     .promo-items.promo-centered .product-card,
     .promo-items.promo-expanded .product-card {
         flex: 1 1 auto;
@@ -470,7 +485,10 @@ footer {
     overflow-x: auto;
     scrollbar-width: none;
 }
-.promo-day-selector::-webkit-scrollbar { display: none; }
+
+.promo-day-selector::-webkit-scrollbar {
+    display: none;
+}
 
 .day-btn {
     background: white;
@@ -482,13 +500,15 @@ footer {
     font-weight: 600;
     transition: var(--transition);
     font-size: 0.95rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
 }
+
 .day-btn:hover {
     background: #fdfdfd;
     color: var(--primary);
     border-color: rgba(232, 50, 31, 0.4);
 }
+
 .day-btn.active {
     background: var(--primary);
     color: white;
@@ -508,15 +528,51 @@ footer {
 
 .promo-items {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    padding-bottom: 0.5rem;
+    flex-wrap: nowrap;
+    gap: 1.2rem;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+    -webkit-overflow-scrolling: touch;
 }
 
-.promo-items .product-card {
-    flex: 1 1 220px;
-    max-width: 280px;
+.promo-items::-webkit-scrollbar {
+    height: 5px;
+}
+
+.promo-items::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.promo-items::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+}
+
+/* ≤4 itens: cards centralizados com largura fixa */
+.promo-items.promo-centered {
+    justify-content: center;
+    overflow-x: visible;
+}
+
+.promo-items.promo-centered .product-card {
+    flex: 0 0 250px;
+    min-width: 250px;
+    max-width: 250px;
+}
+
+/* 5+ itens: cards se expandem para preencher toda a linha */
+.promo-items.promo-expanded {
+    justify-content: stretch;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.promo-items.promo-expanded .product-card {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: none;
+    scroll-snap-align: start;
 }
 
 /* Modificadores para os cards dentro das promoções - Ajustados para tamanho padrão */
@@ -525,26 +581,31 @@ footer {
 }
 
 .promo-product-card .product-image-container {
-    height: 240px; /* Tamanho padrão do sistema */
+    height: 150px;
+    /* Bem menor que os 240px originais */
 }
 
 .promo-product-card .product-info {
-    padding: 1.8rem; /* Tamanho padrão do sistema */
+    padding: 1.8rem;
+    /* Tamanho padrão do sistema */
 }
 
 .promo-product-card .product-info h3 {
-    font-size: 1.3rem; /* Tamanho padrão do sistema */
+    font-size: 1.3rem;
+    /* Tamanho padrão do sistema */
     margin-bottom: 0.6rem;
 }
 
 .promo-product-card .product-info p {
-    font-size: 0.95rem; /* Tamanho padrão do sistema */
+    font-size: 0.95rem;
+    /* Tamanho padrão do sistema */
     height: 3rem;
     margin-bottom: 1.5rem;
 }
 
 .promo-product-card .price {
-    font-size: 1.6rem; /* Tamanho padrão do sistema */
+    font-size: 1.6rem;
+    /* Tamanho padrão do sistema */
 }
 
 .promo-card {
