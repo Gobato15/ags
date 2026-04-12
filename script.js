@@ -196,7 +196,7 @@ function renderDailyPromos() {
 
     promoContainer.innerHTML = `
         <div style="text-align:center; margin-bottom:12px;">
-            <span style="color:var(--text-muted); font-size:1.05rem; font-weight:800;">Confira as promoções da semana:</span>
+            <span style="color:var(--text-muted); font-size:0.9rem; font-weight:800;">Confira as promoções da semana:</span>
         </div>
         <div class="promo-day-selector" style="margin-bottom:1.5rem; padding-bottom:5px;">
             ${dayBtnsHTML}
