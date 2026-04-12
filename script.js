@@ -146,17 +146,17 @@ function renderDailyPromos() {
             const originalPriceHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
 
             itemsHTML += `
-                <div class="product-card promo-product-card" style="box-shadow: 0 10px 25px rgba(0,0,0,0.15);">
+                <div class="product-card promo-product-card">
                     <div class="product-image-container">
-                        <div style="position:absolute; top:8px; right:8px; background: linear-gradient(135deg, #ff5252 0%, #e8321f 100%); color:white; padding:4px 10px; border-radius:30px; font-weight:900; font-size:0.75rem; z-index:10; box-shadow: 0 4px 10px rgba(255, 82, 82, 0.5); letter-spacing: 1px;">HOJE</div>
+                        <div class="promo-badge">HOJE</div>
                         <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
                     </div>
                     <div class="product-info">
-                        <h3 style="color: var(--secondary);">${item.name}</h3>
-                        <p style="color: var(--text-muted);">${item.description}</p>
+                        <h3>${item.name}</h3>
+                        <p>${item.description}</p>
                         <div class="product-footer">
-                            <div class="price-wrapper" style="text-align: left;">
-                                <span class="price-label" style="color: #888; font-size: 0.75rem; text-transform: uppercase; font-weight: 700;">a partir de</span><br>
+                            <div class="price-wrapper">
+                                <span class="price-label">a partir de</span>
                                 ${originalPriceHTML}
                                 <span class="price" style="color: #ff5252;">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
                             </div>
@@ -192,10 +192,10 @@ function renderDailyPromos() {
     }
 
     promoContainer.innerHTML = `
-        <div style="text-align:center; margin-bottom:12px;">
+        <div class="promo-section-header" style="text-align:center; margin-bottom:12px;">
             <span style="color:var(--text-muted); font-size:1.05rem; font-weight:800;">Confira as promoções da semana:</span>
         </div>
-        <div class="promo-day-selector" style="justify-content:center; margin-bottom:1.5rem; padding-bottom:5px;">
+        <div class="promo-day-selector" style="margin-bottom:1.5rem; padding-bottom:5px;">
             ${dayBtnsHTML}
         </div>
         <div class="promo-banner" style="background: ${gradients[today]};">
@@ -267,7 +267,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
         card.style.animationDelay = `${index * 0.05}s`;
         card.innerHTML = `
             <div class="product-image-container">
-                ${isPromo ? '<div style="position:absolute; top:10px; right:10px; background: linear-gradient(135deg, #ff5252 0%, #e8321f 100%); color:white; padding:6px 14px; border-radius:30px; font-weight:900; font-size:0.85rem; z-index:10; box-shadow: 0 6px 15px rgba(255, 82, 82, 0.5); letter-spacing: 1px;">PROMOÇÃO</div>' : ''}
+                ${isPromo ? '<div class="promo-badge">PROMOÇÃO</div>' : ''}
                 <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
             </div>
             <div class="product-info">
@@ -275,7 +275,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
                 <p>${item.description}</p>
                 <div class="product-footer">
                     <div class="price-wrapper">
-                        <span class="price-label">a partir de</span><br>
+                        <span class="price-label">a partir de</span>
                         ${originalPriceHTML}
                         <span class="price" style="${promoStyles}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
                     </div>
@@ -283,6 +283,24 @@ function renderMenu(filter = 'all', searchQuery = '') {
             </div>
         `;
         menuGrid.appendChild(card);
+
+        // Adiciona banner do WhatsApp no meio do grid (apenas se for a categoria 'all')
+        if (filter === 'all' && index === 5) {
+            const banner = document.createElement('div');
+            banner.className = 'whatsapp-group-banner';
+            banner.innerHTML = `
+                <div class="wg-banner-content">
+                    <div class="wg-text">
+                        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 5px;">Participe do nosso Grupo VIP! 🚀</h2>
+                        <p style="opacity: 0.9;">Receba promoções exclusivas e novidades em primeira mão diretamente no seu celular.</p>
+                    </div>
+                    <a href="https://chat.whatsapp.com/HgplOITiLRwKua9uh7a7Qv" target="_blank" class="wg-btn">
+                        <i class="fab fa-whatsapp"></i> QUERO ENTRAR NO GRUPO
+                    </a>
+                </div>
+            `;
+            menuGrid.appendChild(banner);
+        }
     });
 }
 
