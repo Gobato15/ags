@@ -531,9 +531,10 @@ footer {
         gap: 1.5rem;
     }
 
-    /* Garantir altura da imagem no mobile para cards normais */
+    /* Garantir altura da imagem no mobile */
     .product-image-container {
         height: 200px !important;
+        display: block !important;
     }
 
     .daily-promo-section {
@@ -560,11 +561,9 @@ footer {
         margin-bottom: 1.5rem;
     }
 
-    /* Restaurando layout vertical nas promoções para mobile */
+    /* Layout vertical nas promoções para mobile */
     .promo-items {
-        flex-direction: column !important;
-        overflow-x: visible !important;
-        gap: 1.5rem;
+        flex-direction: column;
     }
 
     .promo-items .product-card {
@@ -575,17 +574,11 @@ footer {
         scroll-snap-align: none;
     }
 
-    .product-image-container {
-        height: 200px !important;
-        display: block !important;
-    }
-
     .promo-product-card .product-image-container {
         height: 180px !important;
-        display: block !important;
     }
 
-    .promo-product-card .product-image {
+    .product-image {
         display: block !important;
         height: 100% !important;
     }

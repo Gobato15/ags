@@ -185,6 +185,7 @@ function renderDailyPromos() {
     }).join('');
 
     const promoCount = todaysPromos.length;
+    let promoItemsClass = '';
     if (promoCount >= 5) {
         promoItemsClass = 'promo-items promo-expanded';
     } else {
