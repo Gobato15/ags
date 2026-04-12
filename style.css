@@ -514,23 +514,26 @@ footer {
     .day-btn { padding: 0.4rem 1rem; font-size: 0.85rem; }
     .promo-title { font-size: 1.2rem; justify-content: center; margin-bottom: 1.5rem; }
 
+    /* Restaurando layout vertical nas promoções para mobile */
     .promo-items {
-        flex-direction: row !important;
-        overflow-x: auto !important;
-        padding-bottom: 1.2rem;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
-        gap: 1rem;
+        flex-direction: column !important;
+        overflow-x: visible !important;
+        gap: 1.5rem;
     }
 
     .promo-items .product-card {
-        flex: 0 0 280px !important;
-        min-width: 280px !important;
-        max-width: 280px !important;
-        scroll-snap-align: center;
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        scroll-snap-align: none;
     }
 
-    /* Garantir altura da imagem no mobile especificamente para promos */
+    .product-image-container {
+        height: 200px !important;
+        display: block !important;
+    }
+
     .promo-product-card .product-image-container {
         height: 180px !important;
         display: block !important;
