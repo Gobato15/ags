@@ -19,25 +19,25 @@ const searchInput = document.getElementById('searchInput');
 
 // Configuração das promoções da semana
 const dailyPromotions = {
-    1: [ // Segunda: Hamburguinhos, Pão Caseiro e Arroz Doce
+    1: [ // Segunda: Hamburguinhos, Pão Caseiro e Doce de Abacaxi
         { id: "0", promoPrice: 7.00 },
         { id: "4", promoPrice: 9.00 },
-        { id: "31", promoPrice: 10.00 },
-        { id: "24", promoPrice: 3.00 }
+        { id: "31", promoPrice: 11.00 },
+        { id: "28", promoPrice: 6.00 }
     ],
-    2: [ // Terça: Croissant, Bauru, Pizzas Brotinho e Torta
+    2: [ // Terça: Croissant, Bauru e Pizzas Brotinho
         { id: "12", promoPrice: 8.00 },
         { id: "23", promoPrice: 8.00 },
         { id: "25", promoPrice: 7.00 },
         { id: "26", promoPrice: 7.00 },
-        { id: "27", promoPrice: 7.00 },
-        { id: "30", promoPrice: 7.00 }
+        { id: "27", promoPrice: 7.00 }
     ],
-    3: [ // Quarta: Coxinha, Lanches Naturais e Bolo de Maracujá
+    3: [ // Quarta: Coxinha, Lanches Naturais, Bolo de Maracujá e Arroz Doce de Paçoca
         { id: "1", promoPrice: 7.00 },
         { id: "21", promoPrice: 8.00 },
         { id: "22", promoPrice: 8.00 },
-        { id: "19", promoPrice: 7.00 }
+        { id: "19", promoPrice: 7.00 },
+        { id: "24", promoPrice: 3.00 }
     ],
     4: [ // Quinta: Pizzas Brotinho e Cachorro Quente
         { id: "25", promoPrice: 7.00 },
@@ -45,11 +45,12 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 },
         { id: "29", promoPrice: 7.00 }
     ],
-    5: [ // Sexta: Sobremesas, Kibe e Enroladinho
+    5: [ // Sexta: Sobremesas, Kibe, Enroladinho e Torta
         { id: "20", promoPrice: 6.00 },
         { id: "18", promoPrice: 7.00 },
         { id: "32", promoPrice: 8.00 },
-        { id: "33", promoPrice: 7.00 }
+        { id: "33", promoPrice: 7.00 },
+        { id: "30", promoPrice: 7.00 }
     ]
 };
 
@@ -183,16 +184,26 @@ function renderDailyPromos() {
         return `<button class="day-btn ${d === currentPromoDay ? 'active' : ''}" onclick="setPromoDay(${d})">${names[d]}</button>`;
     }).join('');
 
+    const promoCount = todaysPromos.length;
+    let promoItemsClass, promoItemsStyle;
+    if (promoCount >= 5) {
+        promoItemsClass = 'promo-items promo-expanded';
+        promoItemsStyle = 'justify-content:flex-start; overflow-x:auto;';
+    } else {
+        promoItemsClass = 'promo-items promo-centered';
+        promoItemsStyle = 'justify-content:center; overflow-x:visible;';
+    }
+
     promoContainer.innerHTML = `
         <div style="text-align:center; margin-bottom:12px;">
             <span style="color:var(--text-muted); font-size:1.05rem; font-weight:800;">Confira as promoções da semana:</span>
         </div>
-        <div class="promo-day-selector" style="justify-content:center; margin-bottom:1.5rem; padding-bottom:5px;">
+        <div class="promo-day-selector" style="margin-bottom:1.5rem; padding-bottom:5px;">
             ${dayBtnsHTML}
         </div>
         <div class="promo-banner" style="background: ${gradients[today]};">
             <h2 class="promo-title"><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
-            <div class="promo-items">
+            <div class="${promoItemsClass}" style="${promoItemsStyle}">
                 ${itemsHTML}
             </div>
         </div>
