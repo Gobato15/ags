@@ -499,7 +499,7 @@ footer {
     align-items: center;
 }
 
-.footer-instagram {
+.footer-instagram-link {
     background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
     color: white;
     padding: 12px 30px;
@@ -513,9 +513,28 @@ footer {
     box-shadow: 0 4px 15px rgba(204, 35, 102, 0.3);
 }
 
-.footer-instagram:hover {
+.footer-instagram-link:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 8px 25px rgba(204, 35, 102, 0.5);
+}
+
+.footer-email {
+    background: #4a90e2;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.footer-email:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(74, 144, 226, 0.5);
 }
 
 .footer-copy {
