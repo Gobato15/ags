@@ -391,22 +391,22 @@ header.scrolled {
 .promo-product-card .product-info h3 {
     font-size: 1.05rem;
     line-height: 1.35;
-    height: 2.8rem; /* Espaço exato para 2 linhas de título */
+    height: 4.3rem; /* Espaço para até 3 linhas de título */
     margin-bottom: 0.5rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
 .promo-product-card .product-info p {
     font-size: 0.85rem;
-    height: 2.6rem; /* Espaço exato para 2 linhas de descrição */
+    height: 3.8rem; /* Espaço para até 3 linhas de descrição */
     margin-bottom: 1rem;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
@@ -490,6 +490,32 @@ footer {
 .footer-whatsapp:hover {
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.footer-instagram {
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(204, 35, 102, 0.3);
+}
+
+.footer-instagram:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(204, 35, 102, 0.5);
 }
 
 .footer-copy {
