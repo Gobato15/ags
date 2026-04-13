@@ -367,6 +367,13 @@ header.scrolled {
 
 .promo-items .product-card {
     height: 100%;
+    width: 260px; /* Largura padronizada para itens centrados */
+    flex: 0 0 260px;
+}
+
+.promo-items.promo-expanded .product-card {
+    width: auto; /* Deixa o grid controlar no modo expandido */
+    flex: 1 1 0;
 }
 
 .promo-items::-webkit-scrollbar { height: 5px; }
@@ -382,9 +389,9 @@ header.scrolled {
 }
 
 .promo-product-card .product-info h3 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.35;
-    height: 3.1rem; /* Alinhamento horizontal para nomes de 2-3 linhas */
+    height: 2.8rem; /* Espaço exato para 2 linhas de título */
     margin-bottom: 0.5rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -394,8 +401,8 @@ header.scrolled {
 }
 
 .promo-product-card .product-info p {
-    font-size: 0.9rem;
-    height: 2.8rem; /* Alinhamento horizontal para descrições */
+    font-size: 0.85rem;
+    height: 2.6rem; /* Espaço exato para 2 linhas de descrição */
     margin-bottom: 1rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
