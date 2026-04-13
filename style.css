@@ -352,8 +352,21 @@ header.scrolled {
     gap: 1.2rem;
     padding-bottom: 1rem;
     overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.4) transparent;
+}
+
+.promo-items.promo-expanded {
+    display: grid;
+    grid-template-columns: repeat(var(--promo-count, 5), 1fr);
+    gap: 1.2rem;
+    overflow: visible;
+}
+
+.promo-items.promo-centered {
+    justify-content: center;
+}
+
+.promo-items .product-card {
+    height: 100%;
 }
 
 .promo-items::-webkit-scrollbar { height: 5px; }
@@ -366,6 +379,34 @@ header.scrolled {
 
 .promo-product-card .product-image-container {
     height: 180px;
+}
+
+.promo-product-card .product-info h3 {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    height: 3.1rem; /* Alinhamento horizontal para nomes de 2-3 linhas */
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.promo-product-card .product-info p {
+    font-size: 0.9rem;
+    height: 2.8rem; /* Alinhamento horizontal para descrições */
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.promo-product-card .price {
+    font-size: 1.5rem;
+    white-space: nowrap;
 }
 
 /* Helpers from script.js */
