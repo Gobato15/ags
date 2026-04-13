@@ -89,14 +89,6 @@ window.menuItemsData = [
         image: "assets/lanche_natural_sardinha_1775526677773.png"
     },
     {
-        id: "23",
-        name: "Bauru de Pizza",
-        category: "lanches",
-        price: 9.00,
-        description: "Delicioso bauru de forno sabor pizza com presunto, queijo, tomate e orégano.",
-        image: "assets/bauru_pizza.png"
-    },
-    {
         id: "30",
         name: "Torta de Frango Caseira",
         category: "tortas",
@@ -183,22 +175,6 @@ window.menuItemsData = [
         price: 8.00,
         description: "Camadas de bolo de chocolate com recheio cremoso de coco fresco.",
         image: "assets/bolo_prestigio.png"
-    },
-    {
-        id: "19",
-        name: "Bolo de Pote Maracujá",
-        category: "desserts",
-        price: 8.00,
-        description: "Bolo branco com camadas de mousse de maracujá fresco e delicioso.",
-        image: "assets/bolo_maracuja_novo.png"
-    },
-    {
-        id: "20",
-        name: "Pudim de Padaria",
-        category: "desserts",
-        price: 7.00,
-        description: "Delicioso pudim de padaria caseiro com calda de caramelo, macio e saboroso.",
-        image: "assets/pudim_pao.jpg"
     },
     {
         id: "24",

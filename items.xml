@@ -94,14 +94,6 @@
         <image>assets/lanche_natural_sardinha_1775526677773.png</image>
     </item>
     <item>
-        <id>23</id>
-        <name>Bauru de Pizza</name>
-        <category>lanches</category>
-        <price>9.00</price>
-        <description>Delicioso bauru de forno sabor pizza com presunto, queijo, tomate e orégano.</description>
-        <image>assets/bauru_pizza.png</image>
-    </item>
-    <item>
         <id>30</id>
         <name>Torta de Frango Caseira</name>
         <category>tortas</category>
@@ -191,22 +183,6 @@
         <price>8.00</price>
         <description>Camadas de bolo de chocolate com recheio cremoso de coco fresco.</description>
         <image>assets/bolo_prestigio.png</image>
-    </item>
-    <item>
-        <id>19</id>
-        <name>Bolo de Pote Maracujá</name>
-        <category>desserts</category>
-        <price>8.00</price>
-        <description>Bolo branco com camadas de mousse de maracujá fresco e delicioso.</description>
-        <image>assets/bolo_maracuja_novo.png</image>
-    </item>
-    <item>
-        <id>20</id>
-        <name>Pudim de Padaria</name>
-        <category>desserts</category>
-        <price>7.00</price>
-        <description>Delicioso pudim de padaria caseiro com calda de caramelo, macio e saboroso.</description>
-        <image>assets/pudim_pao.jpg</image>
     </item>
     <item>
         <id>24</id>

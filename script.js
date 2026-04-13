@@ -25,18 +25,16 @@ const dailyPromotions = {
         { id: "31", promoPrice: 11.00 },
         { id: "28", promoPrice: 6.00 }
     ],
-    2: [ // Terça: Croissant, Bauru e Pizzas Brotinho
+    2: [ // Terça: Croissant e Pizzas Brotinho
         { id: "12", promoPrice: 8.00 },
-        { id: "23", promoPrice: 8.00 },
         { id: "25", promoPrice: 7.00 },
         { id: "26", promoPrice: 7.00 },
         { id: "27", promoPrice: 7.00 }
     ],
-    3: [ // Quarta: Coxinha, Lanches Naturais, Bolo de Maracujá e Arroz Doce de Paçoca
+    3: [ // Quarta: Coxinha, Lanches Naturais e Arroz Doce de Paçoca
         { id: "1", promoPrice: 7.00 },
         { id: "21", promoPrice: 8.00 },
         { id: "22", promoPrice: 8.00 },
-        { id: "19", promoPrice: 7.00 },
         { id: "24", promoPrice: 3.00 }
     ],
     4: [ // Quinta: Pizzas Brotinho e Cachorro Quente
@@ -45,8 +43,7 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 },
         { id: "29", promoPrice: 7.00 }
     ],
-    5: [ // Sexta: Sobremesas, Kibe, Enroladinho e Torta
-        { id: "20", promoPrice: 6.00 },
+    5: [ // Sexta: Bolo Prestigio, Kibe, Enroladinho e Torta
         { id: "18", promoPrice: 7.00 },
         { id: "32", promoPrice: 8.00 },
         { id: "33", promoPrice: 7.00 },
