@@ -426,15 +426,24 @@ header.scrolled {
 /* Category Scrolling */
 .categories {
     overflow-x: auto !important;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
     -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
     scroll-behavior: smooth;
-    padding-bottom: 5px;
+    padding-bottom: 12px;
     white-space: nowrap;
 }
 .categories::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+    height: 6px;
+}
+.categories::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+.categories::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+.categories::-webkit-scrollbar-thumb:hover {
+    background: #d32f2f;
 }
 
 /* Cart Button & Modal */
@@ -492,7 +501,7 @@ header.scrolled {
 
 /* Stylish Add Button */
 .btn-add-cart {
-    background-color: #2b2b2b;
+    background: var(--primary); /* Vermelho/Laranja do tema */
     color: #ffffff;
     border: none;
     width: 42px;
@@ -507,7 +516,7 @@ header.scrolled {
 }
 
 .btn-add-cart:hover {
-    background: var(--gradient-primary);
+    background: #d32f2f;
     transform: scale(1.1) rotate(90deg);
     color: white;
 }
