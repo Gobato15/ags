@@ -143,20 +143,23 @@ function renderDailyPromos() {
             const originalPriceHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
 
             itemsHTML += `
-                <div class="card shadow-md border-0 rounded-4 overflow-hidden promo-product-card" style="width: 260px; flex: 0 0 260px;">
-                    <div class="position-relative">
-                        <span class="badge bg-danger position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">HOJE</span>
-                        <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 180px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
-                    </div>
-                    <div class="card-body d-flex flex-column p-4">
-                        <h5 class="card-title fw-bold mb-2">${item.name}</h5>
-                        <p class="card-text text-muted small flex-grow-1">${item.description}</p>
-                        <div class="mt-auto pt-3 border-top text-center w-100">
-                            <div class="price-wrapper">
-                                <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.65rem;">a partir de</span>
-                                <div class="d-flex justify-content-center align-items-center gap-2">
-                                    ${originalPriceHTML}
-                                    <span class="h4 fw-bold mb-0 text-danger">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+            itemsHTML += `
+                <div class="col-11 col-sm-6 col-md-4 col-lg-3 mx-auto">
+                    <div class="card h-100 shadow-md border-0 rounded-4 overflow-hidden promo-product-card">
+                        <div class="position-relative">
+                            <span class="badge bg-instagram position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">HOJE</span>
+                            <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 180px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
+                        </div>
+                        <div class="card-body d-flex flex-column p-4 text-center">
+                            <h5 class="card-title fw-bold mb-2">${item.name}</h5>
+                            <p class="card-text text-muted small flex-grow-1">${item.description}</p>
+                            <div class="mt-auto pt-3 border-top w-100">
+                                <div class="price-wrapper">
+                                    <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.65rem;">a partir de</span>
+                                    <div class="d-flex justify-content-center align-items-center gap-2">
+                                        ${originalPriceHTML}
+                                        <span class="h4 fw-bold mb-0 text-danger">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -198,9 +201,11 @@ function renderDailyPromos() {
         <div class="promo-day-selector" style="margin-bottom:1.5rem; padding-bottom:5px;">
             ${dayBtnsHTML}
         </div>
-        <div class="promo-banner" style="background: ${gradients[today]};">
-            <h2 class="promo-title"><i class="fas fa-tags"></i> Promoções de ${diaNome}</h2>
-            <div class="${promoItemsClass}" style="--promo-count: ${promoCount};">
+        <div class="promo-banner p-3 p-md-4 rounded-4 shadow-lg text-white" style="background: ${gradients[today]};">
+            <h2 class="promo-title h4 h3-md fw-bold mb-4 text-center">
+                <i class="fas fa-tags me-2"></i> Promoções de ${diaNome}
+            </h2>
+            <div class="row g-3 g-md-4 justify-content-center">
                 ${itemsHTML}
             </div>
         </div>
@@ -269,9 +274,9 @@ function renderMenu(filter = 'all', searchQuery = '') {
         col.className = 'col-12 col-md-6 col-lg-4';
         
         col.innerHTML = `
-            <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'border border-danger' : ''}" style="animation-delay: ${index * 0.05}s">
+            <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'promo-border' : ''}" style="animation-delay: ${index * 0.05}s">
                 <div class="position-relative">
-                    ${isPromo ? '<span class="badge bg-danger position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">PROMOÇÃO</span>' : ''}
+                    ${isPromo ? '<span class="badge bg-instagram position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">PROMOÇÃO</span>' : ''}
                     <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
                 </div>
                 <div class="card-body d-flex flex-column text-center">
