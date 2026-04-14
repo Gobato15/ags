@@ -439,14 +439,13 @@ header.scrolled {
 }
 
 .instagram-btn {
-    background: #25D366; /* Igual ao WhatsApp como solicitado */
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    box-shadow: 0 4px 15px rgba(214, 36, 159, 0.3);
 }
 
 .instagram-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
-    background: #1eb956;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(214, 36, 159, 0.5);
 }
 
 .footer-copy {
