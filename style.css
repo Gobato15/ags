@@ -301,38 +301,13 @@ header.scrolled {
     gap: 10px;
 }
 
-.promo-items {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 1.2rem;
-    padding-bottom: 1rem;
-    overflow-x: auto;
+/* Promo Banner Overrides */
+.promo-product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.promo-items.promo-expanded {
-    display: grid;
-    grid-template-columns: repeat(var(--promo-count, 5), 1fr);
-    gap: 1.2rem;
-    overflow: visible;
+.promo-product-card:hover {
+    transform: translateY(-8px);
 }
-
-.promo-items.promo-centered {
-    justify-content: center;
-}
-
-.promo-items .product-card {
-    height: 100%;
-    width: 260px; /* Largura padronizada para itens centrados */
-    flex: 0 0 260px;
-}
-
-.promo-items.promo-expanded .product-card {
-    width: auto; /* Deixa o grid controlar no modo expandido */
-    flex: 1 1 0;
-}
-
-.promo-items::-webkit-scrollbar { height: 5px; }
-.promo-items::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.4); border-radius: 10px; }
 
 /* Promotional Product Card Specifics */
 .promo-product-card {
@@ -446,6 +421,71 @@ header.scrolled {
 .instagram-btn {
     background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
     box-shadow: 0 4px 15px rgba(214, 36, 159, 0.3);
+}
+
+/* Category Scrolling */
+.categories {
+    overflow-x: auto !important;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+    scroll-behavior: smooth;
+}
+.categories::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Cart Button & Modal */
+.cart-floating-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    background: var(--gradient-primary);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    z-index: 1050;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cart-floating-btn:hover {
+    transform: scale(1.1);
+    color: white;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+.cart-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.cart-item-name {
+    font-weight: 700;
+    color: #212529;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+}
+
+.cart-item-price {
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
 .instagram-btn:hover {

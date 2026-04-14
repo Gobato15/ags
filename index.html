@@ -64,9 +64,54 @@
         </div>
     </footer>
 
+    <!-- Cart Floating Button -->
+    <button class="cart-floating-btn shadow-lg" data-bs-toggle="modal" data-bs-target="#cartModal">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow" id="cartCount">0</span>
+    </button>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 rounded-4 shadow-lg">
+          <div class="modal-header border-bottom-0 pb-0">
+            <h5 class="modal-title fw-bold fs-4" id="cartModalLabel"><i class="fas fa-shopping-bag me-2 text-primary"></i>Seu Carrinho</h5>
+            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-4">
+             <div id="cartItems" class="mb-4">
+                 <p class="text-muted text-center my-4 py-4 bg-light rounded-4">Seu carrinho está vazio.</p>
+             </div>
+             
+             <div class="bg-light p-4 rounded-4">
+                 <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+                     <h5 class="fw-bold mb-0 text-secondary">Total a Pagar:</h5>
+                     <h3 class="fw-bold text-danger mb-0" id="cartTotal">R$ 0,00</h3>
+                 </div>
+                 
+                 <div class="mb-2">
+                     <label class="form-label fw-bold text-dark">Forma de Pagamento na Entrega</label>
+                     <select class="form-select form-select-lg border-0 shadow-sm" id="paymentMethod">
+                        <option value="" selected disabled>Selecione uma opção...</option>
+                        <option value="pix">PIX</option>
+                        <option value="qr_code">QR Code</option>
+                        <option value="credito">Cartão de Crédito</option>
+                        <option value="debito">Cartão de Débito</option>
+                     </select>
+                 </div>
+             </div>
+          </div>
+          <div class="modal-footer border-top-0 pt-0 pb-4 px-4 d-flex flex-column flex-sm-row gap-2">
+            <button type="button" class="btn btn-light rounded-pill px-4 py-2 w-100 fw-bold border" data-bs-dismiss="modal">Continuar Comprando</button>
+            <button type="button" class="btn btn-success rounded-pill px-4 py-2 w-100 fw-bold m-0" onclick="checkout()"><i class="fab fa-whatsapp me-2"></i> Finalizar Pedido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="menuData.js?v=13"></script>
-    <script src="script.js?v=14"></script>
+    <script src="menuData.js?v=14"></script>
+    <script src="script.js?v=17"></script>
 </body>
 
 </html><!-- refresh -->

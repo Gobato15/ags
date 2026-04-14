@@ -1,4 +1,5 @@
 let menuItems = [];
+let cart = [];
 
 // Estado da aba de promoções
 let currentPromoDay = new Date().getDay();
@@ -7,9 +8,12 @@ if (currentPromoDay < 1 || currentPromoDay > 5) currentPromoDay = 1;
 window.setPromoDay = function (day) {
     currentPromoDay = day;
     renderDailyPromos();
-    const activePill = document.querySelector('.category-pill.active');
-    const activeCategory = activePill ? activePill.dataset.category : 'all';
-    renderMenu(activeCategory, searchInput.value);
+    const activeBtn = document.querySelector('.categories .btn-dark');
+    const activeCategory = activeBtn ? activeBtn.dataset.category : 'all';
+    
+    // Safety check para searchInput possivelmente nulo
+    const searchVal = document.getElementById('searchInput') ? document.getElementById('searchInput').value : '';
+    renderMenu(activeCategory, searchVal);
 };
 
 // Elementos do DOM
@@ -70,6 +74,7 @@ const categoryLabels = {
 
 // Fetch e parse do XML
 async function loadMenu() {
+    console.log("Iniciando carregamento do cardápio...");
     try {
         const response = await fetch('./items.xml?v=' + Date.now());
         if (response.ok) {
@@ -80,7 +85,8 @@ async function loadMenu() {
 
             const items = data.getElementsByTagName("item");
 
-            if (items.length > 0) {
+            if (items && items.length > 0) {
+                console.log("Itens carregados do XML:", items.length);
                 menuItems = Array.from(items).map(item => {
                     const getTagValue = (tagName) => {
                         const el = item.getElementsByTagName(tagName)[0];
@@ -100,20 +106,23 @@ async function loadMenu() {
             }
         }
     } catch (e) {
-        console.warn("Fetch XML falhou, usando fallback...", e.message);
+        console.warn("Fetch XML falhou, tentando fallback...", e.message);
     }
 
     // Fallback para menuData.js
     if (window.menuItemsData) {
+        console.log("Usando fallback menuData.js");
         menuItems = window.menuItemsData;
         renderAll();
+    } else {
+        console.error("Erro crítico: Nenhuma fonte de dados encontrada!");
     }
 }
 
 function renderAll() {
-    renderDailyPromos();
-    renderCategories();
-    renderMenu();
+    try { renderDailyPromos(); } catch (e) { console.error("Erro no promo", e); }
+    try { renderCategories(); } catch (e) { console.error("Erro categorias", e); }
+    try { renderMenu(); } catch (e) { console.error("Erro menu", e); }
 }
 
 function renderDailyPromos() {
@@ -136,9 +145,9 @@ function renderDailyPromos() {
 
     todaysPromos.forEach(promo => {
         const item = menuItems.find(i => i.id === promo.id);
-        if (item) {
+        if (item && item.price !== undefined) {
             let imgSrc = item.image;
-            if (imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
+            if (imgSrc && imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
 
             const originalPriceHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
 
@@ -153,13 +162,16 @@ function renderDailyPromos() {
                             <h5 class="card-title fw-bold mb-2">${item.name}</h5>
                             <p class="card-text text-muted small flex-grow-1">${item.description}</p>
                             <div class="mt-auto pt-3 border-top w-100">
-                                <div class="price-wrapper">
+                                <div class="price-wrapper mb-3">
                                     <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.65rem;">a partir de</span>
                                     <div class="d-flex justify-content-center align-items-center gap-2">
                                         ${originalPriceHTML}
                                         <span class="h4 fw-bold mb-0 text-danger">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
                                     </div>
                                 </div>
+                                <button class="btn btn-success w-100 rounded-pill fw-bold" onclick="addToCart('${item.id}', '${item.name}', ${promo.promoPrice})">
+                                    <i class="fas fa-plus me-2"></i> Adicionar
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -182,7 +194,8 @@ function renderDailyPromos() {
 
     const dayBtnsHTML = [1, 2, 3, 4, 5].map(d => {
         const names = ['', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
-        return `<button class="day-btn ${d === currentPromoDay ? 'active' : ''}" onclick="setPromoDay(${d})">${names[d]}</button>`;
+        const activeClass = d === currentPromoDay ? 'btn-primary text-white border-primary' : 'btn-light border';
+        return `<button class="btn rounded-pill px-3 py-1 ${activeClass} fw-bold shadow-sm" onclick="setPromoDay(${d})" style="white-space: nowrap;">${names[d]}</button>`;
     }).join('');
 
     const promoCount = todaysPromos.length;
@@ -194,13 +207,13 @@ function renderDailyPromos() {
     }
 
     promoContainer.innerHTML = `
-        <div class="promo-section-header" style="text-align:center; margin-bottom:12px;">
-            <span style="color:var(--text-muted); font-size:1.05rem; font-weight:800;">Confira as promoções da semana:</span>
+        <div class="promo-section-header text-center mb-3">
+            <span class="text-muted fw-bold" style="font-size:1.05rem;">Confira as promoções da semana:</span>
         </div>
-        <div class="promo-day-selector" style="margin-bottom:1.5rem; padding-bottom:5px;">
+        <div class="promo-day-selector d-flex justify-content-center gap-2 mb-4 overflow-auto pb-2" style="scrollbar-width: none;">
             ${dayBtnsHTML}
         </div>
-        <div class="promo-banner p-3 p-md-4 rounded-4 shadow-lg text-white" style="background: ${gradients[today]};">
+        <div class="promo-banner p-4 p-md-5 rounded-4 shadow-lg text-white" style="background: ${gradients[today]};">
             <h2 class="promo-title h4 h3-md fw-bold mb-4 text-center">
                 <i class="fas fa-tags me-2"></i> Promoções de ${diaNome}
             </h2>
@@ -212,6 +225,7 @@ function renderDailyPromos() {
 }
 
 function renderCategories() {
+    if (!categoryContainer) return;
     const categories = ['all', ...new Set(menuItems.map(item => item.category))];
     categoryContainer.innerHTML = '';
     categoryContainer.className = 'categories d-flex flex-nowrap justify-content-start justify-content-md-center mb-4';
@@ -237,6 +251,7 @@ function renderCategories() {
 }
 
 function renderMenu(filter = 'all', searchQuery = '') {
+    if (!menuGrid) return;
     menuGrid.innerHTML = '';
 
     const filteredItems = menuItems.filter(item => {
@@ -258,7 +273,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
     const todaysPromos = dailyPromotions[today] || [];
 
     filteredItems.forEach((item, index) => {
-        let imgSrc = item.image;
+        let imgSrc = item.image || '';
         if (imgSrc.startsWith('assets/')) {
             imgSrc = './' + imgSrc;
         }
@@ -282,13 +297,16 @@ function renderMenu(filter = 'all', searchQuery = '') {
                     <h5 class="card-title fw-bold mb-2">${item.name}</h5>
                     <p class="card-text text-muted small flex-grow-1">${item.description}</p>
                     <div class="mt-auto pt-3 border-top w-100">
-                        <div class="price-wrapper">
+                        <div class="price-wrapper mb-3">
                             <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.65rem;">a partir de</span>
                             <div class="d-flex justify-content-center align-items-center gap-2">
                                 ${originalPriceHTML}
                                 <span class="h4 fw-bold mb-0" style="${promoStyles}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
                             </div>
                         </div>
+                        <button class="btn btn-dark w-100 rounded-pill fw-bold" onclick="addToCart('${item.id}', '${item.name}', ${displayPrice})">
+                            <i class="fas fa-plus me-2"></i> Adicionar
+                        </button>
                     </div>
                 </div>
             </div>
@@ -306,11 +324,115 @@ window.addEventListener('scroll', () => {
 });
 
 // Pesquisa em tempo real
-searchInput.addEventListener('input', (e) => {
-    const activePill = document.querySelector('.category-pill.active');
-    const activeCategory = activePill ? activePill.dataset.category : 'all';
-    renderMenu(activeCategory, e.target.value);
-});
+if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const activeBtn = document.querySelector('.categories .btn-dark');
+        const activeCategory = activeBtn ? activeBtn.dataset.category : 'all';
+        renderMenu(activeCategory, e.target.value);
+    });
+}
+
+// Lógica do Carrinho
+window.addToCart = function(id, name, price) {
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({ id, name, price, quantity: 1 });
+    }
+    updateCartUI();
+    // Feedback visual simples
+    const btn = event.currentTarget;
+    const oldText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-check me-2"></i> Adicionado!';
+    btn.classList.replace(btn.classList.contains('btn-success') ? 'btn-success' : 'btn-dark', 'btn-outline-success');
+    setTimeout(() => {
+        btn.innerHTML = oldText;
+        btn.classList.replace('btn-outline-success', btn.classList.contains('btn-success') ? 'btn-success' : 'btn-dark');
+    }, 1000);
+};
+
+window.removeFromCart = function(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+};
+
+function updateCartUI() {
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    
+    if (!cartItemsContainer || !cartCount || !cartTotal) return;
+
+    cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+    
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="text-muted text-center my-4 py-4 bg-light rounded-4">Seu carrinho está vazio.</p>';
+        cartTotal.textContent = 'R$ 0,00';
+        return;
+    }
+
+    let itemsHTML = '';
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        itemsHTML += `
+            <div class="cart-item shadow-sm border p-3 rounded-4 mb-2">
+                <div class="flex-grow-1">
+                    <h6 class="fw-bold mb-0">${item.name}</h6>
+                    <small class="text-muted">${item.quantity}x R$ ${item.price.toFixed(2).replace('.', ',')}</small>
+                </div>
+                <div class="text-end">
+                    <div class="fw-bold text-success mb-1">R$ ${itemTotal.toFixed(2).replace('.', ',')}</div>
+                    <button class="btn btn-sm btn-outline-danger border-0 rounded-circle" onclick="removeFromCart(${index})">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+
+    cartItemsContainer.innerHTML = itemsHTML;
+    cartTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+}
+
+window.checkout = function() {
+    if (cart.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
+    }
+
+    const payment = document.getElementById('paymentMethod').value;
+    if (!payment) {
+        alert("Por favor, selecione uma forma de pagamento!");
+        return;
+    }
+
+    const paymentMap = {
+        'pix': 'PIX',
+        'qr_code': 'QR Code',
+        'credito': 'Cartão de Crédito',
+        'debito': 'Cartão de Débito'
+    };
+
+    let message = `*Novo Pedido - AGS Delivery*\n\n`;
+    let total = 0;
+
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        message += `• ${item.quantity}x ${item.name} - R$ ${itemTotal.toFixed(2).replace('.', ',')}\n`;
+    });
+
+    message += `\n*Total:* R$ ${total.toFixed(2).replace('.', ',')}`;
+    message += `\n*Pagamento:* ${paymentMap[payment]}`;
+    message += `\n\n_Desejo prosseguir com o pedido._`;
+
+    const whatsappUrl = `https://wa.me/5515997230500?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+};
 
 // Carregamento inicial
 window.onload = loadMenu;
