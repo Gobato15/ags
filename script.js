@@ -10,7 +10,7 @@ window.setPromoDay = function (day) {
     renderDailyPromos();
     const activeBtn = document.querySelector('.categories .btn-dark');
     const activeCategory = activeBtn ? activeBtn.dataset.category : 'all';
-    
+
     // Safety check para searchInput possivelmente nulo
     const searchVal = document.getElementById('searchInput') ? document.getElementById('searchInput').value : '';
     renderMenu(activeCategory, searchVal);
@@ -288,7 +288,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
 
         const col = document.createElement('div');
         col.className = 'col-12 col-md-6 col-lg-4';
-        
+
         col.innerHTML = `
             <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'promo-border' : ''}" style="animation-delay: ${index * 0.05}s">
                 <div class="position-relative">
@@ -337,7 +337,7 @@ if (searchInput) {
 }
 
 // Lógica do Carrinho
-window.addToCart = function(id, name, price) {
+window.addToCart = function (id, name, price) {
     const existing = cart.find(item => item.id === id);
     if (existing) {
         existing.quantity++;
@@ -345,7 +345,7 @@ window.addToCart = function(id, name, price) {
         cart.push({ id, name, price, quantity: 1 });
     }
     updateCartUI();
-    
+
     // Feedback visual no ícone
     const btn = event.currentTarget;
     btn.innerHTML = '<i class="fas fa-check"></i>';
@@ -356,7 +356,7 @@ window.addToCart = function(id, name, price) {
     }, 1000);
 };
 
-window.removeFromCart = function(index) {
+window.removeFromCart = function (index) {
     cart.splice(index, 1);
     updateCartUI();
 };
@@ -365,11 +365,11 @@ function updateCartUI() {
     const cartItemsContainer = document.getElementById('cartItems');
     const cartCount = document.getElementById('cartCount');
     const cartTotal = document.getElementById('cartTotal');
-    
+
     if (!cartItemsContainer || !cartCount || !cartTotal) return;
 
     cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
-    
+
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p class="text-muted text-center my-4 py-4 bg-light rounded-4">Seu carrinho está vazio.</p>';
         cartTotal.textContent = 'R$ 0,00';
@@ -402,7 +402,7 @@ function updateCartUI() {
     cartTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
 }
 
-window.checkout = function() {
+window.checkout = function () {
     if (cart.length === 0) {
         alert("Seu carrinho está vazio!");
         return;
@@ -434,7 +434,7 @@ window.checkout = function() {
     message += `\n*Pagamento:* ${paymentMap[payment]}`;
     message += `\n\n_Desejo prosseguir com o pedido._`;
 
-    const whatsappUrl = `https://wa.me/5515997230500?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5515997035700?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 };
 
