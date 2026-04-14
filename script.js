@@ -151,11 +151,13 @@ function renderDailyPromos() {
                     <div class="card-body d-flex flex-column p-4">
                         <h5 class="card-title fw-bold mb-2">${item.name}</h5>
                         <p class="card-text text-muted small flex-grow-1">${item.description}</p>
-                        <div class="mt-auto pt-3 border-top">
+                        <div class="mt-auto pt-3 border-top text-center w-100">
                             <div class="price-wrapper">
-                                <span class="d-block text-uppercase fw-bold text-muted" style="font-size: 0.65rem;">a partir de</span>
-                                ${originalPriceHTML}
-                                <span class="h4 fw-bold mb-0 text-danger">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+                                <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.65rem;">a partir de</span>
+                                <div class="d-flex justify-content-center align-items-center gap-2">
+                                    ${originalPriceHTML}
+                                    <span class="h4 fw-bold mb-0 text-danger">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -208,6 +210,7 @@ function renderDailyPromos() {
 function renderCategories() {
     const categories = ['all', ...new Set(menuItems.map(item => item.category))];
     categoryContainer.innerHTML = '';
+    categoryContainer.className = 'categories d-flex flex-nowrap justify-content-start justify-content-md-center mb-4';
 
     categories.forEach(cat => {
         const btn = document.createElement('button');
@@ -271,13 +274,13 @@ function renderMenu(filter = 'all', searchQuery = '') {
                     ${isPromo ? '<span class="badge bg-danger position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">PROMOÇÃO</span>' : ''}
                     <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
                 </div>
-                <div class="card-body d-flex flex-column">
+                <div class="card-body d-flex flex-column text-center">
                     <h5 class="card-title fw-bold mb-2">${item.name}</h5>
                     <p class="card-text text-muted small flex-grow-1">${item.description}</p>
-                    <div class="mt-auto pt-3 border-top">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="price-wrapper">
-                                <span class="d-block text-uppercase fw-bold text-muted" style="font-size: 0.65rem;">a partir de</span>
+                    <div class="mt-auto pt-3 border-top w-100">
+                        <div class="price-wrapper">
+                            <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.65rem;">a partir de</span>
+                            <div class="d-flex justify-content-center align-items-center gap-2">
                                 ${originalPriceHTML}
                                 <span class="h4 fw-bold mb-0" style="${promoStyles}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
                             </div>
