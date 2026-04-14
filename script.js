@@ -143,7 +143,6 @@ function renderDailyPromos() {
             const originalPriceHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
 
             itemsHTML += `
-            itemsHTML += `
                 <div class="col-11 col-sm-6 col-md-4 col-lg-3 mx-auto">
                     <div class="card h-100 shadow-md border-0 rounded-4 overflow-hidden promo-product-card">
                         <div class="position-relative">
