@@ -4,26 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AGS Delivery | Cardápio Premium</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./style.css?v=16">
+    <link rel="stylesheet" href="./style.css?v=17">
 </head>
 
 <body>
 
     <header class="glass">
-        <div class="logo">AGS<span>Delivery</span></div>
-        <div class="search-container">
-            <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="O que você deseja comer hoje?">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="logo">AGS<span>Delivery</span></div>
+            <div class="search-container w-100 mt-3 mt-md-0">
+                <div class="input-group">
+                    <span class="input-group-text bg-light border-0 rounded-start-pill ps-4">
+                        <i class="fas fa-search text-muted"></i>
+                    </span>
+                    <input type="text" id="searchInput" class="form-control bg-light border-0 rounded-end-pill py-2" placeholder="O que você deseja comer hoje?">
+                </div>
+            </div>
         </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>Sinta o sabor da <span>Perfeição</span></h1>
-            <p>Os melhores ingredientes, selecionados para proporcionar uma experiência gastronômica única na sua casa.
+    <main class="container">
+        <section class="hero text-center">
+            <h1 class="display-4 fw-bold">Sinta o sabor da <span class="text-gradient">Perfeição</span></h1>
+            <p class="lead text-muted mx-auto" style="max-width: 700px;">
+                Os melhores ingredientes, selecionados para proporcionar uma experiência gastronômica única na sua casa.
             </p>
         </section>
 
@@ -31,27 +38,31 @@
 
         <section class="categories" id="categoryContainer"></section>
 
-        <section class="grid" style="padding: 2rem 8% 5rem;">
-            <div id="menuGrid" class="menu-grid"></div>
+        <section class="grid py-5">
+            <div id="menuGrid" class="row g-4"></div>
         </section>
     </main>
 
-    <footer>
-        <div class="footer-logo">AGS<span style="font-weight:300">Delivery</span></div>
+    <footer class="bg-dark text-white py-5">
+        <div class="container text-center">
+            <div class="footer-logo mb-4">AGS<span style="font-weight:300">Delivery</span></div>
 
-        <div class="footer-contact">
-            <a href="https://chat.whatsapp.com/HgplOITiLRwKua9uh7a7Qv" target="_blank" class="footer-whatsapp">
-                <i class="fab fa-whatsapp"></i> Entrar no Grupo do WhatsApp
-            </a>
+            <div class="footer-contact d-flex flex-column flex-sm-row justify-content-center gap-3 mb-4">
+                <a href="https://chat.whatsapp.com/HgplOITiLRwKua9uh7a7Qv" target="_blank" class="footer-btn whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
 
-            <a href="https://www.instagram.com/AGS_Delivery" target="_blank" rel="nooper noreferrer">
-               Entrar no Instagram
-            </a>
+                <a href="https://www.instagram.com/AGS_Delivery" target="_blank" class="footer-btn instagram-btn">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+
+            <p class="footer-copy mb-0">© 2026 AGS Delivery — Todos os direitos reservados</p>
+            <small class="text-white-50 mt-2 d-block">Suporte: agsdelivery24@gmail.com</small>
         </div>
-
-        <p class="footer-copy">© 2026 AGS Delivery — Todos os direitos reservados</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="menuData.js?v=12"></script>
     <script src="script.js?v=13"></script>
 </body>

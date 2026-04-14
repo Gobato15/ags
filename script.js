@@ -143,19 +143,19 @@ function renderDailyPromos() {
             const originalPriceHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
 
             itemsHTML += `
-                <div class="product-card promo-product-card">
-                    <div class="product-image-container">
-                        <div class="promo-badge">HOJE</div>
-                        <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
+                <div class="card shadow-md border-0 rounded-4 overflow-hidden promo-product-card" style="width: 260px; flex: 0 0 260px;">
+                    <div class="position-relative">
+                        <span class="badge bg-danger position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">HOJE</span>
+                        <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 180px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
                     </div>
-                    <div class="product-info">
-                        <h3>${item.name}</h3>
-                        <p>${item.description}</p>
-                        <div class="product-footer">
+                    <div class="card-body d-flex flex-column p-4">
+                        <h5 class="card-title fw-bold mb-2">${item.name}</h5>
+                        <p class="card-text text-muted small flex-grow-1">${item.description}</p>
+                        <div class="mt-auto pt-3 border-top">
                             <div class="price-wrapper">
-                                <span class="price-label">a partir de</span>
+                                <span class="d-block text-uppercase fw-bold text-muted" style="font-size: 0.65rem;">a partir de</span>
                                 ${originalPriceHTML}
-                                <span class="price" style="color: #ff5252;">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+                                <span class="h4 fw-bold mb-0 text-danger">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
                             </div>
                         </div>
                     </div>
@@ -210,18 +210,22 @@ function renderCategories() {
     categoryContainer.innerHTML = '';
 
     categories.forEach(cat => {
-        const pill = document.createElement('div');
-        pill.className = `category-pill ${cat === 'all' ? 'active' : ''}`;
-        pill.dataset.category = cat;
-        pill.textContent = categoryLabels[cat] || cat;
+        const btn = document.createElement('button');
+        btn.className = `btn ${cat === 'all' ? 'btn-dark' : 'btn-outline-dark'} rounded-pill px-4 py-2 me-2 mb-2 fw-semibold`;
+        btn.dataset.category = cat;
+        btn.textContent = categoryLabels[cat] || cat;
 
-        pill.onclick = () => {
-            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
+        btn.onclick = () => {
+            document.querySelectorAll('.categories .btn').forEach(b => {
+                b.classList.remove('btn-dark');
+                b.classList.add('btn-outline-dark');
+            });
+            btn.classList.remove('btn-outline-dark');
+            btn.classList.add('btn-dark');
             renderMenu(cat, searchInput.value);
         };
 
-        categoryContainer.appendChild(pill);
+        categoryContainer.appendChild(btn);
     });
 }
 
@@ -258,28 +262,31 @@ function renderMenu(filter = 'all', searchQuery = '') {
         const promoStyles = isPromo ? `color: #ff5252;` : '';
         const originalPriceHTML = isPromo ? `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>` : '';
 
-        const card = document.createElement('div');
-        card.className = 'product-card';
-        if (isPromo) card.style.border = '2px solid #ff5252';
-        card.style.animationDelay = `${index * 0.05}s`;
-        card.innerHTML = `
-            <div class="product-image-container">
-                ${isPromo ? '<div class="promo-badge">PROMOÇÃO</div>' : ''}
-                <img src="${imgSrc}" alt="${item.name}" class="product-image" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
-            </div>
-            <div class="product-info">
-                <h3>${item.name}</h3>
-                <p>${item.description}</p>
-                <div class="product-footer">
-                    <div class="price-wrapper">
-                        <span class="price-label">a partir de</span>
-                        ${originalPriceHTML}
-                        <span class="price" style="${promoStyles}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
+        const col = document.createElement('div');
+        col.className = 'col-12 col-md-6 col-lg-4';
+        
+        col.innerHTML = `
+            <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'border border-danger' : ''}" style="animation-delay: ${index * 0.05}s">
+                <div class="position-relative">
+                    ${isPromo ? '<span class="badge bg-danger position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">PROMOÇÃO</span>' : ''}
+                    <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold mb-2">${item.name}</h5>
+                    <p class="card-text text-muted small flex-grow-1">${item.description}</p>
+                    <div class="mt-auto pt-3 border-top">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="price-wrapper">
+                                <span class="d-block text-uppercase fw-bold text-muted" style="font-size: 0.65rem;">a partir de</span>
+                                ${originalPriceHTML}
+                                <span class="h4 fw-bold mb-0" style="${promoStyles}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         `;
-        menuGrid.appendChild(card);
+        menuGrid.appendChild(col);
     });
 }
 
