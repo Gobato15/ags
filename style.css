@@ -430,6 +430,8 @@ header.scrolled {
     -ms-overflow-style: none; /* IE/Edge */
     -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
     scroll-behavior: smooth;
+    padding-bottom: 5px;
+    white-space: nowrap;
 }
 .categories::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
@@ -486,6 +488,34 @@ header.scrolled {
     color: var(--primary);
     font-size: 0.9rem;
     font-weight: 600;
+}
+
+/* Stylish Add Button */
+.btn-add-cart {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    border: none;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn-add-cart:hover {
+    background: var(--gradient-primary);
+    transform: scale(1.1) rotate(90deg);
+    color: white;
+}
+
+.btn-add-cart.active {
+    background: #25D366; /* WhatsApp Green for checkmark */
+    transform: scale(1.1);
+    color: white;
 }
 
 .instagram-btn:hover {

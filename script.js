@@ -162,16 +162,18 @@ function renderDailyPromos() {
                             <h5 class="card-title fw-bold mb-2">${item.name}</h5>
                             <p class="card-text text-muted small flex-grow-1">${item.description}</p>
                             <div class="mt-auto pt-3 border-top w-100">
-                                <div class="price-wrapper mb-3">
-                                    <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.65rem;">a partir de</span>
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        ${originalPriceHTML}
-                                        <span class="h4 fw-bold mb-0 text-danger">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="price-wrapper text-start">
+                                        <span class="d-block text-uppercase fw-bold text-muted mb-0" style="font-size: 0.6rem;">a partir de</span>
+                                        <div class="d-flex align-items-center gap-1">
+                                            ${originalPriceHTML}
+                                            <span class="h5 fw-bold mb-0 text-danger">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+                                        </div>
                                     </div>
+                                    <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.name}', ${promo.promoPrice})">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
                                 </div>
-                                <button class="btn btn-success w-100 rounded-pill fw-bold" onclick="addToCart('${item.id}', '${item.name}', ${promo.promoPrice})">
-                                    <i class="fas fa-plus me-2"></i> Adicionar
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -297,16 +299,18 @@ function renderMenu(filter = 'all', searchQuery = '') {
                     <h5 class="card-title fw-bold mb-2">${item.name}</h5>
                     <p class="card-text text-muted small flex-grow-1">${item.description}</p>
                     <div class="mt-auto pt-3 border-top w-100">
-                        <div class="price-wrapper mb-3">
-                            <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.65rem;">a partir de</span>
-                            <div class="d-flex justify-content-center align-items-center gap-2">
-                                ${originalPriceHTML}
-                                <span class="h4 fw-bold mb-0" style="${promoStyles}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="price-wrapper text-start">
+                                <span class="d-block text-uppercase fw-bold text-muted mb-0" style="font-size: 0.6rem;">a partir de</span>
+                                <div class="d-flex align-items-center gap-1">
+                                    ${originalPriceHTML}
+                                    <span class="h5 fw-bold mb-0" style="${promoStyles}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
+                                </div>
                             </div>
+                            <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.name}', ${displayPrice})">
+                                <i class="fas fa-plus"></i>
+                            </button>
                         </div>
-                        <button class="btn btn-dark w-100 rounded-pill fw-bold" onclick="addToCart('${item.id}', '${item.name}', ${displayPrice})">
-                            <i class="fas fa-plus me-2"></i> Adicionar
-                        </button>
                     </div>
                 </div>
             </div>
@@ -341,14 +345,14 @@ window.addToCart = function(id, name, price) {
         cart.push({ id, name, price, quantity: 1 });
     }
     updateCartUI();
-    // Feedback visual simples
+    
+    // Feedback visual no ícone
     const btn = event.currentTarget;
-    const oldText = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-check me-2"></i> Adicionado!';
-    btn.classList.replace(btn.classList.contains('btn-success') ? 'btn-success' : 'btn-dark', 'btn-outline-success');
+    btn.innerHTML = '<i class="fas fa-check"></i>';
+    btn.classList.add('active');
     setTimeout(() => {
-        btn.innerHTML = oldText;
-        btn.classList.replace('btn-outline-success', btn.classList.contains('btn-success') ? 'btn-success' : 'btn-dark');
+        btn.innerHTML = '<i class="fas fa-plus"></i>';
+        btn.classList.remove('active');
     }, 1000);
 };
 
