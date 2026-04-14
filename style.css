@@ -152,19 +152,19 @@ header.scrolled {
 
 /* Categories */
 .categories {
-    padding: 1.5rem 0;
+    padding: 1.5rem 0 1rem;
     display: flex;
-    gap: 0.5rem;
+    gap: 0.8rem;
     overflow-x: auto;
     position: sticky;
     top: 80px;
     z-index: 900;
     background: var(--background);
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) #e9ecef;
     transition: top 0.3s ease;
+    scroll-padding: 0 20px;
 }
-
-.categories::-webkit-scrollbar { display: none; }
 
 /* Product Card */
 .product-card {
@@ -432,18 +432,22 @@ header.scrolled {
     white-space: nowrap;
 }
 .categories::-webkit-scrollbar {
-    height: 6px;
+    height: 8px;
+    display: block;
 }
 .categories::-webkit-scrollbar-track {
-    background: #f8f9fa;
-    border-radius: 10px;
+    background: #e9ecef;
+    border-radius: 100px;
+    margin: 0 20px;
 }
 .categories::-webkit-scrollbar-thumb {
     background: var(--primary);
-    border-radius: 10px;
+    border-radius: 100px;
+    border: 2px solid #e9ecef;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 .categories::-webkit-scrollbar-thumb:hover {
-    background: #d32f2f;
+    background: var(--primary-hover);
 }
 
 /* Cart Button & Modal */

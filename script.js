@@ -230,7 +230,7 @@ function renderCategories() {
     if (!categoryContainer) return;
     const categories = ['all', ...new Set(menuItems.map(item => item.category))];
     categoryContainer.innerHTML = '';
-    categoryContainer.className = 'categories d-flex flex-nowrap justify-content-start justify-content-md-center mb-4';
+    categoryContainer.className = 'categories d-flex flex-nowrap justify-content-start mb-4';
 
     categories.forEach(cat => {
         const btn = document.createElement('button');
