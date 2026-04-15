@@ -434,7 +434,7 @@ window.checkout = function () {
     message += `\n*Pagamento:* ${paymentMap[payment]}`;
     message += `\n\n_Desejo prosseguir com o pedido._`;
 
-    const whatsappUrl = `https://wa.me/5515997035700?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 };
 
