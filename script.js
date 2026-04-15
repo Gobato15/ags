@@ -373,25 +373,67 @@ window.toggleDeliveryFields = function () {
     updateCartUI();
 };
 
-let deliveryFee = 0;
+window.checkCep = function(input) {
+    let cep = input.value.replace(/\D/g, '');
+    if (cep.length > 5) {
+        input.value = cep.substring(0, 5) + '-' + cep.substring(5, 8);
+    } else {
+        input.value = cep;
+    }
+    
+    if (cep.length === 8) {
+        fetchAddress(cep);
+    }
+};
 
-window.calculateFreight = function () {
-    const cep = document.getElementById('deliveryCep').value.replace(/\D/g, '');
+async function fetchAddress(cep) {
+    const cityField = document.getElementById('deliveryCity');
+    const streetField = document.getElementById('deliveryStreet');
+    
+    cityField.value = "Buscando...";
+    streetField.value = "Buscando...";
+    
+    try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await response.json();
+        
+        if (!data.erro) {
+            cityField.value = `${data.localidade} - ${data.bairro}`;
+            streetField.value = data.logradouro;
+            calculateFreight(cep);
+        } else {
+            alert("CEP não encontrado!");
+            cityField.value = "";
+            streetField.value = "";
+        }
+    } catch (e) {
+        console.error("Erro ao buscar CEP", e);
+        cityField.value = "";
+        streetField.value = "";
+    }
+}
+
+let deliveryFee = 0;
+let deliveryDistance = 0;
+
+window.calculateFreight = function (cep) {
+    if (!cep) cep = document.getElementById('deliveryCep').value.replace(/\D/g, '');
     const freightElement = document.getElementById('cartFreight');
 
     if (cep.length === 8) {
-        // Mock de cálculo de frete
-        // Em um sistema real, isso chamaria uma API
-        deliveryFee = 7.00; // Valor fixo para o exemplo
-        freightElement.textContent = `R$ ${deliveryFee.toFixed(2).replace('.', ',')}`;
+        // Simulação de distância (Integrado à lógica de entrega inteligente)
+        const lastDigits = parseInt(cep.substring(5));
+        deliveryDistance = 1 + (lastDigits % 10);
+
+        let baseFee = 5.00;
+        let increment = 0;
+        if (deliveryDistance > 3) increment = (deliveryDistance - 3) * 0.60;
         
-        // Simulação de busca de endereço por CEP (ViaCEP clone logic fallback)
-        if (!document.getElementById('deliveryStreet').value) {
-           // Apenas para dar um feedback visual de que o CEP "funcionou"
-           // Em um projeto real usaríamos fetch("https://viacep.com.br/ws/"+cep+"/json/")
-        }
+        deliveryFee = baseFee + increment;
+        freightElement.textContent = `R$ ${deliveryFee.toFixed(2).replace('.', ',')} (${deliveryDistance.toFixed(1)}km)`;
     } else {
         deliveryFee = 0;
+        deliveryDistance = 0;
         freightElement.textContent = 'R$ 0,00';
     }
     updateCartUI();
@@ -455,25 +497,22 @@ function updateCartUI() {
     cartTotal.textContent = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
 }
 
-// Listener para detalhes de pagamento
-document.addEventListener('change', function(e) {
-    if (e.target && e.target.id === 'paymentMethod') {
-        const infoBox = document.getElementById('paymentInfo');
-        const method = e.target.value;
-        
-        if (!infoBox) return;
-
-        if (method === 'pix') {
-            infoBox.innerHTML = `<strong>PIX (Caixa Econômica)</strong><br>Chave: <strong>gobato59@gmail.com</strong><br>Favorecido: AGS Delivery`;
-            infoBox.style.display = 'block';
-        } else if (['credito', 'debito', 'qr_code'].includes(method)) {
-            infoBox.innerHTML = `<strong>InfinitePay</strong><br>Agência: 0001 | Conta: 3095601-0<br>O pagamento será processado via maquininha ou link.`;
-            infoBox.style.display = 'block';
-        } else {
-            infoBox.style.display = 'none';
-        }
-    }
-});
+window.copyPix = function() {
+    const pixKey = document.getElementById('pixKey');
+    pixKey.select();
+    pixKey.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(pixKey.value);
+    
+    const btn = event.currentTarget;
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-check me-1"></i> Copiado!';
+    btn.classList.replace('btn-primary', 'btn-success');
+    
+    setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.classList.replace('btn-success', 'btn-primary');
+    }, 2000);
+};
 
 window.checkout = function () {
     if (cart.length === 0) {
@@ -484,15 +523,9 @@ window.checkout = function () {
     const name = document.getElementById('customerName').value;
     const phone = document.getElementById('customerPhone').value;
     const isEntrega = document.getElementById('modeEntrega').checked;
-    const payment = document.getElementById('paymentMethod').value;
 
     if (!name || !phone) {
         alert("Por favor, preencha seu nome e telefone!");
-        return;
-    }
-
-    if (!payment) {
-        alert("Por favor, selecione uma forma de pagamento!");
         return;
     }
 
@@ -502,23 +535,23 @@ window.checkout = function () {
         const city = document.getElementById('deliveryCity').value;
         const street = document.getElementById('deliveryStreet').value;
         const note = document.getElementById('deliveryNote').value;
+        const number = document.getElementById('deliveryNumber').value;
 
-        if (!cep || !city || !street) {
-            alert("Por favor, preencha o endereço completo para entrega!");
+        if (!cep || !city || !street || !number) {
+            alert("Por favor, preencha o número e os dados de entrega automáticos!");
             return;
         }
 
-        addressMsg = `\n📍 *Endereço de Entrega:*\n${street}\n${city} - CEP: ${cep}\nObs: ${note || 'Nenhuma'}`;
+        // Sugestão de apartamento se estiver vazio
+        if (!note && (street.toLowerCase().includes("condominio") || street.toLowerCase().includes("bloco"))) {
+           alert("Se for apartamento, por favor informe o Bloco/Apto no campo de observações!");
+           return;
+        }
+
+        addressMsg = `\n📍 *Endereço de Entrega:*\n${street}, Nº ${number}\n${city} - CEP: ${cep}\n📏 *Distância:* ${deliveryDistance.toFixed(1)} km\nObs: ${note || 'Nenhuma'}`;
     } else {
         addressMsg = `\n🏪 *Modalidade:* Retirada no Local`;
     }
-
-    const paymentMap = {
-        'pix': 'PIX (gobato59@gmail.com)',
-        'qr_code': 'QR Code (InfinitePay)',
-        'credito': 'Cartão de Crédito (InfinitePay)',
-        'debito': 'Cartão de Débito (InfinitePay)'
-    };
 
     let message = `*Novo Pedido - AGS Delivery*\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
@@ -542,11 +575,11 @@ window.checkout = function () {
     message += `💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
     if (isEntrega) message += `🚚 *Taxa de Entrega:* R$ ${currentFreight.toFixed(2).replace('.', ',')}\n`;
     message += `⭐ *TOTAL:* R$ ${total.toFixed(2).replace('.', ',')}\n`;
-    message += `💳 *Pagamento:* ${paymentMap[payment]}\n`;
+    message += `💳 *Pagamento:* PIX (gobato59@gmail.com)\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `_Desejo prosseguir com o pedido._`;
+    message += `_O comprovante do PIX será enviado em seguida._`;
 
-    const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5515997035700?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 };
 

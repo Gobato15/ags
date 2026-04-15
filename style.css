@@ -609,11 +609,29 @@ header.scrolled {
     box-shadow: 0 0 0 0.25rem rgba(232, 50, 31, 0.1);
 }
 
-#paymentInfo {
-    animation: slideDown 0.3s ease-out;
+#paymentArea {
+    animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.payment-card {
+    border: 1px solid rgba(0,0,0,0.08);
+    background: #fff;
+    transition: var(--transition);
+}
+
+.qr-code-placeholder {
+    border: 2px dashed var(--primary);
+    color: var(--primary);
+    opacity: 0.3;
+    transition: var(--transition);
+}
+
+.qr-code-placeholder:hover {
+    opacity: 0.6;
+    border-style: solid;
 }
 
 @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
+    from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
