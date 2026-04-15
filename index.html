@@ -153,33 +153,29 @@
                     </div>
                 </div>
 
-                <div class="mb-2">
-                    <label class="form-label fw-bold text-dark">Forma de Pagamento</label>
-                    <div class="p-3 rounded-4 bg-white shadow-sm border border-primary-subtle">
-                        <div class="text-center mb-3">
-                            <span class="badge bg-danger text-white border-0 mb-2">PAGAMENTO ÚNICO VIA PIX</span>
-                            <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
-                                <img src="https://logodownload.org/wp-content/uploads/2014/05/santander-logo-1.png" alt="Santander" style="height: 18px;">
-                                <h6 class="fw-bold mb-0">Banco Santander</h6>
-                            </div>
-                            <p class="small text-muted mb-2">Favorecido: <strong>Mauricio Rogerio Gobato</strong></p>
-                            
-                            <!-- QR Code Otimizado -->
-                            <div class="qr-code-container mx-auto mb-3 p-3 bg-white rounded-3 shadow-sm d-flex align-items-center justify-content-center" style="width: 200px; height: 200px; border: 1px solid #eee;">
-                                <!-- Link para QR Code Real ou Placeholder de Alta Qualidade -->
-                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=274.689.238-33&margin=10" alt="PIX Santander" style="width: 100%; height: 100%; object-fit: contain;">
-                            </div>
+                <div class="mb-4">
+                    <label class="form-label fw-bold text-dark fs-5 mb-3">Forma de Pagamento</label>
+                    <div class="pix-payment-container p-4 rounded-4 bg-white shadow-sm border border-light text-center">
+                        <span class="badge bg-primary text-white mb-3 px-3 py-2 rounded-pill shadow-sm" style="font-size: 0.75rem; letter-spacing: 1px;">PAGAMENTO ÚNICO VIA PIX</span>
+                        
+                        <div class="mb-3">
+                            <h6 class="fw-bold mb-1 text-dark">Chave PIX (CPF)</h6>
                             <p class="small text-muted mb-3">Escaneie o QR Code ou copie a chave abaixo</p>
                         </div>
-
-                        <div class="input-group mb-3">
-                            <span class="input-group-text bg-light border-0"><i class="fas fa-key text-muted"></i></span>
-                            <input type="text" id="pixKey" class="form-control border-0 bg-light fw-bold text-center" value="274.689.238-33" readonly style="font-size: 1rem;">
-                            <button class="btn btn-primary px-3 fw-bold" onclick="copyPix()"><i class="fas fa-copy me-1"></i> Copiar</button>
-                        </div>
                         
-                        <div class="alert alert-info py-2 px-3 rounded-3 small border-0 shadow-sm mb-0">
-                            <i class="fas fa-info-circle me-1"></i> Para outras formas de pagamento, consulte-nos pelo nosso <strong>WhatsApp</strong>.
+                        <!-- Santander QR Code Centralizado -->
+                        <div class="qr-code-wrapper mx-auto mb-4 p-3 bg-white rounded-4 shadow-sm" style="width: 220px; height: 220px; border: 1px solid #f0f0f0;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=274.689.238-33&margin=10" alt="PIX Santander" class="img-fluid" style="width: 100%; height: 100%; object-fit: contain;">
+                        </div>
+
+                        <div class="payment-details mb-4">
+                            <p class="mb-0 fw-bold text-dark" style="font-size: 1.1rem;">Mauricio Rogerio Gobato</p>
+                            <span class="badge bg-light text-dark border fw-normal mt-1">Banco Santander</span>
+                        </div>
+
+                        <div class="input-group mb-0 shadow-sm rounded-3 overflow-hidden border">
+                            <input type="text" id="pixKey" class="form-control border-0 bg-white fw-bold text-center py-3" value="274.689.238-33" readonly style="font-size: 1.1rem; letter-spacing: 1px;">
+                            <button class="btn btn-primary px-4 fw-bold" onclick="copyPix()"><i class="fas fa-copy me-2"></i> Copiar</button>
                         </div>
                     </div>
                     <input type="hidden" id="paymentMethod" value="pix">

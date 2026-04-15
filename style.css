@@ -609,25 +609,17 @@ header.scrolled {
     box-shadow: 0 0 0 0.25rem rgba(232, 50, 31, 0.1);
 }
 
-#paymentArea {
-    animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.payment-card {
-    border: 1px solid rgba(0,0,0,0.08);
+.pix-payment-container {
     background: #fff;
     transition: var(--transition);
 }
 
-.qr-code-container {
-    background: #fff;
-    border: 1px solid #eee;
+.qr-code-wrapper {
     transition: var(--transition);
 }
 
-.qr-code-container:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+.qr-code-wrapper:hover {
+    transform: scale(1.05);
 }
 
 @keyframes slideDown {
