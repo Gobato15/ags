@@ -86,23 +86,86 @@
                  <p class="text-muted text-center my-4 py-4 bg-light rounded-4">Seu carrinho está vazio.</p>
              </div>
              
-             <div class="bg-light p-4 rounded-4">
-                 <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
-                     <h5 class="fw-bold mb-0 text-secondary">Total a Pagar:</h5>
-                     <h3 class="fw-bold text-danger mb-0" id="cartTotal">R$ 0,00</h3>
-                 </div>
-                 
-                 <div class="mb-2">
-                     <label class="form-label fw-bold text-dark">Forma de Pagamento na Entrega</label>
-                     <select class="form-select form-select-lg border-0 shadow-sm" id="paymentMethod">
+                <div class="mb-4">
+                    <label class="form-label fw-bold text-dark">Modalidade de Consumo</label>
+                    <div class="d-flex gap-2">
+                        <input type="radio" class="btn-check" name="deliveryMode" id="modeRetirada" value="retirada" autocomplete="off" checked onchange="toggleDeliveryFields()">
+                        <label class="btn btn-outline-primary rounded-pill flex-grow-1 fw-bold" for="modeRetirada"><i class="fas fa-store me-1"></i> Retirada</label>
+
+                        <input type="radio" class="btn-check" name="deliveryMode" id="modeEntrega" value="entrega" autocomplete="off" onchange="toggleDeliveryFields()">
+                        <label class="btn btn-outline-primary rounded-pill flex-grow-1 fw-bold" for="modeEntrega"><i class="fas fa-truck me-1"></i> Entrega</label>
+                    </div>
+                </div>
+
+                <div class="checkout-fields mb-4">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label fw-bold small text-muted text-uppercase">Nome Completo</label>
+                            <input type="text" id="customerName" class="form-control rounded-3 border-0 shadow-sm" placeholder="Como deseja ser chamado?">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold small text-muted text-uppercase">Telefone de Contato</label>
+                            <input type="tel" id="customerPhone" class="form-control rounded-3 border-0 shadow-sm" placeholder="(15) 00000-0000">
+                        </div>
+                        
+                        <!-- Campos de Endereço (Ocultos por padrão se for Retirada) -->
+                        <div id="deliveryAddressFields" style="display: none;">
+                            <div class="row g-3">
+                                <div class="col-md-5">
+                                    <label class="form-label fw-bold small text-muted text-uppercase">CEP</label>
+                                    <div class="input-group">
+                                        <input type="text" id="deliveryCep" class="form-control rounded-start-3 border-0 shadow-sm" placeholder="00000-000" onblur="calculateFreight()">
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <label class="form-label fw-bold small text-muted text-uppercase">Cidade/Bairro</label>
+                                    <input type="text" id="deliveryCity" class="form-control rounded-3 border-0 shadow-sm" placeholder="Ex: Sorocaba / Centro">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold small text-muted text-uppercase">Rua e Número</label>
+                                    <input type="text" id="deliveryStreet" class="form-control rounded-3 border-0 shadow-sm" placeholder="Ex: Rua das Flores, 123">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold small text-muted text-uppercase">Complemento / Referência</label>
+                                    <input type="text" id="deliveryNote" class="form-control rounded-3 border-0 shadow-sm" placeholder="Apto, bloco, próximo a...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-light p-4 rounded-4 mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="text-secondary fw-semibold">Subtotal:</span>
+                        <span class="fw-bold" id="cartSubtotal">R$ 0,00</span>
+                    </div>
+                    <div id="freightRow" class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom" style="display: none !important;">
+                        <span class="text-secondary fw-semibold">Taxa de Entrega:</span>
+                        <span class="fw-bold text-success" id="cartFreight">R$ 0,00</span>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="fw-bold mb-0 text-dark">Total a Pagar:</h5>
+                        <h3 class="fw-bold text-danger mb-0" id="cartTotal">R$ 0,00</h3>
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label fw-bold text-dark">Forma de Pagamento</label>
+                    <select class="form-select form-select-lg border-0 shadow-sm" id="paymentMethod">
                         <option value="" selected disabled>Selecione uma opção...</option>
-                        <option value="pix">PIX</option>
-                        <option value="qr_code">QR Code</option>
-                        <option value="credito">Cartão de Crédito</option>
-                        <option value="debito">Cartão de Débito</option>
-                     </select>
-                 </div>
-             </div>
+                        <optgroup label="Pagamento Instantâneo">
+                            <option value="pix">PIX (Caixa Econômica)</option>
+                        </optgroup>
+                        <optgroup label="Cartões & Outros (InfinitePay)">
+                            <option value="credito">Cartão de Crédito</option>
+                            <option value="debito">Cartão de Débito</option>
+                            <option value="qr_code">QR Code / Link de Pagamento</option>
+                        </optgroup>
+                    </select>
+                    <div id="paymentInfo" class="mt-3 p-3 bg-white rounded-3 shadow-sm small border-start border-4 border-primary" style="display: none;">
+                        <!-- Infos de pagamento dinâmicas -->
+                    </div>
+                </div>
           </div>
           <div class="modal-footer border-top-0 pt-0 pb-4 px-4 d-flex flex-column flex-sm-row gap-2">
             <button type="button" class="btn btn-light rounded-pill px-4 py-2 w-100 fw-bold border" data-bs-dismiss="modal">Continuar Comprando</button>

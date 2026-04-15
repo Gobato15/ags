@@ -347,13 +347,54 @@ window.addToCart = function (id, name, price) {
     updateCartUI();
 
     // Feedback visual no ícone
-    const btn = event.currentTarget;
-    btn.innerHTML = '<i class="fas fa-check"></i>';
-    btn.classList.add('active');
-    setTimeout(() => {
-        btn.innerHTML = '<i class="fas fa-plus"></i>';
-        btn.classList.remove('active');
-    }, 1000);
+    if (event && event.currentTarget) {
+        const btn = event.currentTarget;
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        btn.classList.add('active');
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-plus"></i>';
+            btn.classList.remove('active');
+        }, 1000);
+    }
+};
+
+window.toggleDeliveryFields = function () {
+    const isEntrega = document.getElementById('modeEntrega').checked;
+    const deliveryFields = document.getElementById('deliveryAddressFields');
+    const freightRow = document.getElementById('freightRow');
+
+    if (isEntrega) {
+        deliveryFields.style.display = 'block';
+        freightRow.style.setProperty('display', 'flex', 'important');
+    } else {
+        deliveryFields.style.display = 'none';
+        freightRow.style.setProperty('display', 'none', 'important');
+    }
+    updateCartUI();
+};
+
+let deliveryFee = 0;
+
+window.calculateFreight = function () {
+    const cep = document.getElementById('deliveryCep').value.replace(/\D/g, '');
+    const freightElement = document.getElementById('cartFreight');
+
+    if (cep.length === 8) {
+        // Mock de cálculo de frete
+        // Em um sistema real, isso chamaria uma API
+        deliveryFee = 7.00; // Valor fixo para o exemplo
+        freightElement.textContent = `R$ ${deliveryFee.toFixed(2).replace('.', ',')}`;
+        
+        // Simulação de busca de endereço por CEP (ViaCEP clone logic fallback)
+        if (!document.getElementById('deliveryStreet').value) {
+           // Apenas para dar um feedback visual de que o CEP "funcionou"
+           // Em um projeto real usaríamos fetch("https://viacep.com.br/ws/"+cep+"/json/")
+        }
+    } else {
+        deliveryFee = 0;
+        freightElement.textContent = 'R$ 0,00';
+    }
+    updateCartUI();
 };
 
 window.removeFromCart = function (index) {
@@ -365,23 +406,28 @@ function updateCartUI() {
     const cartItemsContainer = document.getElementById('cartItems');
     const cartCount = document.getElementById('cartCount');
     const cartTotal = document.getElementById('cartTotal');
+    const cartSubtotal = document.getElementById('cartSubtotal');
+    const cartFreight = document.getElementById('cartFreight');
 
     if (!cartItemsContainer || !cartCount || !cartTotal) return;
 
-    cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    cartCount.textContent = totalItems;
 
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p class="text-muted text-center my-4 py-4 bg-light rounded-4">Seu carrinho está vazio.</p>';
         cartTotal.textContent = 'R$ 0,00';
+        if (cartSubtotal) cartSubtotal.textContent = 'R$ 0,00';
+        if (cartFreight) cartFreight.textContent = 'R$ 0,00';
         return;
     }
 
     let itemsHTML = '';
-    let total = 0;
+    let subtotal = 0;
 
     cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
-        total += itemTotal;
+        subtotal += itemTotal;
         itemsHTML += `
             <div class="cart-item shadow-sm border p-3 rounded-4 mb-2">
                 <div class="flex-grow-1">
@@ -399,8 +445,35 @@ function updateCartUI() {
     });
 
     cartItemsContainer.innerHTML = itemsHTML;
-    cartTotal.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    
+    const isEntrega = document.getElementById('modeEntrega') ? document.getElementById('modeEntrega').checked : false;
+    const currentFreight = isEntrega ? deliveryFee : 0;
+    const finalTotal = subtotal + currentFreight;
+
+    if (cartSubtotal) cartSubtotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    if (cartFreight) cartFreight.textContent = `R$ ${currentFreight.toFixed(2).replace('.', ',')}`;
+    cartTotal.textContent = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
 }
+
+// Listener para detalhes de pagamento
+document.addEventListener('change', function(e) {
+    if (e.target && e.target.id === 'paymentMethod') {
+        const infoBox = document.getElementById('paymentInfo');
+        const method = e.target.value;
+        
+        if (!infoBox) return;
+
+        if (method === 'pix') {
+            infoBox.innerHTML = `<strong>PIX (Caixa Econômica)</strong><br>Chave: <strong>gobato59@gmail.com</strong><br>Favorecido: AGS Delivery`;
+            infoBox.style.display = 'block';
+        } else if (['credito', 'debito', 'qr_code'].includes(method)) {
+            infoBox.innerHTML = `<strong>InfinitePay</strong><br>Agência: 0001 | Conta: 3095601-0<br>O pagamento será processado via maquininha ou link.`;
+            infoBox.style.display = 'block';
+        } else {
+            infoBox.style.display = 'none';
+        }
+    }
+});
 
 window.checkout = function () {
     if (cart.length === 0) {
@@ -408,31 +481,70 @@ window.checkout = function () {
         return;
     }
 
+    const name = document.getElementById('customerName').value;
+    const phone = document.getElementById('customerPhone').value;
+    const isEntrega = document.getElementById('modeEntrega').checked;
     const payment = document.getElementById('paymentMethod').value;
+
+    if (!name || !phone) {
+        alert("Por favor, preencha seu nome e telefone!");
+        return;
+    }
+
     if (!payment) {
         alert("Por favor, selecione uma forma de pagamento!");
         return;
     }
 
+    let addressMsg = '';
+    if (isEntrega) {
+        const cep = document.getElementById('deliveryCep').value;
+        const city = document.getElementById('deliveryCity').value;
+        const street = document.getElementById('deliveryStreet').value;
+        const note = document.getElementById('deliveryNote').value;
+
+        if (!cep || !city || !street) {
+            alert("Por favor, preencha o endereço completo para entrega!");
+            return;
+        }
+
+        addressMsg = `\n📍 *Endereço de Entrega:*\n${street}\n${city} - CEP: ${cep}\nObs: ${note || 'Nenhuma'}`;
+    } else {
+        addressMsg = `\n🏪 *Modalidade:* Retirada no Local`;
+    }
+
     const paymentMap = {
-        'pix': 'PIX',
-        'qr_code': 'QR Code',
-        'credito': 'Cartão de Crédito',
-        'debito': 'Cartão de Débito'
+        'pix': 'PIX (gobato59@gmail.com)',
+        'qr_code': 'QR Code (InfinitePay)',
+        'credito': 'Cartão de Crédito (InfinitePay)',
+        'debito': 'Cartão de Débito (InfinitePay)'
     };
 
-    let message = `*Novo Pedido - AGS Delivery*\n\n`;
-    let total = 0;
+    let message = `*Novo Pedido - AGS Delivery*\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `👤 *Cliente:* ${name}\n`;
+    message += `📞 *Contato:* ${phone}\n`;
+    message += addressMsg + `\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `🛒 *Itens do Pedido:*\n`;
 
+    let subtotal = 0;
     cart.forEach(item => {
         const itemTotal = item.price * item.quantity;
-        total += itemTotal;
+        subtotal += itemTotal;
         message += `• ${item.quantity}x ${item.name} - R$ ${itemTotal.toFixed(2).replace('.', ',')}\n`;
     });
 
-    message += `\n*Total:* R$ ${total.toFixed(2).replace('.', ',')}`;
-    message += `\n*Pagamento:* ${paymentMap[payment]}`;
-    message += `\n\n_Desejo prosseguir com o pedido._`;
+    const currentFreight = isEntrega ? deliveryFee : 0;
+    const total = subtotal + currentFreight;
+
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+    if (isEntrega) message += `🚚 *Taxa de Entrega:* R$ ${currentFreight.toFixed(2).replace('.', ',')}\n`;
+    message += `⭐ *TOTAL:* R$ ${total.toFixed(2).replace('.', ',')}\n`;
+    message += `💳 *Pagamento:* ${paymentMap[payment]}\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `_Desejo prosseguir com o pedido._`;
 
     const whatsappUrl = `https://wa.me/5515997035700?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');

@@ -597,3 +597,23 @@ header.scrolled {
 
     footer { padding: 3rem 5%; }
 }
+
+/* Checkout Enhancements */
+.checkout-fields .form-control {
+    background-color: #f8f9fa;
+    transition: var(--transition);
+}
+
+.checkout-fields .form-control:focus {
+    background-color: #fff;
+    box-shadow: 0 0 0 0.25rem rgba(232, 50, 31, 0.1);
+}
+
+#paymentInfo {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
