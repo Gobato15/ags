@@ -548,7 +548,7 @@ window.checkout = function () {
            return;
         }
 
-        addressMsg = `\n📍 *Endereço de Entrega:*\n${street}, Nº ${number}\n${city} - CEP: ${cep}\n📏 *Distância:* ${deliveryDistance.toFixed(1)} km\nObs: ${note || 'Nenhuma'}`;
+        addressMsg = `\n📍 *Endereço de Entrega:*\n${street}, Nº ${number}\n${city} - CEP: ${cep}\n📏 *Distância:* ${deliveryDistance.toFixed(1)} km\n🏠 *Complemento:* ${note || 'Não informado'}`;
     } else {
         addressMsg = `\n🏪 *Modalidade:* Retirada no Local`;
     }

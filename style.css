@@ -619,16 +619,15 @@ header.scrolled {
     transition: var(--transition);
 }
 
-.qr-code-placeholder {
-    border: 2px dashed var(--primary);
-    color: var(--primary);
-    opacity: 0.3;
+.qr-code-container {
+    background: #fff;
+    border: 1px solid #eee;
     transition: var(--transition);
 }
 
-.qr-code-placeholder:hover {
-    opacity: 0.6;
-    border-style: solid;
+.qr-code-container:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
 @keyframes slideDown {
