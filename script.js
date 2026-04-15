@@ -425,11 +425,18 @@ window.calculateFreight = function (cep) {
         const lastDigits = parseInt(cep.substring(5));
         deliveryDistance = 1 + (lastDigits % 10);
 
-        let baseFee = 5.00;
+        // Regra de Negócio Atualizada:
+        // Base: R$ 7,00 (Válido para qualquer entrega até 3 km)
+        // Adicional: R$ 0,60 por km rodado que exceder os 3 km iniciais
+        let baseFee = 7.00;
         let increment = 0;
-        if (deliveryDistance > 3) increment = (deliveryDistance - 3) * 0.60;
+        
+        if (deliveryDistance > 3) {
+            increment = (deliveryDistance - 3) * 0.60;
+        }
         
         deliveryFee = baseFee + increment;
+        
         freightElement.textContent = `R$ ${deliveryFee.toFixed(2).replace('.', ',')} (${deliveryDistance.toFixed(1)}km)`;
     } else {
         deliveryFee = 0;
@@ -575,7 +582,9 @@ window.checkout = function () {
     message += `💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
     if (isEntrega) message += `🚚 *Taxa de Entrega:* R$ ${currentFreight.toFixed(2).replace('.', ',')}\n`;
     message += `⭐ *TOTAL:* R$ ${total.toFixed(2).replace('.', ',')}\n`;
-    message += `💳 *Pagamento:* PIX (gobato59@gmail.com)\n`;
+    message += `💳 *Pagamento:* PIX (CPF: 274.689.238-33)\n`;
+    message += `👤 *Favorecido:* Mauricio Rogerio Gobato\n`;
+    message += `🏦 *Banco:* Santander\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
     message += `_O comprovante do PIX será enviado em seguida._`;
 
