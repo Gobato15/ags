@@ -588,7 +588,7 @@ window.checkout = function () {
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
     message += `_O comprovante do PIX será enviado em seguida._`;
 
-    const whatsappUrl = `https://wa.me/5515997035700?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 };
 

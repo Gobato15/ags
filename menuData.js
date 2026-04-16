@@ -180,7 +180,7 @@ window.menuItemsData = [
         id: "24",
         name: "Arroz Doce de Paçoca",
         category: "desserts",
-        price: 3.50,
+        price: 4.00,
         description: "Cremoso arroz doce feito com paçoca de amendoim, uma sobremesa tradicional e irresistível.",
         image: "assets/arroz_doce_pacoca.png"
     },
