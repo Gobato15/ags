@@ -167,7 +167,7 @@ function renderDailyPromos() {
                                         <span class="d-block text-uppercase fw-bold text-muted mb-0" style="font-size: 0.6rem;">a partir de</span>
                                         <div class="d-flex align-items-center gap-1">
                                             ${originalPriceHTML}
-                                            <span class="h5 fw-bold mb-0 text-danger">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+                                            <span class="h5 fw-bold mb-0 promo-price-text">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
                                         </div>
                                     </div>
                                     <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.name}', ${promo.promoPrice})">
@@ -283,7 +283,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
         const promo = todaysPromos.find(p => p.id === item.id);
         const isPromo = !!promo;
         const displayPrice = isPromo ? promo.promoPrice : item.price;
-        const promoStyles = isPromo ? `color: #ff5252;` : '';
+        const promoClasses = isPromo ? `promo-price-text` : '';
         const originalPriceHTML = isPromo ? `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>` : '';
 
         const col = document.createElement('div');
@@ -304,7 +304,7 @@ function renderMenu(filter = 'all', searchQuery = '') {
                                 <span class="d-block text-uppercase fw-bold text-muted mb-0" style="font-size: 0.6rem;">a partir de</span>
                                 <div class="d-flex align-items-center gap-1">
                                     ${originalPriceHTML}
-                                    <span class="h5 fw-bold mb-0" style="${promoStyles}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
+                                    <span class="h5 fw-bold mb-0 ${promoClasses}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
                                 </div>
                             </div>
                             <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.name}', ${displayPrice})">
