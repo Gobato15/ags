@@ -536,57 +536,38 @@ window.checkout = function () {
         return;
     }
 
-    let addressMsg = '';
+    const chavePix = "00ede306-8a84-4955-939c-ead6e5a81781";
+
+    let modalidadeStr = isEntrega ? 'Entrega' : 'Retirada';
     if (isEntrega) {
-        const cep = document.getElementById('deliveryCep').value;
-        const city = document.getElementById('deliveryCity').value;
         const street = document.getElementById('deliveryStreet').value;
-        const note = document.getElementById('deliveryNote').value;
         const number = document.getElementById('deliveryNumber').value;
-
-        if (!cep || !city || !street || !number) {
-            alert("Por favor, preencha o número e os dados de entrega automáticos!");
-            return;
-        }
-
-        // Sugestão de apartamento se estiver vazio
-        if (!note && (street.toLowerCase().includes("condominio") || street.toLowerCase().includes("bloco"))) {
-           alert("Se for apartamento, por favor informe o Bloco/Apto no campo de observações!");
-           return;
-        }
-
-        addressMsg = `\n📍 *Endereço de Entrega:*\n${street}, Nº ${number}\n${city} - CEP: ${cep}\n📏 *Distância:* ${deliveryDistance.toFixed(1)} km\n🏠 *Complemento:* ${note || 'Não informado'}`;
-    } else {
-        addressMsg = `\n🏪 *Modalidade:* Retirada no Local`;
+        const note = document.getElementById('deliveryNote').value;
+        modalidadeStr += ` (${street}, ${number}${note ? ' - ' + note : ''})`;
     }
 
-    let message = `*Novo Pedido - AGS Delivery*\n`;
-    message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `👤 *Cliente:* ${name}\n`;
-    message += `📞 *Contato:* ${phone}\n`;
-    message += addressMsg + `\n`;
-    message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `🛒 *Itens do Pedido:*\n`;
+    let message = `*Novo Pedido — AGS Delivery*\n`;
+    message += `━━━━━━━━━━━━━━━━━━\n`;
+    message += `*Cliente:* ${name}\n`;
+    message += `*Contato:* ${phone}\n`;
+    message += `*Modalidade:* ${modalidadeStr}\n\n`;
 
-    let subtotal = 0;
+    message += `*Itens:*\n`;
     cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-        message += `• ${item.quantity}x ${item.name} - R$ ${itemTotal.toFixed(2).replace('.', ',')}\n`;
+        message += `• ${item.quantity}x ${item.name}\n`;
     });
 
     const currentFreight = isEntrega ? deliveryFee : 0;
+    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
     const total = subtotal + currentFreight;
 
-    message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
-    if (isEntrega) message += `🚚 *Taxa de Entrega:* R$ ${currentFreight.toFixed(2).replace('.', ',')}\n`;
-    message += `⭐ *TOTAL:* R$ ${total.toFixed(2).replace('.', ',')}\n`;
-    message += `💳 *Pagamento:* PIX (CPF: 274.689.238-33)\n`;
-    message += `👤 *Favorecido:* Mauricio Rogerio Gobato\n`;
-    message += `🏦 *Banco:* Santander\n`;
-    message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `_O comprovante do PIX será enviado em seguida._`;
+    message += `\n*Total a Pagar: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
+    message += `━━━━━━━━━━━━━━━━━━\n`;
+    message += `*Pagamento via PIX*\n`;
+    message += `Chave Aleatória: \`${chavePix}\`\n`;
+    message += `Favorecido: Mauricio R. Gobato\n`;
+    message += `*Banco Santander*\n\n`;
+    message += `_Por favor, anexe o comprovante abaixo._`;
 
     const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');

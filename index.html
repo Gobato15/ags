@@ -163,9 +163,9 @@
                             <p class="small text-muted mb-3">Escaneie o QR Code ou copie a chave abaixo</p>
                         </div>
                         
-                        <!-- Santander QR Code Centralizado -->
+                        <!-- QR Code Automático -->
                         <div class="qr-code-wrapper mx-auto mb-4 p-3 bg-white rounded-4 shadow-sm" style="width: 220px; height: 220px; border: 1px solid #f0f0f0;">
-                            <img src="https://i.ibb.co/XxpQjJSg/qr.png" alt="PIX Santander" class="img-fluid" style="width: 100%; height: 100%; object-fit: contain;">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=00ede306-8a84-4955-939c-ead6e5a81781&margin=10" alt="PIX AGS" class="img-fluid" style="width: 100%; height: 100%; object-fit: contain;">
                         </div>
 
                         <div class="payment-details mb-4">
@@ -174,8 +174,8 @@
                         </div>
 
                         <div class="input-group mb-0 shadow-sm rounded-3 overflow-hidden border">
-                            <input type="text" id="pixKey" class="form-control border-0 bg-white fw-bold text-center py-3" value="00ede306-8a84-4955-939c-ead6e5a81781" readonly style="font-size: 1.1rem; letter-spacing: 1px;">
-                            <button class="btn btn-primary px-4 fw-bold" onclick="copyPix()"><i class="fas fa-copy me-2"></i> Copiar</button>
+                            <input type="text" id="pixKey" class="form-control border-0 bg-white fw-bold text-center py-3" value="00ede306-8a84-4955-939c-ead6e5a81781" readonly style="font-size: 0.9rem; letter-spacing: 0.5px;">
+                            <button class="btn btn-primary px-3 fw-bold" onclick="copyPix()"><i class="fas fa-copy me-2"></i> Copiar</button>
                         </div>
                     </div>
                     <input type="hidden" id="paymentMethod" value="pix">
