@@ -149,7 +149,7 @@ function renderDailyPromos() {
             let imgSrc = item.image;
             if (imgSrc && imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
 
-            const originalPriceHTML = `<span style="text-decoration: line-through; color: var(--text-light); font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
+            const originalPriceHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>`;
 
             itemsHTML += `
                 <div class="col-11 col-sm-6 col-md-4 col-lg-3 mx-auto">
@@ -185,13 +185,13 @@ function renderDailyPromos() {
     if (itemsHTML === '') return;
 
     const gradients = {
-        1: 'linear-gradient(135deg, #FF7043 0%, #D32F2F 100%)', // Segunda (Earthy Red)
-        2: 'linear-gradient(135deg, #4A148C 0%, #880E4F 100%)', // Terça (Royal Purple)
-        3: 'linear-gradient(135deg, #F4511E 0%, #BF360C 100%)', // Quarta (Sunset Orange)
-        4: 'linear-gradient(135deg, #2D2A26 0%, #4E4942 100%)', // Quinta (Elegant Brown)
-        5: 'linear-gradient(135deg, #D32F2F 0%, #F4511E 100%)', // Sexta (Brand Gradient)
-        0: 'linear-gradient(135deg, #D32F2F 0%, #F4511E 100%)',
-        6: 'linear-gradient(135deg, #D32F2F 0%, #F4511E 100%)'
+        1: 'linear-gradient(135deg, #FF9800 0%, #FF5722 100%)', // Segunda
+        2: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)', // Terça
+        3: 'linear-gradient(135deg, #00BCD4 0%, #2196F3 100%)', // Quarta
+        4: 'linear-gradient(135deg, #4CAF50 0%, #009688 100%)', // Quinta
+        5: 'linear-gradient(135deg, #9C27B0 0%, #E91E63 100%)', // Sexta
+        0: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)',
+        6: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)'
     };
 
     const dayBtnsHTML = [1, 2, 3, 4, 5].map(d => {
@@ -283,8 +283,8 @@ function renderMenu(filter = 'all', searchQuery = '') {
         const promo = todaysPromos.find(p => p.id === item.id);
         const isPromo = !!promo;
         const displayPrice = isPromo ? promo.promoPrice : item.price;
-        const promoStyles = isPromo ? `color: var(--brand-red);` : '';
-        const originalPriceHTML = isPromo ? `<span style="text-decoration: line-through; color: var(--text-light); font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>` : '';
+        const promoStyles = isPromo ? `color: #ff5252;` : '';
+        const originalPriceHTML = isPromo ? `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>` : '';
 
         const col = document.createElement('div');
         col.className = 'col-12 col-md-6 col-lg-4';
