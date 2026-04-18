@@ -141,40 +141,6 @@ function renderDailyPromos() {
     const diasSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
     const diaNome = diasSemana[today];
 
-    let itemsHTML = '';
-    let indicatorsHTML = '';
-
-    todaysPromos.forEach((promo, index) => {
-        const item = menuItems.find(i => i.id === promo.id);
-        if (item) {
-            let imgSrc = item.image;
-            if (imgSrc && imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
-
-            const activeClass = index === 0 ? 'active' : '';
-            indicatorsHTML += `<button type="button" data-bs-target="#carouselProdutos" data-bs-slide-to="${index}" class="${activeClass}" aria-label="Slide ${index + 1}"></button>`;
-
-            itemsHTML += `
-                <div class="carousel-item ${activeClass}">
-                    <div class="p-4 p-md-5 text-center bg-white rounded-4 shadow-sm mx-auto" style="max-width: 500px;">
-                        <div class="position-relative mb-4">
-                            <img src="${imgSrc}" class="rounded-4 shadow-sm" alt="${item.name}" style="height: 200px; width: 100%; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x200?text=${item.name}'">
-                            <span class="badge bg-instagram position-absolute top-0 end-0 m-2 shadow-sm">OFERTA</span>
-                        </div>
-                        <h4 class="fw-bold mb-2">${item.name}</h4>
-                        <p class="text-muted small mb-3">${item.description}</p>
-                        <div class="d-flex justify-content-center align-items-center gap-2 mb-3">
-                            <span class="text-muted text-decoration-line-through small">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
-                            <span class="h3 fw-bold text-danger mb-0">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
-                        </div>
-                        <button class="btn btn-primary w-100 py-3 rounded-pill shadow-glow fw-bold" onclick="addToCart('${item.id}', '${item.name}', ${promo.promoPrice})">
-                            <i class="fas fa-cart-plus me-2"></i> Adicionar ao Pedido
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-    });
-
     const gradients = {
         1: 'linear-gradient(135deg, #FF9800 0%, #FF5722 100%)',
         2: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)',
@@ -184,6 +150,44 @@ function renderDailyPromos() {
         0: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)',
         6: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)'
     };
+
+    let itemsHTML = '';
+    todaysPromos.forEach((promo) => {
+        const item = menuItems.find(i => i.id === promo.id);
+        if (item) {
+            let imgSrc = item.image;
+            if (imgSrc && imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
+
+            itemsHTML += `
+                <div class="promo-product-card" style="flex: 0 1 320px; width: 100%;">
+                    <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card promo-border">
+                        <div class="position-relative">
+                            <span class="badge bg-instagram position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">PROMOÇÃO</span>
+                            <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 180px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x200?text=${item.name}'">
+                        </div>
+                        <div class="card-body d-flex flex-column text-center">
+                            <h5 class="card-title fw-bold mb-2">${item.name}</h5>
+                            <p class="card-text text-muted small flex-grow-1">${item.description}</p>
+                            <div class="mt-auto pt-3 border-top w-100">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="price-wrapper text-start">
+                                        <span class="d-block text-uppercase fw-bold text-muted mb-0" style="font-size: 0.6rem;">a partir de</span>
+                                        <div class="d-flex align-items-center gap-1">
+                                            <span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                                            <span class="h5 fw-bold mb-0 promo-price-text">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
+                                        </div>
+                                    </div>
+                                    <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.name}', ${promo.promoPrice})">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    });
 
     const dayBtnsHTML = [1, 2, 3, 4, 5].map(d => {
         const names = ['', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
@@ -199,31 +203,14 @@ function renderDailyPromos() {
             </div>
         </div>
         
-        <div id="carouselProdutos" class="carousel slide" data-bs-ride="carousel" style="background: ${gradients[today]}; border-radius: 25px; padding: 2rem 1rem;">
-            <div class="carousel-indicators">
-                ${indicatorsHTML}
-            </div>
-            <div class="carousel-inner">
+        <div class="promo-banner" style="background: ${gradients[today]}; border-radius: 25px; padding: 2rem 1.5rem;">
+            <div class="promo-items d-flex flex-wrap justify-content-center gap-4">
                 ${itemsHTML}
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProdutos" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselProdutos" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            </button>
         </div>
     `;
-
-    // Inicializar o carrossel manualmente caso seja necessário pelo Bootstrap
-    const carouselEl = document.querySelector('#carouselProdutos');
-    if (window.bootstrap && carouselEl) {
-        new window.bootstrap.Carousel(carouselEl, {
-            interval: 5000,
-            ride: 'carousel'
-        });
-    }
 }
+
 
 function renderCategories() {
     if (!categoryContainer) return;
