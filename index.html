@@ -17,13 +17,16 @@
         <div class="container position-relative py-2">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo mb-0 text-start">AGS<span>Delivery</span></div>
-                
-                <button class="cart-header-btn bg-transparent border-0 position-relative p-2" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="Abrir Carrinho">
+
+                <button class="cart-header-btn bg-transparent border-0 position-relative p-2" data-bs-toggle="modal"
+                    data-bs-target="#cartModal" aria-label="Abrir Carrinho">
                     <i class="fas fa-shopping-bag text-dark" style="font-size: 1.6rem;"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow-sm" id="cartCount" style="font-size: 0.65rem;">0</span>
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow-sm"
+                        id="cartCount" style="font-size: 0.65rem;">0</span>
                 </button>
             </div>
-            
+
             <div class="search-container w-100 mt-3 pb-1">
                 <div class="input-group shadow-sm rounded-pill">
                     <span class="input-group-text bg-white border-0 rounded-start-pill ps-4">
@@ -63,7 +66,8 @@
                     <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
 
-                <a href="https://www.instagram.com/agsdelivery24/" target="_blank" rel="noopener noreferrer" class="footer-btn instagram-btn">
+                <a href="https://www.instagram.com/agsdelivery24/" target="_blank" rel="noopener noreferrer"
+                    class="footer-btn instagram-btn">
                     <i class="fab fa-instagram"></i> Instagram
                 </a>
             </div>
@@ -75,118 +79,152 @@
 
     <!-- Cart Modal -->
     <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content border-0 rounded-4 shadow-lg">
-          <div class="modal-header border-bottom-0 pb-0">
-            <h5 class="modal-title fw-bold fs-4" id="cartModalLabel"><i class="fas fa-shopping-bag me-2 text-primary"></i>Seu Carrinho</h5>
-            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body p-4">
-             <div id="cartItems" class="mb-4">
-                 <p class="text-muted text-center my-4 py-4 bg-light rounded-4">Seu carrinho está vazio.</p>
-             </div>
-             
-                <div class="mb-4">
-                    <label class="form-label fw-bold text-dark">Modalidade de Consumo</label>
-                    <div class="d-flex gap-2">
-                        <input type="radio" class="btn-check" name="deliveryMode" id="modeRetirada" value="retirada" autocomplete="off" checked onchange="toggleDeliveryFields()">
-                        <label class="btn btn-outline-primary rounded-pill flex-grow-1 fw-bold" for="modeRetirada"><i class="fas fa-store me-1"></i> Retirada</label>
-
-                        <input type="radio" class="btn-check" name="deliveryMode" id="modeEntrega" value="entrega" autocomplete="off" onchange="toggleDeliveryFields()">
-                        <label class="btn btn-outline-primary rounded-pill flex-grow-1 fw-bold" for="modeEntrega"><i class="fas fa-truck me-1"></i> Entrega</label>
-                    </div>
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title fw-bold fs-4" id="cartModalLabel"><i
+                            class="fas fa-shopping-bag me-2 text-primary"></i>Seu Carrinho</h5>
+                    <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
+                <div class="modal-body p-4">
+                    <div id="cartItems" class="mb-4">
+                        <p class="text-muted text-center my-4 py-4 bg-light rounded-4">Seu carrinho está vazio.</p>
+                    </div>
 
-                <div class="checkout-fields mb-4">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <label class="form-label fw-bold small text-muted text-uppercase">Nome Completo</label>
-                            <input type="text" id="customerName" class="form-control rounded-3 border-0 shadow-sm" placeholder="Como deseja ser chamado?">
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark">Modalidade de Consumo</label>
+                        <div class="d-flex gap-2">
+                            <input type="radio" class="btn-check" name="deliveryMode" id="modeRetirada" value="retirada"
+                                autocomplete="off" checked onchange="toggleDeliveryFields()">
+                            <label class="btn btn-outline-primary rounded-pill flex-grow-1 fw-bold"
+                                for="modeRetirada"><i class="fas fa-store me-1"></i> Retirada</label>
+
+                            <input type="radio" class="btn-check" name="deliveryMode" id="modeEntrega" value="entrega"
+                                autocomplete="off" onchange="toggleDeliveryFields()">
+                            <label class="btn btn-outline-primary rounded-pill flex-grow-1 fw-bold" for="modeEntrega"><i
+                                    class="fas fa-truck me-1"></i> Entrega</label>
                         </div>
-                        <div class="col-12">
-                            <label class="form-label fw-bold small text-muted text-uppercase">Telefone de Contato</label>
-                            <input type="tel" id="customerPhone" class="form-control rounded-3 border-0 shadow-sm" placeholder="(19) 00000-0000">
-                        </div>
-                        
-                        <!-- Campos de Endereço (Ocultos por padrão se for Retirada) -->
-                        <div id="deliveryAddressFields" style="display: none;">
-                            <div class="row g-3">
-                                <div class="col-md-5">
-                                    <label class="form-label fw-bold small text-muted text-uppercase">CEP</label>
-                                    <div class="input-group">
-                                        <input type="text" id="deliveryCep" class="form-control rounded-start-3 border-0 shadow-sm" placeholder="00000-000" maxlength="9" onkeyup="checkCep(this)">
+                    </div>
+
+                    <div class="checkout-fields mb-4">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label class="form-label fw-bold small text-muted text-uppercase">Nome Completo</label>
+                                <input type="text" id="customerName" class="form-control rounded-3 border-0 shadow-sm"
+                                    placeholder="Como deseja ser chamado?">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold small text-muted text-uppercase">Telefone de
+                                    Contato</label>
+                                <input type="tel" id="customerPhone" class="form-control rounded-3 border-0 shadow-sm"
+                                    placeholder="(19) 00000-0000">
+                            </div>
+
+                            <!-- Campos de Endereço (Ocultos por padrão se for Retirada) -->
+                            <div id="deliveryAddressFields" style="display: none;">
+                                <div class="row g-3">
+                                    <div class="col-md-5">
+                                        <label class="form-label fw-bold small text-muted text-uppercase">CEP</label>
+                                        <div class="input-group">
+                                            <input type="text" id="deliveryCep"
+                                                class="form-control rounded-start-3 border-0 shadow-sm"
+                                                placeholder="00000-000" maxlength="9" onkeyup="checkCep(this)">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <label class="form-label fw-bold small text-muted text-uppercase">Cidade/Bairro</label>
-                                    <input type="text" id="deliveryCity" class="form-control rounded-3 border-0 shadow-sm bg-light" placeholder="" readonly>
-                                </div>
-                                <div class="col-12">
-                                    <label class="form-label fw-bold small text-muted text-uppercase">Rua / Logradouro</label>
-                                    <input type="text" id="deliveryStreet" class="form-control rounded-3 border-0 shadow-sm bg-light" placeholder="" readonly>
-                                </div>
-                                <div class="col-4">
-                                    <label class="form-label fw-bold small text-muted text-uppercase">Nº</label>
-                                    <input type="text" id="deliveryNumber" class="form-control rounded-3 border-0 shadow-sm" placeholder="Ex: 123">
-                                </div>
-                                <div class="col-8">
-                                    <label class="form-label fw-bold small text-muted text-uppercase">Complemento</label>
-                                    <input type="text" id="deliveryNote" class="form-control rounded-3 border-0 shadow-sm" placeholder="Apto, Bloco, Casa...">
+                                    <div class="col-md-7">
+                                        <label
+                                            class="form-label fw-bold small text-muted text-uppercase">Cidade/Bairro</label>
+                                        <input type="text" id="deliveryCity"
+                                            class="form-control rounded-3 border-0 shadow-sm bg-light" placeholder=""
+                                            readonly>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label fw-bold small text-muted text-uppercase">Rua /
+                                            Logradouro</label>
+                                        <input type="text" id="deliveryStreet"
+                                            class="form-control rounded-3 border-0 shadow-sm bg-light" placeholder=""
+                                            readonly>
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="form-label fw-bold small text-muted text-uppercase">Nº</label>
+                                        <input type="text" id="deliveryNumber"
+                                            class="form-control rounded-3 border-0 shadow-sm" placeholder="Ex: 123">
+                                    </div>
+                                    <div class="col-8">
+                                        <label
+                                            class="form-label fw-bold small text-muted text-uppercase">Complemento</label>
+                                        <input type="text" id="deliveryNote"
+                                            class="form-control rounded-3 border-0 shadow-sm"
+                                            placeholder="Apto, Bloco, Casa...">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="bg-light p-4 rounded-4 mb-4">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-secondary fw-semibold">Subtotal:</span>
+                            <span class="fw-bold" id="cartSubtotal">R$ 0,00</span>
+                        </div>
+                        <div id="freightRow"
+                            class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom"
+                            style="display: none !important;">
+                            <span class="text-secondary fw-semibold">Taxa de Entrega:</span>
+                            <span class="fw-bold text-success" id="cartFreight">R$ 0,00</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5 class="fw-bold mb-0 text-dark">Total a Pagar:</h5>
+                            <h3 class="fw-bold text-danger mb-0" id="cartTotal">R$ 0,00</h3>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-dark fs-5 mb-3">Forma de Pagamento</label>
+                        <div
+                            class="pix-payment-container p-4 rounded-4 bg-white shadow-sm border border-light text-center">
+                            <span class="badge bg-primary text-white mb-3 px-3 py-2 rounded-pill shadow-sm"
+                                style="font-size: 0.75rem; letter-spacing: 1px;">PAGAMENTO VIA PIX</span>
+
+                            <div class="mb-3">
+                                <h6 class="fw-bold mb-1 text-dark">Chave Aleatória</h6>
+                                <p class="small text-muted mb-3">Escaneie o QR Code ou copie a chave abaixo</p>
+                            </div>
+
+                            <!-- QR Code Automático -->
+                            <div class="qr-code-wrapper mx-auto mb-4 p-3 bg-white rounded-4 shadow-sm"
+                                style="width: 220px; height: 220px; border: 1px solid #f0f0f0;">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=00ede306-8a84-4955-939c-ead6e5a81781&margin=10"
+                                    alt="PIX AGS" class="img-fluid"
+                                    style="width: 100%; height: 100%; object-fit: contain;">
+                            </div>
+
+                            <div class="payment-details mb-4">
+                                <p class="mb-0 fw-bold text-dark" style="font-size: 1.1rem;">Mauricio Rogerio Gobato</p>
+                                <span class="badge bg-light text-dark border fw-normal mt-1">Banco Santander</span>
+                            </div>
+
+                            <div class="input-group mb-0 shadow-sm rounded-3 overflow-hidden border">
+                                <input type="text" id="pixKey"
+                                    class="form-control border-0 bg-white fw-bold text-center py-3"
+                                    value="00ede306-8a84-4955-939c-ead6e5a81781" readonly
+                                    style="font-size: 0.9rem; letter-spacing: 0.5px;">
+                                <button class="btn btn-primary px-3 fw-bold" onclick="copyPix()"><i
+                                        class="fas fa-copy me-2"></i> Copiar</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="paymentMethod" value="pix">
+                    </div>
                 </div>
-
-                <div class="bg-light p-4 rounded-4 mb-4">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="text-secondary fw-semibold">Subtotal:</span>
-                        <span class="fw-bold" id="cartSubtotal">R$ 0,00</span>
-                    </div>
-                    <div id="freightRow" class="d-flex justify-content-between align-items-center mb-3 pb-3 border-bottom" style="display: none !important;">
-                        <span class="text-secondary fw-semibold">Taxa de Entrega:</span>
-                        <span class="fw-bold text-success" id="cartFreight">R$ 0,00</span>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="fw-bold mb-0 text-dark">Total a Pagar:</h5>
-                        <h3 class="fw-bold text-danger mb-0" id="cartTotal">R$ 0,00</h3>
-                    </div>
+                <div class="modal-footer border-top-0 pt-0 pb-4 px-4 d-flex flex-column flex-sm-row gap-2">
+                    <button type="button" class="btn btn-light rounded-pill px-4 py-2 w-100 fw-bold border"
+                        data-bs-dismiss="modal">Continuar Comprando</button>
+                    <button type="button" class="btn btn-success rounded-pill px-4 py-2 w-100 fw-bold m-0"
+                        onclick="checkout()"><i class="fab fa-whatsapp me-2"></i> Finalizar Pedido</button>
                 </div>
-
-                <div class="mb-4">
-                    <label class="form-label fw-bold text-dark fs-5 mb-3">Forma de Pagamento</label>
-                    <div class="pix-payment-container p-4 rounded-4 bg-white shadow-sm border border-light text-center">
-                        <span class="badge bg-primary text-white mb-3 px-3 py-2 rounded-pill shadow-sm" style="font-size: 0.75rem; letter-spacing: 1px;">PAGAMENTO VIA PIX</span>
-                        
-                        <div class="mb-3">
-                            <h6 class="fw-bold mb-1 text-dark">Chave Aleatória</h6>
-                            <p class="small text-muted mb-3">Escaneie o QR Code ou copie a chave abaixo</p>
-                        </div>
-                        
-                        <!-- QR Code Automático -->
-                        <div class="qr-code-wrapper mx-auto mb-4 p-3 bg-white rounded-4 shadow-sm" style="width: 220px; height: 220px; border: 1px solid #f0f0f0;">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=00ede306-8a84-4955-939c-ead6e5a81781&margin=10" alt="PIX AGS" class="img-fluid" style="width: 100%; height: 100%; object-fit: contain;">
-                        </div>
-
-                        <div class="payment-details mb-4">
-                            <p class="mb-0 fw-bold text-dark" style="font-size: 1.1rem;">Mauricio Rogerio Gobato</p>
-                            <span class="badge bg-light text-dark border fw-normal mt-1">Banco Santander</span>
-                        </div>
-
-                        <div class="input-group mb-0 shadow-sm rounded-3 overflow-hidden border">
-                            <input type="text" id="pixKey" class="form-control border-0 bg-white fw-bold text-center py-3" value="00ede306-8a84-4955-939c-ead6e5a81781" readonly style="font-size: 0.9rem; letter-spacing: 0.5px;">
-                            <button class="btn btn-primary px-3 fw-bold" onclick="copyPix()"><i class="fas fa-copy me-2"></i> Copiar</button>
-                        </div>
-                    </div>
-                    <input type="hidden" id="paymentMethod" value="pix">
-                </div>
-          </div>
-          <div class="modal-footer border-top-0 pt-0 pb-4 px-4 d-flex flex-column flex-sm-row gap-2">
-            <button type="button" class="btn btn-light rounded-pill px-4 py-2 w-100 fw-bold border" data-bs-dismiss="modal">Continuar Comprando</button>
-            <button type="button" class="btn btn-success rounded-pill px-4 py-2 w-100 fw-bold m-0" onclick="checkout()"><i class="fab fa-whatsapp me-2"></i> Finalizar Pedido</button>
-          </div>
+            </div>
         </div>
-      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

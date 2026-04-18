@@ -110,8 +110,13 @@ header.scrolled {
 }
 
 @keyframes blobBounce {
-    0% { transform: translateY(0) scale(1); }
-    100% { transform: translateY(-50px) scale(1.2); }
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        transform: translateY(-50px) scale(1.2);
+    }
 }
 
 .hero h1 {
@@ -133,7 +138,9 @@ header.scrolled {
 }
 
 @keyframes shine {
-    to { background-position: 200% center; }
+    to {
+        background-position: 200% center;
+    }
 }
 
 .text-gradient {
@@ -272,7 +279,9 @@ header.scrolled {
     scrollbar-width: none;
 }
 
-.promo-day-selector::-webkit-scrollbar { display: none; }
+.promo-day-selector::-webkit-scrollbar {
+    display: none;
+}
 
 .day-btn {
     background: white;
@@ -305,6 +314,7 @@ header.scrolled {
 .promo-product-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .promo-product-card:hover {
     transform: translateY(-8px);
 }
@@ -321,7 +331,8 @@ header.scrolled {
 .promo-product-card .product-info h3 {
     font-size: 1.05rem;
     line-height: 1.35;
-    height: 4.3rem; /* Espaço para até 3 linhas de título */
+    height: 4.3rem;
+    /* Espaço para até 3 linhas de título */
     margin-bottom: 0.5rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -332,7 +343,8 @@ header.scrolled {
 
 .promo-product-card .product-info p {
     font-size: 0.85rem;
-    height: 3.8rem; /* Espaço para até 3 linhas de descrição */
+    height: 3.8rem;
+    /* Espaço para até 3 linhas de descrição */
     margin-bottom: 1rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -365,8 +377,8 @@ header.scrolled {
 
 .promo-border {
     border: 3px solid transparent !important;
-    background: linear-gradient(white, white) padding-box, 
-                radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) border-box;
+    background: linear-gradient(white, white) padding-box,
+        radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%) border-box;
     box-shadow: 0 15px 40px rgba(214, 36, 159, 0.25) !important;
     transform: translateY(-5px);
 }
@@ -376,7 +388,7 @@ header.scrolled {
     color: white !important;
     font-weight: 800;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .promo-price-text {
@@ -384,7 +396,10 @@ header.scrolled {
     text-shadow: 0 0 10px rgba(245, 61, 45, 0.2);
 }
 
-.price-wrapper { text-align: left; }
+.price-wrapper {
+    text-align: left;
+}
+
 .price-label {
     color: var(--text-muted);
     font-size: 0.75rem;
@@ -401,7 +416,11 @@ header.scrolled {
     color: var(--text-muted);
 }
 
-.empty-state i { font-size: 3rem; margin-bottom: 1rem; color: #eee; }
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #eee;
+}
 
 /* Footer Buttons */
 .footer-btn {
@@ -437,26 +456,31 @@ header.scrolled {
 /* Category Scrolling */
 .categories {
     overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+    -webkit-overflow-scrolling: touch;
+    /* Scroll suave no iOS */
     scroll-behavior: smooth;
     padding-bottom: 12px;
     white-space: nowrap;
 }
+
 .categories::-webkit-scrollbar {
     height: 8px;
     display: block;
 }
+
 .categories::-webkit-scrollbar-track {
     background: #e9ecef;
     border-radius: 100px;
     margin: 0 20px;
 }
+
 .categories::-webkit-scrollbar-thumb {
     background: var(--primary);
     border-radius: 100px;
     border: 2px solid #e9ecef;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .categories::-webkit-scrollbar-thumb:hover {
     background: var(--primary-hover);
 }
@@ -498,7 +522,7 @@ header.scrolled {
 }
 
 .cart-item:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .cart-item-name {
@@ -516,7 +540,8 @@ header.scrolled {
 
 /* Stylish Add Button */
 .btn-add-cart {
-    background: var(--primary); /* Vermelho/Laranja do tema */
+    background: var(--primary);
+    /* Vermelho/Laranja do tema */
     color: #ffffff;
     border: none;
     width: 42px;
@@ -527,7 +552,7 @@ header.scrolled {
     align-items: center;
     font-size: 1.2rem;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .btn-add-cart:hover {
@@ -537,7 +562,8 @@ header.scrolled {
 }
 
 .btn-add-cart.active {
-    background: #25D366; /* WhatsApp Green for checkmark */
+    background: #25D366;
+    /* WhatsApp Green for checkmark */
     transform: scale(1.1);
     color: white;
 }
@@ -560,28 +586,82 @@ header.scrolled {
         gap: 0.8rem;
     }
 
-    header.scrolled { padding: 0.6rem 5%; }
-    .logo { font-size: 1.5rem; }
+    header.scrolled {
+        padding: 0.6rem 5%;
+    }
 
-    .search-container { margin: 0; width: 100%; max-width: 100%; }
-    .search-container input { padding: 0.7rem 1.2rem 0.7rem 2.8rem; font-size: 0.9rem; }
+    .logo {
+        font-size: 1.5rem;
+    }
 
-    .hero { margin-top: 100px; padding: 4rem 5% 3rem; }
-    .hero h1 { font-size: 2rem; }
-    .hero p { font-size: 1rem; }
+    .search-container {
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+    }
 
-    .categories { padding: 0.8rem 5%; top: 115px; gap: 0.6rem; }
-    .category-pill { padding: 0.6rem 1.4rem; font-size: 0.85rem; }
+    .search-container input {
+        padding: 0.7rem 1.2rem 0.7rem 2.8rem;
+        font-size: 0.9rem;
+    }
 
-    .menu-grid { padding: 1.5rem 5% 4rem; grid-template-columns: 1fr; gap: 1.5rem; }
-    
-    .product-image-container { height: 200px !important; }
+    .hero {
+        margin-top: 100px;
+        padding: 4rem 5% 3rem;
+    }
 
-    .daily-promo-section { padding: 0 5% 1.5rem; }
-    .promo-banner { padding: 1.5rem 1rem; }
-    .promo-day-selector { padding: 0 5%; justify-content: flex-start !important; }
-    .day-btn { padding: 0.4rem 1rem; font-size: 0.85rem; }
-    .promo-title { font-size: 1.2rem; justify-content: center; margin-bottom: 1.5rem; }
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .categories {
+        padding: 0.8rem 5%;
+        top: 115px;
+        gap: 0.6rem;
+    }
+
+    .category-pill {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.85rem;
+    }
+
+    .menu-grid {
+        padding: 1.5rem 5% 4rem;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .product-image-container {
+        height: 200px !important;
+    }
+
+    .daily-promo-section {
+        padding: 0 5% 1.5rem;
+    }
+
+    .promo-banner {
+        padding: 1.5rem 1rem;
+    }
+
+    .promo-day-selector {
+        padding: 0 5%;
+        justify-content: flex-start !important;
+    }
+
+    .day-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .promo-title {
+        font-size: 1.2rem;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
 
     .promo-items {
         flex-direction: column !important;
@@ -606,7 +686,9 @@ header.scrolled {
         height: 100% !important;
     }
 
-    footer { padding: 3rem 5%; }
+    footer {
+        padding: 3rem 5%;
+    }
 }
 
 /* Checkout Enhancements */
@@ -634,6 +716,13 @@ header.scrolled {
 }
 
 @keyframes slideDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
