@@ -224,4 +224,13 @@
         <description>Delicioso enroladinho assado, massa fofinha com recheio derretido de presunto e muito queijo.</description>
         <image>assets/enroladinho_nova.png</image>
     </item>
+    <item>
+        <id>34</id>
+        <name>Bauru de Presunto e Queijo</name>
+        <category>salgados</category>
+        <price>8.00</price>
+        <description>Clássico bauru com massa fofinha e recheio generoso de presunto e queijo derretido, temperado com um toque de orégano.</description>
+        <image>assets/bauru_queijo_presunto.png</image>
+    </item>
 </menu>
+

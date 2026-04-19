@@ -53,12 +53,13 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 },
         { id: "29", promoPrice: 7.00 }
     ],
-    5: [ // Sexta: Cachorro Quente, Croissant, Bolo Prestigio, Torta de Frango e Arroz Doce de Paçoca
+    5: [ // Sexta: Cachorro Quente, Croissant, Bolo Prestigio, Torta de Frango, Arroz Doce e Bauru
         { id: "29", promoPrice: 7.00 },
         { id: "12", promoPrice: 8.00 },
         { id: "18", promoPrice: 7.00 },
         { id: "30", promoPrice: 7.00 },
-        { id: "24", promoPrice: 3.00 }
+        { id: "24", promoPrice: 3.00 },
+        { id: "34", promoPrice: 7.00 }
     ]
 };
 
