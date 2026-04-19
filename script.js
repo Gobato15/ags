@@ -3,7 +3,7 @@ let cart = [];
 
 // Estado da aba de promoções
 let currentPromoDay = new Date().getDay();
-if (currentPromoDay < 1 || currentPromoDay > 5) currentPromoDay = 1;
+if (currentPromoDay < 1 || currentPromoDay > 6) currentPromoDay = 1;
 
 window.setPromoDay = function (day) {
     currentPromoDay = day;
@@ -60,6 +60,14 @@ const dailyPromotions = {
         { id: "30", promoPrice: 7.00 },
         { id: "24", promoPrice: 3.00 },
         { id: "34", promoPrice: 7.00 }
+    ],
+    6: [ // Sábado: Hamburguinhos, Lanches Naturais, Enroladinho e Torta de Frango
+        { id: "0", promoPrice: 7.00 },
+        { id: "4", promoPrice: 10.00 },
+        { id: "21", promoPrice: 8.00 },
+        { id: "22", promoPrice: 8.00 },
+        { id: "33", promoPrice: 7.00 },
+        { id: "30", promoPrice: 7.00 }
     ]
 };
 
@@ -193,7 +201,7 @@ function renderDailyPromos() {
         4: 'linear-gradient(135deg, #4CAF50 0%, #009688 100%)',
         5: 'linear-gradient(135deg, #9C27B0 0%, #E91E63 100%)',
         0: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)',
-        6: 'linear-gradient(135deg, #e8321f 0%, #ff5252 100%)'
+        6: 'linear-gradient(135deg, #F44336 0%, #BA68C8 100%)'
     };
 
     let itemsHTML = '';
@@ -208,8 +216,8 @@ function renderDailyPromos() {
         }
     });
 
-    const dayBtnsHTML = [1, 2, 3, 4, 5].map(d => {
-        const names = ['', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+    const dayBtnsHTML = [1, 2, 3, 4, 5, 6].map(d => {
+        const names = ['', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
         const activeClass = d === currentPromoDay ? 'btn-primary text-white border-primary' : 'btn-light border';
         return `<button class="btn rounded-pill px-3 py-1 ${activeClass} fw-bold shadow-sm" onclick="setPromoDay(${d})" style="white-space: nowrap;">${names[d]}</button>`;
     }).join('');
