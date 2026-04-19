@@ -21,11 +21,11 @@ const menuGrid = document.getElementById('menuGrid');
 const categoryContainer = document.getElementById('categoryContainer');
 const searchInput = document.getElementById('searchInput');
 
-// Configuração das promoções da semana
+// Configuração das promoções da semana (Cronograma Reestabelecido)
 const dailyPromotions = {
     1: [ // Segunda: Hamburguinhos, Pão Caseiro e Doce de Abacaxi
         { id: "0", promoPrice: 7.00 },
-        { id: "4", promoPrice: 9.00 },
+        { id: "4", promoPrice: 10.00 },
         { id: "31", promoPrice: 11.00 },
         { id: "28", promoPrice: 6.00 }
     ],
@@ -35,22 +35,23 @@ const dailyPromotions = {
         { id: "26", promoPrice: 7.00 },
         { id: "27", promoPrice: 7.00 }
     ],
-    3: [ // Quarta: Coxinha, Lanches Naturais e Arroz Doce de Paçoca
+    3: [ // Quarta: Coxinha, Lanches Naturais, Kibe, Enroladinho e Arroz Doce de Paçoca
         { id: "1", promoPrice: 7.00 },
         { id: "21", promoPrice: 8.00 },
         { id: "22", promoPrice: 8.00 },
+        { id: "32", promoPrice: 8.00 },
+        { id: "33", promoPrice: 7.00 },
         { id: "24", promoPrice: 3.00 }
     ],
-    4: [ // Quinta: Pizzas Brotinho e Cachorro Quente
+    4: [ // Quinta: Coxinha, Pizzas Brotinho e Cachorro Quente
+        { id: "1", promoPrice: 7.00 },
         { id: "25", promoPrice: 7.00 },
         { id: "26", promoPrice: 7.00 },
         { id: "27", promoPrice: 7.00 },
         { id: "29", promoPrice: 7.00 }
     ],
-    5: [ // Sexta: Bolo Prestigio, Kibe, Enroladinho e Torta
+    5: [ // Sexta: Bolo Prestigio e Torta de Frango
         { id: "18", promoPrice: 7.00 },
-        { id: "32", promoPrice: 8.00 },
-        { id: "33", promoPrice: 7.00 },
         { id: "30", promoPrice: 7.00 }
     ]
 };
@@ -125,6 +126,43 @@ function renderAll() {
     try { renderMenu(); } catch (e) { console.error("Erro menu", e); }
 }
 
+function createProductCard(item, isPromo, promoPrice, index = 0) {
+    let imgSrc = item.image || '';
+    if (imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
+
+    const displayPrice = isPromo ? promoPrice : item.price;
+    const promoClasses = isPromo ? 'promo-price-text' : '';
+    const originalPriceHTML = isPromo ? 
+        `<span class="text-muted text-decoration-line-through me-2" style="font-size: 0.85rem;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>` : '';
+
+    return `
+        <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'promo-border' : ''}" style="animation: slideUp 0.5s ease forwards; animation-delay: ${index * 0.05}s">
+            <div class="position-relative overflow-hidden">
+                ${isPromo ? '<span class="badge bg-instagram position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">PROMOÇÃO</span>' : ''}
+                <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
+            </div>
+            <div class="card-body d-flex flex-column text-center p-4">
+                <h5 class="card-title fw-bold mb-2">${item.name}</h5>
+                <p class="card-text text-muted small flex-grow-1 mb-3">${item.description}</p>
+                <div class="mt-auto pt-3 border-top w-100">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="price-wrapper text-start">
+                            <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.6rem; letter-spacing: 0.5px;">a partir de</span>
+                            <div class="d-flex align-items-center">
+                                ${originalPriceHTML}
+                                <span class="h5 fw-bold mb-0 ${promoClasses}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
+                            </div>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.name}', ${displayPrice})" aria-label="Adicionar ao carrinho">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 function renderDailyPromos() {
     const promoContainer = document.getElementById('promoCarouselContainer');
     if (!promoContainer) return;
@@ -152,38 +190,12 @@ function renderDailyPromos() {
     };
 
     let itemsHTML = '';
-    todaysPromos.forEach((promo) => {
+    todaysPromos.forEach((promo, index) => {
         const item = menuItems.find(i => i.id === promo.id);
         if (item) {
-            let imgSrc = item.image;
-            if (imgSrc && imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
-
             itemsHTML += `
                 <div class="promo-product-card" style="flex: 0 1 320px; width: 100%;">
-                    <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card promo-border">
-                        <div class="position-relative">
-                            <span class="badge bg-instagram position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">PROMOÇÃO</span>
-                            <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 180px; object-fit: cover;" onerror="this.src='https://via.placeholder.com/300x200?text=${item.name}'">
-                        </div>
-                        <div class="card-body d-flex flex-column text-center">
-                            <h5 class="card-title fw-bold mb-2">${item.name}</h5>
-                            <p class="card-text text-muted small flex-grow-1">${item.description}</p>
-                            <div class="mt-auto pt-3 border-top w-100">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="price-wrapper text-start">
-                                        <span class="d-block text-uppercase fw-bold text-muted mb-0" style="font-size: 0.6rem;">a partir de</span>
-                                        <div class="d-flex align-items-center gap-1">
-                                            <span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
-                                            <span class="h5 fw-bold mb-0 promo-price-text">R$ ${promo.promoPrice.toFixed(2).replace('.', ',')}</span>
-                                        </div>
-                                    </div>
-                                    <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.name}', ${promo.promoPrice})">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    ${createProductCard(item, true, promo.promoPrice, index)}
                 </div>
             `;
         }
@@ -197,13 +209,13 @@ function renderDailyPromos() {
 
     promoContainer.innerHTML = `
         <div class="promo-section-header text-center mb-4">
-             <h5 class="fw-bold text-dark mb-3">🔥 Destaques de ${diaNome}</h5>
+             <h5 class="fw-bold text-dark mb-3">🔥 Promoções de ${diaNome}</h5>
              <div class="promo-day-selector d-flex justify-content-center gap-2 mb-2 overflow-auto pb-2" style="scrollbar-width: none;">
                 ${dayBtnsHTML}
             </div>
         </div>
         
-        <div class="promo-banner" style="background: ${gradients[today]}; border-radius: 25px; padding: 2rem 1.5rem;">
+        <div class="promo-banner" style="background: ${gradients[today]}; border-radius: 25px; padding: 2.5rem 1.5rem;">
             <div class="promo-items d-flex flex-wrap justify-content-center gap-4">
                 ${itemsHTML}
             </div>
@@ -261,46 +273,11 @@ function renderMenu(filter = 'all', searchQuery = '') {
     const todaysPromos = dailyPromotions[today] || [];
 
     filteredItems.forEach((item, index) => {
-        let imgSrc = item.image || '';
-        if (imgSrc.startsWith('assets/')) {
-            imgSrc = './' + imgSrc;
-        }
-
         const promo = todaysPromos.find(p => p.id === item.id);
         const isPromo = !!promo;
-        const displayPrice = isPromo ? promo.promoPrice : item.price;
-        const promoClasses = isPromo ? `promo-price-text` : '';
-        const originalPriceHTML = isPromo ? `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem; margin-right: 5px;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>` : '';
-
         const col = document.createElement('div');
         col.className = 'col-12 col-md-6 col-lg-4';
-
-        col.innerHTML = `
-            <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'promo-border' : ''}" style="animation-delay: ${index * 0.05}s">
-                <div class="position-relative">
-                    ${isPromo ? '<span class="badge bg-instagram position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">PROMOÇÃO</span>' : ''}
-                    <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
-                </div>
-                <div class="card-body d-flex flex-column text-center">
-                    <h5 class="card-title fw-bold mb-2">${item.name}</h5>
-                    <p class="card-text text-muted small flex-grow-1">${item.description}</p>
-                    <div class="mt-auto pt-3 border-top w-100">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="price-wrapper text-start">
-                                <span class="d-block text-uppercase fw-bold text-muted mb-0" style="font-size: 0.6rem;">a partir de</span>
-                                <div class="d-flex align-items-center gap-1">
-                                    ${originalPriceHTML}
-                                    <span class="h5 fw-bold mb-0 ${promoClasses}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
-                                </div>
-                            </div>
-                            <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.name}', ${displayPrice})">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
+        col.innerHTML = createProductCard(item, isPromo, isPromo ? promo.promoPrice : null, index);
         menuGrid.appendChild(col);
     });
 }
@@ -359,14 +336,14 @@ window.toggleDeliveryFields = function () {
     updateCartUI();
 };
 
-window.checkCep = function(input) {
+window.checkCep = function (input) {
     let cep = input.value.replace(/\D/g, '');
     if (cep.length > 5) {
         input.value = cep.substring(0, 5) + '-' + cep.substring(5, 8);
     } else {
         input.value = cep;
     }
-    
+
     if (cep.length === 8) {
         fetchAddress(cep);
     }
@@ -375,14 +352,14 @@ window.checkCep = function(input) {
 async function fetchAddress(cep) {
     const cityField = document.getElementById('deliveryCity');
     const streetField = document.getElementById('deliveryStreet');
-    
+
     cityField.value = "Buscando...";
     streetField.value = "Buscando...";
-    
+
     try {
         const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
         const data = await response.json();
-        
+
         if (!data.erro) {
             cityField.value = `${data.localidade} - ${data.bairro}`;
             streetField.value = data.logradouro;
@@ -416,13 +393,13 @@ window.calculateFreight = function (cep) {
         // Adicional: R$ 0,60 por km rodado que exceder os 3 km iniciais
         let baseFee = 7.00;
         let increment = 0;
-        
+
         if (deliveryDistance > 3) {
             increment = (deliveryDistance - 3) * 0.60;
         }
-        
+
         deliveryFee = baseFee + increment;
-        
+
         freightElement.textContent = `R$ ${deliveryFee.toFixed(2).replace('.', ',')} (${deliveryDistance.toFixed(1)}km)`;
     } else {
         deliveryFee = 0;
@@ -480,7 +457,7 @@ function updateCartUI() {
     });
 
     cartItemsContainer.innerHTML = itemsHTML;
-    
+
     const isEntrega = document.getElementById('modeEntrega') ? document.getElementById('modeEntrega').checked : false;
     const currentFreight = isEntrega ? deliveryFee : 0;
     const finalTotal = subtotal + currentFreight;
@@ -490,17 +467,17 @@ function updateCartUI() {
     cartTotal.textContent = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
 }
 
-window.copyPix = function() {
+window.copyPix = function () {
     const pixKey = document.getElementById('pixKey');
     pixKey.select();
     pixKey.setSelectionRange(0, 99999);
     navigator.clipboard.writeText(pixKey.value);
-    
+
     const btn = event.currentTarget;
     const originalHTML = btn.innerHTML;
     btn.innerHTML = '<i class="fas fa-check me-1"></i> Copiado!';
     btn.classList.replace('btn-primary', 'btn-success');
-    
+
     setTimeout(() => {
         btn.innerHTML = originalHTML;
         btn.classList.replace('btn-success', 'btn-primary');
