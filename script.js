@@ -430,12 +430,35 @@ window.removeFromCart = function (index) {
     updateCartUI();
 };
 
+window.liberarEntrega = function () {
+    const arquivo = document.getElementById('comprovante').files.length;
+    const botao = document.getElementById('btnFinalizar');
+
+    if (arquivo > 0) {
+        botao.disabled = false;
+        botao.classList.remove('opacity-50');
+        botao.innerHTML = '<i class="fab fa-whatsapp me-2"></i> ✅ Tudo Pronto! Enviar Pedido';
+        showToast("Comprovante anexado! Botão liberado. 🔓");
+    } else {
+        botao.disabled = true;
+        botao.classList.add('opacity-50');
+        botao.innerHTML = '<i class="fab fa-whatsapp me-2"></i> Finalizar e Liberar Entrega';
+    }
+};
+
 function updateCartUI() {
     const cartItemsContainer = document.getElementById('cartItems');
     const cartCount = document.getElementById('cartCount');
     const cartTotal = document.getElementById('cartTotal');
     const cartSubtotal = document.getElementById('cartSubtotal');
     const cartFreight = document.getElementById('cartFreight');
+
+    // Elementos do Resumo (Bloqueio de Segurança)
+    const resumoBox = document.getElementById('descritivoPedido');
+    const resumoNome = document.getElementById('resumoNome');
+    const resumoEnd = document.getElementById('resumoEnd');
+    const resumoItens = document.getElementById('resumoItens');
+    const resumoTotal = document.getElementById('resumoTotal');
 
     if (!cartItemsContainer || !cartCount || !cartTotal) return;
 
@@ -447,15 +470,18 @@ function updateCartUI() {
         cartTotal.textContent = 'R$ 0,00';
         if (cartSubtotal) cartSubtotal.textContent = 'R$ 0,00';
         if (cartFreight) cartFreight.textContent = 'R$ 0,00';
+        if (resumoBox) resumoBox.style.display = 'none';
         return;
     }
 
     let itemsHTML = '';
+    let itemsResumo = [];
     let subtotal = 0;
 
     cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
+        itemsResumo.push(`${item.quantity}x ${item.name}`);
         itemsHTML += `
             <div class="cart-item shadow-sm border p-3 rounded-4 mb-2">
                 <div class="flex-grow-1">
@@ -478,9 +504,28 @@ function updateCartUI() {
     const currentFreight = isEntrega ? deliveryFee : 0;
     const finalTotal = subtotal + currentFreight;
 
+    const totalStr = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
     if (cartSubtotal) cartSubtotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
     if (cartFreight) cartFreight.textContent = `R$ ${currentFreight.toFixed(2).replace('.', ',')}`;
-    cartTotal.textContent = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
+    cartTotal.textContent = totalStr;
+
+    // Atualiza Resumo de Segurança
+    if (resumoBox) {
+        resumoBox.style.display = 'block';
+        const nomeVal = document.getElementById('customerName').value || 'Pendente';
+        resumoNome.textContent = nomeVal;
+
+        if (isEntrega) {
+            const rua = document.getElementById('deliveryStreet').value || '...';
+            const num = document.getElementById('deliveryNumber').value || '...';
+            resumoEnd.textContent = `${rua}, ${num}`;
+        } else {
+            resumoEnd.textContent = "Retirada no Local";
+        }
+
+        resumoItens.textContent = itemsResumo.join(', ');
+        resumoTotal.textContent = totalStr;
+    }
 }
 
 window.copyPix = function () {
