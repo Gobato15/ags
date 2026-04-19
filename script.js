@@ -50,7 +50,9 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 },
         { id: "29", promoPrice: 7.00 }
     ],
-    5: [ // Sexta: Bolo Prestigio e Torta de Frango
+    5: [ // Sexta: Cachorro Quente, Croissant,Bolo Prestigio e Torta de Frango
+        { id: "29", promoPrice: 7.00 },
+        { id: "12", promoPrice: 8.00 },
         { id: "18", promoPrice: 7.00 },
         { id: "30", promoPrice: 7.00 }
     ]
@@ -132,7 +134,7 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
 
     const displayPrice = isPromo ? promoPrice : item.price;
     const promoClasses = isPromo ? 'promo-price-text' : '';
-    const originalPriceHTML = isPromo ? 
+    const originalPriceHTML = isPromo ?
         `<span class="text-muted text-decoration-line-through me-2" style="font-size: 0.85rem;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>` : '';
 
     return `
