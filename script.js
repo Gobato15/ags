@@ -50,7 +50,7 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 },
         { id: "29", promoPrice: 7.00 }
     ],
-    5: [ // Sexta: Cachorro Quente, Croissant,Bolo Prestigio e Torta de Frango
+    5: [ // Sexta: Cachorro Quente, Croissant, Bolo Prestigio e Torta de Frango
         { id: "29", promoPrice: 7.00 },
         { id: "12", promoPrice: 8.00 },
         { id: "18", promoPrice: 7.00 },
@@ -196,7 +196,7 @@ function renderDailyPromos() {
         const item = menuItems.find(i => i.id === promo.id);
         if (item) {
             itemsHTML += `
-                <div class="promo-product-card" style="flex: 0 1 320px; width: 100%;">
+                <div class="col">
                     ${createProductCard(item, true, promo.promoPrice, index)}
                 </div>
             `;
@@ -218,7 +218,7 @@ function renderDailyPromos() {
         </div>
         
         <div class="promo-banner" style="background: ${gradients[today]}; border-radius: 25px; padding: 2.5rem 1.5rem;">
-            <div class="promo-items d-flex flex-wrap justify-content-center gap-4">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
                 ${itemsHTML}
             </div>
         </div>

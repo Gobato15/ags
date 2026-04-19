@@ -178,7 +178,7 @@ header.scrolled {
     background: white;
     border-radius: var(--radius);
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
     border: 1px solid rgba(0, 0, 0, 0.03);
     display: flex;
     flex-direction: column;
@@ -187,9 +187,9 @@ header.scrolled {
 }
 
 .product-card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 25px 40px -10px rgba(245, 61, 45, 0.15);
-    border-color: rgba(245, 61, 45, 0.1);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+    border-color: rgba(232, 50, 31, 0.1);
 }
 
 .product-image-container {
