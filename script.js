@@ -315,6 +315,7 @@ window.addToCart = function (id, name, price) {
         cart.push({ id, name, price, quantity: 1 });
     }
     updateCartUI();
+    showToast(`${name} adicionado! 🛒`);
 
     // Feedback visual no ícone
     if (event && event.currentTarget) {
@@ -542,6 +543,51 @@ window.checkout = function () {
     const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 };
+
+// Sistema de Toast
+function showToast(message) {
+    const container = document.getElementById('toastContainer');
+    if (!container) return;
+
+    const toast = document.createElement('div');
+    toast.className = 'toast-custom';
+    toast.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+        setTimeout(() => toast.remove(), 400);
+    }, 2500);
+}
+
+// Lógica de Dark Mode
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+    const setCategoryTheme = () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        const icon = themeToggle.querySelector('i');
+        if (theme === 'dark') {
+            icon.className = 'fas fa-sun';
+        } else {
+            icon.className = 'fas fa-moon';
+        }
+    };
+
+    // Check LocalStorage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    setCategoryTheme();
+
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        setCategoryTheme();
+        showToast(`Modo ${newTheme === 'dark' ? 'Escuro' : 'Claro'} ativado!`);
+    });
+}
 
 // Carregamento inicial
 window.onload = loadMenu;

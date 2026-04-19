@@ -19,6 +19,19 @@
     --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --background: #0f0f0f;
+    --surface: #1e1e1e;
+    --text: #f3f4f6;
+    --text-muted: #9ca3af;
+    --glass-bg: rgba(30, 30, 30, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 20px -3px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 25px 40px -5px rgba(0, 0, 0, 0.6);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -175,15 +188,15 @@ header.scrolled {
 
 /* Product Card */
 .product-card {
-    background: white;
+    background: var(--surface);
     border-radius: var(--radius);
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    border: 1px solid var(--glass-border);
     display: flex;
     flex-direction: column;
     position: relative;
-    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow-sm);
 }
 
 .product-card:hover {
@@ -721,6 +734,60 @@ header.scrolled {
 
 .qr-code-wrapper:hover {
     transform: scale(1.05);
+}
+
+/* Dark Mode Toggle Button */
+.theme-toggle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: var(--surface);
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+/* Toast Notifications */
+.toast-container {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    pointer-events: none;
+}
+
+.toast-custom {
+    background: var(--secondary);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: toastSlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: auto;
+}
+
+[data-theme="dark"] .toast-custom {
+    background: var(--primary);
+}
+
+@keyframes toastSlideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes slideDown {
