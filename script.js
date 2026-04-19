@@ -23,13 +23,16 @@ const searchInput = document.getElementById('searchInput');
 
 // Configuração das promoções da semana (Cronograma Reestabelecido)
 const dailyPromotions = {
-    1: [ // Segunda: Hamburguinhos, Pão Caseiro e Doce de Abacaxi
+    1: [ // Segunda: Hamburguinhos, Pão Caseiro, Bolo Prestigio e Doce de Abacaxi
         { id: "0", promoPrice: 7.00 },
         { id: "4", promoPrice: 10.00 },
         { id: "31", promoPrice: 11.00 },
+        { id: "18", promoPrice: 7.00 },
         { id: "28", promoPrice: 6.00 }
     ],
-    2: [ // Terça: Croissant e Pizzas Brotinho
+    2: [ // Terça: Hamburguinhos,Croissant e Pizzas Brotinho
+        { id: "0", promoPrice: 7.00 },
+        { id: "4", promoPrice: 10.00 },
         { id: "12", promoPrice: 8.00 },
         { id: "25", promoPrice: 7.00 },
         { id: "26", promoPrice: 7.00 },
@@ -50,11 +53,12 @@ const dailyPromotions = {
         { id: "27", promoPrice: 7.00 },
         { id: "29", promoPrice: 7.00 }
     ],
-    5: [ // Sexta: Cachorro Quente, Croissant, Bolo Prestigio e Torta de Frango
+    5: [ // Sexta: Cachorro Quente, Croissant, Bolo Prestigio, Torta de Frango e Arroz Doce de Paçoca
         { id: "29", promoPrice: 7.00 },
         { id: "12", promoPrice: 8.00 },
         { id: "18", promoPrice: 7.00 },
-        { id: "30", promoPrice: 7.00 }
+        { id: "30", promoPrice: 7.00 },
+        { id: "24", promoPrice: 3.00 }
     ]
 };
 
