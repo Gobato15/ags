@@ -517,14 +517,6 @@ window.checkout = function () {
 
     const chavePix = "00ede306-8a84-4955-939c-ead6e5a81781";
 
-    let modalidadeStr = isEntrega ? 'Entrega' : 'Retirada';
-    if (isEntrega) {
-        const street = document.getElementById('deliveryStreet').value;
-        const number = document.getElementById('deliveryNumber').value;
-        const note = document.getElementById('deliveryNote').value;
-        modalidadeStr += ` (${street}, ${number}${note ? ' - ' + note : ''})`;
-    }
-
     let message = `*PEDIDO CONFIRMADO — AGS Delivery*\n`;
     message += `━━━━━━━━━━━━━━━━━━\n\n`;
     message += `👤 *CLIENTE*\n`;
