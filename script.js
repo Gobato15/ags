@@ -525,13 +525,24 @@ window.checkout = function () {
         modalidadeStr += ` (${street}, ${number}${note ? ' - ' + note : ''})`;
     }
 
-    let message = `*Novo Pedido — AGS Delivery*\n`;
-    message += `━━━━━━━━━━━━━━━━━━\n`;
-    message += `*Cliente:* ${name}\n`;
-    message += `*Contato:* ${phone}\n`;
-    message += `*Modalidade:* ${modalidadeStr}\n\n`;
+    let message = `*PEDIDO CONFIRMADO — AGS Delivery*\n`;
+    message += `━━━━━━━━━━━━━━━━━━\n\n`;
+    message += `👤 *CLIENTE*\n`;
+    message += `• Nome: ${name}\n`;
+    message += `• Contato: ${phone}\n\n`;
 
-    message += `*Itens:*\n`;
+    if (isEntrega) {
+        const street = document.getElementById('deliveryStreet').value;
+        const number = document.getElementById('deliveryNumber').value;
+        const note = document.getElementById('deliveryNote').value;
+        message += `📍 *ENTREGA*\n`;
+        message += `• Endereço: ${street}, ${number}\n`;
+        message += `• Referência: ${note || 'Nenhuma'}\n\n`;
+    } else {
+        message += `📍 *RETIRADA NO LOCAL*\n\n`;
+    }
+
+    message += `📦 *RESUMO DO PEDIDO*\n`;
     cart.forEach(item => {
         message += `• ${item.quantity}x ${item.name}\n`;
     });
@@ -540,13 +551,13 @@ window.checkout = function () {
     const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
     const total = subtotal + currentFreight;
 
-    message += `\n*Total a Pagar: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
-    message += `━━━━━━━━━━━━━━━━━━\n`;
-    message += `*Pagamento via PIX*\n`;
-    message += `Chave Aleatória: \`${chavePix}\`\n`;
-    message += `Favorecido: Mauricio R. Gobato\n`;
-    message += `*Banco Santander*\n\n`;
-    message += `_Por favor, anexe o comprovante abaixo._`;
+    message += `\n💰 *VALOR TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `💳 *PAGAMENTO (PIX)*\n\n`;
+    message += `• Chave: \`${chavePix}\`\n`;
+    message += `• Favorecido: Mauricio Rogerio Gobato\n`;
+    message += `• Banco: Santander\n\n`;
+    message += `_Por favor, anexe o comprovante acima._`;
 
     const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
