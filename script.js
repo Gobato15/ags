@@ -171,22 +171,11 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
                             </div>
                         </div>
                         
-                        <div class="quantity-control-wrapper">
-                            ${quantity > 0 ? `
-                                <div class="d-flex align-items-center gap-2 bg-light rounded-pill p-1 shadow-sm border">
-                                    <button class="btn btn-sm p-0 border-0 bg-transparent text-danger" style="width: 24px; height: 24px;" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${displayPrice})">
-                                        <i class="fas fa-minus-circle"></i>
-                                    </button>
-                                    <span class="fw-bold small px-1">${quantity}</span>
-                                    <button class="btn btn-sm p-0 border-0 bg-transparent text-primary" style="width: 24px; height: 24px;" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${displayPrice})">
-                                        <i class="fas fa-plus-circle"></i>
-                                    </button>
-                                </div>
-                            ` : `
-                                <button class="btn-add-cart" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${displayPrice})" aria-label="Adicionar ao carrinho">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            `}
+                        <div class="d-flex align-items-center gap-2">
+                            ${quantity > 0 ? `<span class="badge bg-success rounded-pill px-2 py-1 shadow-sm"><i class="fas fa-shopping-bag me-1"></i> ${quantity}</span>` : ''}
+                            <button class="btn-add-cart ${quantity > 0 ? 'active' : ''}" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${displayPrice})" aria-label="Adicionar ao carrinho" style="${quantity > 0 ? 'background: #25D366;' : ''}">
+                                <i class="fas ${quantity > 0 ? 'fa-check' : 'fa-plus'}"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
