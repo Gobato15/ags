@@ -165,23 +165,28 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
                 <div class="mt-auto pt-3 border-top w-100">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="price-wrapper text-start">
-                            <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.6rem; letter-spacing: 0.5px;">a partir de</span>
-                            <div class="d-flex align-items-center">
+                            <div class="d-flex flex-column">
                                 ${originalPriceHTML}
-                                <span class="h5 fw-bold mb-0 ${promoClasses}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
+                                <span class="h4 fw-bold mb-0 ${promoClasses}" style="${isPromo ? 'color: #f53d2d;' : ''}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
                             </div>
                         </div>
                         
-                        <div class="d-flex align-items-center gap-2">
+                        <div class="quantity-control-wrapper">
                             ${quantity > 0 ? `
-                                <button class="btn btn-sm btn-outline-danger rounded-circle p-1" style="width: 28px; height: 28px;" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${displayPrice})">
-                                    <i class="fas fa-minus"></i>
+                                <div class="d-flex align-items-center gap-2 bg-light rounded-pill p-1 shadow-sm border">
+                                    <button class="btn btn-sm p-0 border-0 bg-transparent text-danger" style="width: 24px; height: 24px;" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${displayPrice})">
+                                        <i class="fas fa-minus-circle"></i>
+                                    </button>
+                                    <span class="fw-bold small px-1">${quantity}</span>
+                                    <button class="btn btn-sm p-0 border-0 bg-transparent text-primary" style="width: 24px; height: 24px;" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${displayPrice})">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </div>
+                            ` : `
+                                <button class="btn-add-cart" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${displayPrice})" aria-label="Adicionar ao carrinho">
+                                    <i class="fas fa-plus"></i>
                                 </button>
-                                <span class="fw-bold px-1">${quantity}</span>
-                            ` : ''}
-                            <button class="btn-add-cart ${quantity > 0 ? 'active' : ''}" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${displayPrice})" aria-label="Adicionar ao carrinho">
-                                <i class="fas ${quantity > 0 ? 'fa-plus' : 'fa-plus'}"></i>
-                            </button>
+                            `}
                         </div>
                     </div>
                 </div>
@@ -396,12 +401,12 @@ function updateCartUI() {
                     <h6 class="fw-bold mb-1">${item.name}</h6>
                     <div class="d-flex align-items-center gap-3">
                         <small class="text-muted">R$ ${item.price.toFixed(2).replace('.', ',')} cada</small>
-                        <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border">
-                            <button class="btn btn-sm p-0 text-danger border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${item.price})">
+                        <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border" style="transform: scale(0.9);">
+                            <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${item.price})">
                                 <i class="fas fa-minus-circle"></i>
                             </button>
                             <span class="fw-bold small" style="min-width: 20px; text-align: center;">${item.quantity}</span>
-                            <button class="btn btn-sm p-0 text-primary border-0 bg-transparent" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${item.price})">
+                            <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${item.price})">
                                 <i class="fas fa-plus-circle"></i>
                             </button>
                         </div>

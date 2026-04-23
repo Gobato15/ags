@@ -251,15 +251,16 @@
                     <div class="flex-grow-1">
                         <h6 class="fw-bold mb-1">${item.name}</h6>
                         <div class="d-flex align-items-center gap-2">
-                             <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border">
-                                <button class="btn btn-sm p-0 text-danger border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1)">
+                             <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border" style="transform: scale(0.9);">
+                                <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1)">
                                     <i class="fas fa-minus-circle"></i>
                                 </button>
                                 <span class="fw-bold small" style="min-width: 20px; text-align: center;">${item.quantity}</span>
-                                <button class="btn btn-sm p-0 text-primary border-0 bg-transparent" onclick="alterarQtd('${item.id}', 1)">
+                                <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', 1)">
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
                             </div>
+
                             <small class="text-muted">R$ ${item.price.toFixed(2).replace('.', ',')} </small>
                         </div>
                     </div>
