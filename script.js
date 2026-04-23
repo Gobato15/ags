@@ -388,14 +388,25 @@ function updateCartUI() {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
         itemsHTML += `
-            <div class="cart-item shadow-sm border p-3 rounded-4 mb-2">
+            <div class="cart-item shadow-sm border p-3 rounded-4 mb-2 d-flex justify-content-between align-items-center">
                 <div class="flex-grow-1">
-                    <h6 class="fw-bold mb-0">${item.name}</h6>
-                    <small class="text-muted">${item.quantity}x R$ ${item.price.toFixed(2).replace('.', ',')}</small>
+                    <h6 class="fw-bold mb-1">${item.name}</h6>
+                    <div class="d-flex align-items-center gap-3">
+                        <small class="text-muted">R$ ${item.price.toFixed(2).replace('.', ',')} cada</small>
+                        <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border">
+                            <button class="btn btn-sm p-0 text-danger" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${item.price})">
+                                <i class="fas fa-minus-circle"></i>
+                            </button>
+                            <span class="fw-bold small" style="min-width: 20px; text-align: center;">${item.quantity}</span>
+                            <button class="btn btn-sm p-0 text-primary" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${item.price})">
+                                <i class="fas fa-plus-circle"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="text-end">
-                    <div class="fw-bold text-success mb-1">R$ ${itemTotal.toFixed(2).replace('.', ',')}</div>
-                    <button class="btn btn-sm btn-outline-danger border-0 rounded-circle" onclick="removeFromCart(${index})">
+                    <div class="fw-bold text-dark mb-1">R$ ${itemTotal.toFixed(2).replace('.', ',')}</div>
+                    <button class="btn btn-sm text-danger p-0" onclick="removeFromCart(${index})" title="Remover item">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
