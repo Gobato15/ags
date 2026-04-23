@@ -247,14 +247,75 @@
         function renderOrder() {
             const container = document.getElementById('orderItems');
             container.innerHTML = cart.map(item => `
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div>
-                        <span class="fw-bold">${item.quantity}x</span> ${item.name}
+                <div class="cart-item border p-3 rounded-4 mb-2 d-flex justify-content-between align-items-center bg-white shadow-sm">
+                    <div class="flex-grow-1">
+                        <h6 class="fw-bold mb-1">${item.name}</h6>
+                        <div class="d-flex align-items-center gap-2">
+                             <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border">
+                                <button class="btn btn-sm p-0 text-danger border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1)">
+                                    <i class="fas fa-minus-circle"></i>
+                                </button>
+                                <span class="fw-bold small" style="min-width: 20px; text-align: center;">${item.quantity}</span>
+                                <button class="btn btn-sm p-0 text-primary border-0 bg-transparent" onclick="alterarQtd('${item.id}', 1)">
+                                    <i class="fas fa-plus-circle"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">R$ ${item.price.toFixed(2).replace('.', ',')} </small>
+                        </div>
                     </div>
-                    <div class="text-muted small">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</div>
+                    <div class="text-end">
+                        <div class="fw-bold text-dark">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</div>
+                    </div>
                 </div>
             `).join('');
             document.getElementById('resumoSubtotal').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+        }
+
+        function alterarQtd(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity += delta;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+                
+                if (cart.length === 0) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                // Recalcula subtotal
+                subtotal = cart.reduce((t, i) => t + (i.price * i.quantity), 0);
+                
+                // Atualiza LocalStorage
+                localStorage.setItem('cartAGS', JSON.stringify(cart));
+                localStorage.setItem('subtotalAGS', subtotal.toFixed(2));
+                
+                // Re-renderiza e atualiza totais
+                renderOrder();
+                updateTotals();
+                
+                // Se o pagamento já foi gerado, resetamos o estado
+                if (document.getElementById('qrCodeArea').style.display === 'block') {
+                    resetPagamento();
+                }
+            }
+        }
+
+        function resetPagamento() {
+            document.getElementById('qrCodeArea').style.display = 'none';
+            document.getElementById('btnGerarPix').style.display = 'inline-block';
+            document.getElementById('btnGerarPix').disabled = false;
+            document.getElementById('btnGerarPix').innerHTML = '<i class="fas fa-qrcode me-2"></i> Gerar Pagamento via PIX';
+            
+            const btn = document.getElementById('btnFinalizar');
+            btn.disabled = true;
+            btn.classList.add('opacity-50');
+            btn.classList.remove('pulse-animation');
+            
+            const status = document.getElementById('paymentStatus');
+            status.className = "alert alert-info rounded-pill py-2 border-0";
+            status.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span> Aguardando pagamento...';
         }
 
         function toggleDeliveryFields() {

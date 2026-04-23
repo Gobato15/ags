@@ -343,7 +343,10 @@ window.alterarQtd = function (id, delta, name, price) {
     // Atualiza a visualização do menu para refletir as quantidades nos cards
     const activeBtn = document.querySelector('.categories .btn-dark');
     const activeCategory = activeBtn ? activeBtn.dataset.category : 'all';
-    renderMenu(activeCategory, document.getElementById('searchInput').value);
+    const searchEl = document.getElementById('searchInput');
+    if (searchEl) {
+        renderMenu(activeCategory, searchEl.value);
+    }
     
     if (delta > 0) showToast(`${name} adicionado! 🛒`);
 };
@@ -394,11 +397,11 @@ function updateCartUI() {
                     <div class="d-flex align-items-center gap-3">
                         <small class="text-muted">R$ ${item.price.toFixed(2).replace('.', ',')} cada</small>
                         <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border">
-                            <button class="btn btn-sm p-0 text-danger" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${item.price})">
+                            <button class="btn btn-sm p-0 text-danger border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${item.price})">
                                 <i class="fas fa-minus-circle"></i>
                             </button>
                             <span class="fw-bold small" style="min-width: 20px; text-align: center;">${item.quantity}</span>
-                            <button class="btn btn-sm p-0 text-primary" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${item.price})">
+                            <button class="btn btn-sm p-0 text-primary border-0 bg-transparent" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${item.price})">
                                 <i class="fas fa-plus-circle"></i>
                             </button>
                         </div>
