@@ -150,6 +150,9 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
     const originalPriceHTML = isPromo ?
         `<span class="text-muted text-decoration-line-through me-2" style="font-size: 0.85rem;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>` : '';
 
+    const cartItem = cart.find(c => c.id === item.id);
+    const quantity = cartItem ? cartItem.quantity : 0;
+
     return `
         <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'promo-border' : ''}" style="animation: slideUp 0.5s ease forwards; animation-delay: ${index * 0.05}s">
             <div class="position-relative overflow-hidden">
@@ -168,9 +171,18 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
                                 <span class="h5 fw-bold mb-0 ${promoClasses}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
                             </div>
                         </div>
-                        <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.name}', ${displayPrice})" aria-label="Adicionar ao carrinho">
-                            <i class="fas fa-plus"></i>
-                        </button>
+                        
+                        <div class="d-flex align-items-center gap-2">
+                            ${quantity > 0 ? `
+                                <button class="btn btn-sm btn-outline-danger rounded-circle p-1" style="width: 28px; height: 28px;" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${displayPrice})">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span class="fw-bold px-1">${quantity}</span>
+                            ` : ''}
+                            <button class="btn-add-cart ${quantity > 0 ? 'active' : ''}" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${displayPrice})" aria-label="Adicionar ao carrinho">
+                                <i class="fas ${quantity > 0 ? 'fa-plus' : 'fa-plus'}"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -315,150 +327,48 @@ if (searchInput) {
 }
 
 // Lógica do Carrinho
-window.addToCart = function (id, name, price) {
+window.alterarQtd = function (id, delta, name, price) {
     const existing = cart.find(item => item.id === id);
     if (existing) {
-        existing.quantity++;
-    } else {
+        existing.quantity += delta;
+        if (existing.quantity <= 0) {
+            cart = cart.filter(item => item.id !== id);
+        }
+    } else if (delta > 0) {
         cart.push({ id, name, price, quantity: 1 });
     }
+    
     updateCartUI();
-    showToast(`${name} adicionado! 🛒`);
-
-    // Feedback visual no ícone
-    if (event && event.currentTarget) {
-        const btn = event.currentTarget;
-        btn.innerHTML = '<i class="fas fa-check"></i>';
-        btn.classList.add('active');
-        setTimeout(() => {
-            btn.innerHTML = '<i class="fas fa-plus"></i>';
-            btn.classList.remove('active');
-        }, 1000);
-    }
+    
+    // Atualiza a visualização do menu para refletir as quantidades nos cards
+    const activeBtn = document.querySelector('.categories .btn-dark');
+    const activeCategory = activeBtn ? activeBtn.dataset.category : 'all';
+    renderMenu(activeCategory, document.getElementById('searchInput').value);
+    
+    if (delta > 0) showToast(`${name} adicionado! 🛒`);
 };
 
-window.toggleDeliveryFields = function () {
-    const isEntrega = document.getElementById('modeEntrega').checked;
-    const deliveryFields = document.getElementById('deliveryAddressFields');
-    const freightRow = document.getElementById('freightRow');
-
-    if (isEntrega) {
-        deliveryFields.style.display = 'block';
-        freightRow.style.setProperty('display', 'flex', 'important');
-    } else {
-        deliveryFields.style.display = 'none';
-        freightRow.style.setProperty('display', 'none', 'important');
-    }
-    updateCartUI();
+window.addToCart = function (id, name, price) {
+    window.alterarQtd(id, 1, name, price);
 };
 
-window.checkCep = function (input) {
-    let cep = input.value.replace(/\D/g, '');
-    if (cep.length > 5) {
-        input.value = cep.substring(0, 5) + '-' + cep.substring(5, 8);
-    } else {
-        input.value = cep;
+window.irParaPagamento = function () {
+    if (cart.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
     }
-
-    if (cep.length === 8) {
-        fetchAddress(cep);
-    }
+    // Salva o carrinho e subtotal para a página de pagamento
+    const subtotal = cart.reduce((t, i) => t + (i.price * i.quantity), 0);
+    localStorage.setItem('cartAGS', JSON.stringify(cart));
+    localStorage.setItem('subtotalAGS', subtotal.toFixed(2));
+    window.location.href = 'pagamento.html';
 };
 
-async function fetchAddress(cep) {
-    const cityField = document.getElementById('deliveryCity');
-    const streetField = document.getElementById('deliveryStreet');
-
-    cityField.value = "Buscando...";
-    streetField.value = "Buscando...";
-
-    try {
-        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-        const data = await response.json();
-
-        if (!data.erro) {
-            cityField.value = `${data.localidade} - ${data.bairro}`;
-            streetField.value = data.logradouro;
-            calculateFreight(cep);
-        } else {
-            alert("CEP não encontrado!");
-            cityField.value = "";
-            streetField.value = "";
-        }
-    } catch (e) {
-        console.error("Erro ao buscar CEP", e);
-        cityField.value = "";
-        streetField.value = "";
-    }
-}
-
-let deliveryFee = 0;
-let deliveryDistance = 0;
-
-window.calculateFreight = function (cep) {
-    if (!cep) cep = document.getElementById('deliveryCep').value.replace(/\D/g, '');
-    const freightElement = document.getElementById('cartFreight');
-
-    if (cep.length === 8) {
-        // Simulação de distância (Integrado à lógica de entrega inteligente)
-        const lastDigits = parseInt(cep.substring(5));
-        deliveryDistance = 1 + (lastDigits % 10);
-
-        // Regra de Negócio Atualizada:
-        // Base: R$ 7,00 (Válido para qualquer entrega até 3 km)
-        // Adicional: R$ 0,60 por km rodado que exceder os 3 km iniciais
-        let baseFee = 7.00;
-        let increment = 0;
-
-        if (deliveryDistance > 3) {
-            increment = (deliveryDistance - 3) * 0.60;
-        }
-
-        deliveryFee = baseFee + increment;
-
-        freightElement.textContent = `R$ ${deliveryFee.toFixed(2).replace('.', ',')} (${deliveryDistance.toFixed(1)}km)`;
-    } else {
-        deliveryFee = 0;
-        deliveryDistance = 0;
-        freightElement.textContent = 'R$ 0,00';
-    }
-    updateCartUI();
-};
-
-window.removeFromCart = function (index) {
-    cart.splice(index, 1);
-    updateCartUI();
-};
-
-window.liberarEntrega = function () {
-    const arquivo = document.getElementById('comprovante').files.length;
-    const botao = document.getElementById('btnFinalizar');
-
-    if (arquivo > 0) {
-        botao.disabled = false;
-        botao.classList.remove('opacity-50');
-        botao.innerHTML = '<i class="fab fa-whatsapp me-2"></i> ✅ Tudo Pronto! Enviar Pedido';
-        showToast("Comprovante anexado! Botão liberado. 🔓");
-    } else {
-        botao.disabled = true;
-        botao.classList.add('opacity-50');
-        botao.innerHTML = '<i class="fab fa-whatsapp me-2"></i> Finalizar e Liberar Entrega';
-    }
-};
 
 function updateCartUI() {
     const cartItemsContainer = document.getElementById('cartItems');
     const cartCount = document.getElementById('cartCount');
     const cartTotal = document.getElementById('cartTotal');
-    const cartSubtotal = document.getElementById('cartSubtotal');
-    const cartFreight = document.getElementById('cartFreight');
-
-    // Elementos do Resumo (Bloqueio de Segurança)
-    const resumoBox = document.getElementById('descritivoPedido');
-    const resumoNome = document.getElementById('resumoNome');
-    const resumoEnd = document.getElementById('resumoEnd');
-    const resumoItens = document.getElementById('resumoItens');
-    const resumoTotal = document.getElementById('resumoTotal');
 
     if (!cartItemsContainer || !cartCount || !cartTotal) return;
 
@@ -468,20 +378,15 @@ function updateCartUI() {
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p class="text-muted text-center my-4 py-4 bg-light rounded-4">Seu carrinho está vazio.</p>';
         cartTotal.textContent = 'R$ 0,00';
-        if (cartSubtotal) cartSubtotal.textContent = 'R$ 0,00';
-        if (cartFreight) cartFreight.textContent = 'R$ 0,00';
-        if (resumoBox) resumoBox.style.display = 'none';
         return;
     }
 
     let itemsHTML = '';
-    let itemsResumo = [];
     let subtotal = 0;
 
     cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
-        itemsResumo.push(`${item.quantity}x ${item.name}`);
         itemsHTML += `
             <div class="cart-item shadow-sm border p-3 rounded-4 mb-2">
                 <div class="flex-grow-1">
@@ -499,105 +404,14 @@ function updateCartUI() {
     });
 
     cartItemsContainer.innerHTML = itemsHTML;
-
-    const isEntrega = document.getElementById('modeEntrega') ? document.getElementById('modeEntrega').checked : false;
-    const currentFreight = isEntrega ? deliveryFee : 0;
-    const finalTotal = subtotal + currentFreight;
-
-    const totalStr = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
-    if (cartSubtotal) cartSubtotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-    if (cartFreight) cartFreight.textContent = `R$ ${currentFreight.toFixed(2).replace('.', ',')}`;
-    cartTotal.textContent = totalStr;
-
-    // Atualiza Resumo de Segurança
-    if (resumoBox) {
-        resumoBox.style.display = 'block';
-        const nomeVal = document.getElementById('customerName').value || 'Pendente';
-        resumoNome.textContent = nomeVal;
-
-        if (isEntrega) {
-            const rua = document.getElementById('deliveryStreet').value || '...';
-            const num = document.getElementById('deliveryNumber').value || '...';
-            resumoEnd.textContent = `${rua}, ${num}`;
-        } else {
-            resumoEnd.textContent = "Retirada no Local";
-        }
-
-        resumoItens.textContent = itemsResumo.join(', ');
-        resumoTotal.textContent = totalStr;
-    }
+    cartTotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
 }
 
-window.copyPix = function () {
-    const pixKey = document.getElementById('pixKey');
-    pixKey.select();
-    pixKey.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(pixKey.value);
-
-    const btn = event.currentTarget;
-    const originalHTML = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-check me-1"></i> Copiado!';
-    btn.classList.replace('btn-primary', 'btn-success');
-
-    setTimeout(() => {
-        btn.innerHTML = originalHTML;
-        btn.classList.replace('btn-success', 'btn-primary');
-    }, 2000);
-};
-
-window.checkout = function () {
-    if (cart.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
+window.removeFromCart = function (index) {
+    const item = cart[index];
+    if (item) {
+        window.alterarQtd(item.id, -item.quantity, item.name, item.price);
     }
-
-    const name = document.getElementById('customerName').value;
-    const phone = document.getElementById('customerPhone').value;
-    const isEntrega = document.getElementById('modeEntrega').checked;
-
-    if (!name || !phone) {
-        alert("Por favor, preencha seu nome e telefone!");
-        return;
-    }
-
-    const chavePix = "00ede306-8a84-4955-939c-ead6e5a81781";
-
-    let message = `*PEDIDO CONFIRMADO — AGS Delivery*\n`;
-    message += `━━━━━━━━━━━━━━━━━━\n\n`;
-    message += `👤 *CLIENTE*\n`;
-    message += `• Nome: ${name}\n`;
-    message += `• Contato: ${phone}\n\n`;
-
-    if (isEntrega) {
-        const street = document.getElementById('deliveryStreet').value;
-        const number = document.getElementById('deliveryNumber').value;
-        const note = document.getElementById('deliveryNote').value;
-        message += `📍 *ENTREGA*\n`;
-        message += `• Endereço: ${street}, ${number}\n`;
-        message += `• Referência: ${note || 'Nenhuma'}\n\n`;
-    } else {
-        message += `📍 *RETIRADA NO LOCAL*\n\n`;
-    }
-
-    message += `📦 *RESUMO DO PEDIDO*\n`;
-    cart.forEach(item => {
-        message += `• ${item.quantity}x ${item.name}\n`;
-    });
-
-    const currentFreight = isEntrega ? deliveryFee : 0;
-    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    const total = subtotal + currentFreight;
-
-    message += `\n💰 *VALOR TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
-    message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `💳 *PAGAMENTO (PIX)*\n\n`;
-    message += `• Chave: \`${chavePix}\`\n`;
-    message += `• Favorecido: Mauricio Rogerio Gobato\n`;
-    message += `• Banco: Santander\n\n`;
-    message += `_Por favor, anexe o comprovante acima._`;
-
-    const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
 };
 
 // Sistema de Toast
