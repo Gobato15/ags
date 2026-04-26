@@ -100,7 +100,9 @@
         }
 
         @keyframes shine {
-            to { background-position: 200% center; }
+            to {
+                background-position: 200% center;
+            }
         }
 
         .brand-subtitle {
@@ -255,8 +257,8 @@
         }
 
         .qr-box img {
-            width: 170px;
-            height: 170px;
+            width: 180px;
+            height: 180px;
             padding: 12px;
             background: white;
             border-radius: 12px;
@@ -267,8 +269,8 @@
         }
 
         .qr-box:last-child img {
-            width: 170px;
-            height: 170px;
+            width: 180px;
+            height: 180px;
             padding: 12px;
             background: #ffffff;
             border: 2px solid #f0f0f0;
@@ -277,13 +279,27 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .qr-box:last-child img:hover {
@@ -353,11 +369,21 @@
                 print-color-adjust: exact;
             }
 
+            html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
             .banner-container {
-                width: 210mm;
-                height: 297mm;
+                width: 100vw;
+                height: 100vh;
                 background: #ffffff !important;
                 border: none !important;
+                box-sizing: border-box !important;
+                display: flex !important;
+                flex-direction: column !important;
             }
 
             .banner-container::before {
@@ -383,6 +409,10 @@
 
             .content-card {
                 padding: 0 !important;
+                flex: 1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                box-sizing: border-box !important;
             }
 
             .menu-grid {
@@ -390,6 +420,7 @@
                 display: block !important;
                 column-count: 3;
                 column-gap: 18mm;
+                flex: 1 !important;
             }
 
             .menu-item {
@@ -416,22 +447,31 @@
             }
 
             .footer-section {
-                margin-top: 5mm !important;
-                padding: 10mm 15mm !important;
+                margin-top: auto !important;
+                padding: 5mm 15mm 10mm !important;
                 border: none !important;
-                display: block !important;
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: flex-end !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
 
             .contact-info {
-                float: left !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 4mm !important;
             }
 
             .qr-section {
-                float: right !important;
+                display: flex !important;
+                gap: 10mm !important;
             }
 
             .qr-box img {
-                border: 1px solid #000 !important;
+                width: 45mm !important;
+                height: 45mm !important;
+                border: 1px solid #ddd !important;
             }
         }
     </style>
@@ -448,27 +488,66 @@
             </div>
 
             <div class="menu-grid">
-                <div class="menu-item" style="animation-delay: 0.1s;"><span class="item-name"><i class="fas fa-hamburger"></i>Hamburguinho</span><span class="item-price">R$ 8,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.15s;"><span class="item-name"><i class="fas fa-hamburger"></i>Hamb. Duplo Bacon</span><span class="item-price">R$ 10,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.2s;"><span class="item-name"><i class="fas fa-drumstick-bite"></i>Coxinha de Frango</span><span class="item-price">R$ 8,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.25s;"><span class="item-name"><i class="fas fa-hotdog"></i>Cachorro Quente</span><span class="item-price">R$ 8,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.3s;"><span class="item-name"><i class="fas fa-sandwich"></i>Bauru Presunto/Queijo</span><span class="item-price">R$ 8,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.35s;"><span class="item-name"><i class="fas fa-drumstick-bite"></i>Bolinho de Costela</span><span class="item-price">R$ 8,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.4s;"><span class="item-name"><i class="fas fa-utensils"></i>Kibe</span><span class="item-price">R$ 9,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.45s;"><span class="item-name"><i class="fas fa-pizza-slice"></i>Pizza Brotinho</span><span class="item-price">R$ 8,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.5s;"><span class="item-name"><i class="fas fa-utensils"></i>Esfihas</span><span class="item-price">R$ 3,50</span></div>
-                <div class="menu-item" style="animation-delay: 0.55s;"><span class="item-name"><i class="fas fa-bread-slice"></i>Croissant Queijo</span><span class="item-price">R$ 9,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.6s;"><span class="item-name"><i class="fas fa-bread-slice"></i>Croissant Pres/Queijo</span><span class="item-price">R$ 9,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.65s;"><span class="item-name"><i class="fas fa-utensils"></i>Torta de Frango</span><span class="item-price">R$ 8,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.7s;"><span class="item-name"><i class="fas fa-leaf"></i>Lanche Natural</span><span class="item-price">R$ 9,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.75s;"><span class="item-name"><i class="fas fa-bread-slice"></i>Pão Caseiro</span><span class="item-price">R$ 12,50</span></div>
-                <div class="menu-item" style="animation-delay: 0.8s;"><span class="item-name"><i class="fas fa-birthday-cake"></i>Bolo de Pote</span><span class="item-price">R$ 8,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.85s;"><span class="item-name"><i class="fas fa-birthday-cake"></i>Pudim Leite Moça</span><span class="item-price">R$ 7,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.9s;"><span class="item-name"><i class="fas fa-birthday-cake"></i>Doce de Abacaxi</span><span class="item-price">R$ 7,00</span></div>
-                <div class="menu-item" style="animation-delay: 0.95s;"><span class="item-name"><i class="fas fa-birthday-cake"></i>Arroz Doce Paçoca</span><span class="item-price">R$ 4,00</span></div>
-                <div class="menu-item" style="animation-delay: 1s;"><span class="item-name"><i class="fas fa-glass-whiskey"></i>Coca-Cola (Lata)</span><span class="item-price">R$ 3,80</span></div>
-                <div class="menu-item" style="animation-delay: 1.05s;"><span class="item-name"><i class="fas fa-glass-whiskey"></i>Sprite (Lata)</span><span class="item-price">R$ 3,00</span></div>
-                <div class="menu-item" style="animation-delay: 1.1s;"><span class="item-name"><i class="fas fa-glass-whiskey"></i>Água Mineral</span><span class="item-price">R$ 2,50</span></div>
+                <div class="menu-item" style="animation-delay: 0.1s;"><span class="item-name"><i
+                            class="fas fa-hamburger"></i>Hamburguinho</span><span class="item-price">R$ 8,00</span>
+                </div>
+                <div class="menu-item" style="animation-delay: 0.15s;"><span class="item-name"><i
+                            class="fas fa-hamburger"></i>Hamb. Duplo Bacon</span><span class="item-price">R$
+                        10,00</span></div>
+                <div class="menu-item" style="animation-delay: 0.2s;"><span class="item-name"><i
+                            class="fas fa-drumstick-bite"></i>Coxinha de Frango</span><span class="item-price">R$
+                        8,00</span></div>
+                <div class="menu-item" style="animation-delay: 0.25s;"><span class="item-name"><i
+                            class="fas fa-hotdog"></i>Cachorro Quente</span><span class="item-price">R$ 8,00</span>
+                </div>
+                <div class="menu-item" style="animation-delay: 0.3s;"><span class="item-name"><i
+                            class="fas fa-sandwich"></i>Bauru Presunto/Queijo</span><span class="item-price">R$
+                        8,00</span></div>
+                <div class="menu-item" style="animation-delay: 0.35s;"><span class="item-name"><i
+                            class="fas fa-drumstick-bite"></i>Bolinho de Costela</span><span class="item-price">R$
+                        8,00</span></div>
+                <div class="menu-item" style="animation-delay: 0.4s;"><span class="item-name"><i
+                            class="fas fa-utensils"></i>Kibe</span><span class="item-price">R$ 9,00</span></div>
+                <div class="menu-item" style="animation-delay: 0.45s;"><span class="item-name"><i
+                            class="fas fa-pizza-slice"></i>Pizza Brotinho</span><span class="item-price">R$ 8,00</span>
+                </div>
+                <div class="menu-item" style="animation-delay: 0.5s;"><span class="item-name"><i
+                            class="fas fa-utensils"></i>Esfihas</span><span class="item-price">R$ 3,50</span></div>
+                <div class="menu-item" style="animation-delay: 0.55s;"><span class="item-name"><i
+                            class="fas fa-bread-slice"></i>Croissant Queijo</span><span class="item-price">R$
+                        9,00</span></div>
+                <div class="menu-item" style="animation-delay: 0.6s;"><span class="item-name"><i
+                            class="fas fa-bread-slice"></i>Croissant Pres/Queijo</span><span class="item-price">R$
+                        9,00</span></div>
+                <div class="menu-item" style="animation-delay: 0.65s;"><span class="item-name"><i
+                            class="fas fa-utensils"></i>Torta de Frango</span><span class="item-price">R$ 8,00</span>
+                </div>
+                <div class="menu-item" style="animation-delay: 0.7s;"><span class="item-name"><i
+                            class="fas fa-leaf"></i>Lanche Natural</span><span class="item-price">R$ 9,00</span></div>
+                <div class="menu-item" style="animation-delay: 0.75s;"><span class="item-name"><i
+                            class="fas fa-bread-slice"></i>Pão Caseiro</span><span class="item-price">R$ 12,50</span>
+                </div>
+                <div class="menu-item" style="animation-delay: 0.8s;"><span class="item-name"><i
+                            class="fas fa-birthday-cake"></i>Bolo de Pote</span><span class="item-price">R$ 8,00</span>
+                </div>
+                <div class="menu-item" style="animation-delay: 0.85s;"><span class="item-name"><i
+                            class="fas fa-birthday-cake"></i>Pudim Leite Moça</span><span class="item-price">R$
+                        7,00</span></div>
+                <div class="menu-item" style="animation-delay: 0.9s;"><span class="item-name"><i
+                            class="fas fa-birthday-cake"></i>Doce de Abacaxi</span><span class="item-price">R$
+                        7,00</span></div>
+                <div class="menu-item" style="animation-delay: 0.95s;"><span class="item-name"><i
+                            class="fas fa-birthday-cake"></i>Arroz Doce Paçoca</span><span class="item-price">R$
+                        4,00</span></div>
+                <div class="menu-item" style="animation-delay: 1s;"><span class="item-name"><i
+                            class="fas fa-glass-whiskey"></i>Coca-Cola (Lata)</span><span class="item-price">R$
+                        3,80</span></div>
+                <div class="menu-item" style="animation-delay: 1.05s;"><span class="item-name"><i
+                            class="fas fa-glass-whiskey"></i>Sprite (Lata)</span><span class="item-price">R$ 3,00</span>
+                </div>
+                <div class="menu-item" style="animation-delay: 1.1s;"><span class="item-name"><i
+                            class="fas fa-glass-whiskey"></i>Água Mineral</span><span class="item-price">R$ 2,50</span>
+                </div>
             </div>
 
             <div class="footer-section">
@@ -490,7 +569,8 @@
                 <div class="qr-section">
                     <div class="qr-box">
                         <a href="https://www.agsdelivery.com.br" target="_blank" rel="noopener noreferrer">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.agsdelivery.com.br" alt="QR Cardápio Digital">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.agsdelivery.com.br"
+                                alt="QR Cardápio Digital">
                         </a>
                         <div class="qr-label">Cardápio Digital</div>
                     </div>
