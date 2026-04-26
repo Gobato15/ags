@@ -250,6 +250,7 @@
                 <div class="cart-item border p-3 rounded-4 mb-2 d-flex justify-content-between align-items-center bg-white shadow-sm">
                     <div class="flex-grow-1">
                         <h6 class="fw-bold mb-1">${item.name}</h6>
+                        ${item.obs ? \`<div class="small text-muted fst-italic mb-2"><i class="fas fa-comment-dots me-1"></i>\${item.obs}</div>\` : ''}
                         <div class="d-flex align-items-center gap-2">
                              <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border" style="transform: scale(0.9);">
                                 <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1)">
@@ -444,6 +445,7 @@
             message += `📦 *RESUMO DO PEDIDO*\n`;
             cart.forEach(item => {
                 message += `• ${item.quantity}x ${item.name} (R$ ${(item.price * item.quantity).toFixed(2)})\n`;
+                if (item.obs) message += `   ↳ Obs: ${item.obs}\n`;
             });
 
             message += `\n💰 *PAGO VIA PIX: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
