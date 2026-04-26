@@ -409,14 +409,19 @@
                     
                     // Iniciar verificação (Aviso de Pagamento)
                     checkPaymentStatus(data.transactionId);
+                    
+                    // Log para desenvolvedor testar aprovação manual
+                    console.log("%c[PAGAMENTO] Link de Aprovação de Teste:", "color: #28a745; font-weight: bold;");
+                    console.log(window.location.origin + window.location.pathname.replace("pagamento.html", "") + "api_pagamento.php?action=simulate_approve&id=" + data.transactionId);
                 } else {
-                    showToast("⚠️ Erro ao gerar PIX: " + data.error);
+                    console.error("Erro da API:", data.error);
+                    showToast("⚠️ " + (data.error || "Erro ao gerar PIX"));
                     resetPagamento();
                 }
             })
             .catch(err => {
-                console.error(err);
-                showToast("⚠️ Erro de comunicação com a API.");
+                console.error("Erro de Rede:", err);
+                showToast("⚠️ Erro de conexão com o servidor.");
                 resetPagamento();
             });
         }
@@ -430,11 +435,12 @@
                 fetch(`api_pagamento.php?action=status&id=${transactionId}`)
                 .then(res => res.json())
                 .then(data => {
+                    console.log("[POLLING] Status do pagamento:", data.status);
                     if(data.status === 'approved') {
                         clearInterval(window.pollingInterval);
                         
                         const status = document.getElementById('paymentStatus');
-                        status.className = "alert alert-success rounded-pill py-2 border-0";
+                        status.className = "alert alert-success rounded-pill py-2 border-0 shadow-sm";
                         status.innerHTML = '<i class="fas fa-check-circle me-2"></i> Pagamento Aprovado com Sucesso!';
                         
                         const btn = document.getElementById('btnFinalizar');
@@ -442,16 +448,16 @@
                         btn.classList.remove('opacity-50');
                         btn.classList.add('pulse-animation');
                         
-                        showToast("✅ Pagamento confirmado! Liberando pedido...");
+                        showToast("✅ Pagamento confirmado! Finalizando seu pedido...");
                         
-                        // Liberação do produto: Clica automaticamente em finalizar após 2 segundos
+                        // Liberação automática após 2.5 segundos
                         setTimeout(() => {
-                            btn.click();
-                        }, 2000);
+                            if (!btn.disabled) finalizarPedido();
+                        }, 2500);
                     }
                 })
-                .catch(err => console.error("Erro no polling", err));
-            }, 3000); // Consulta o aviso a cada 3 segundos
+                .catch(err => console.warn("Polling falhou (aguardando conexão...)", err));
+            }, 3000); 
         }
 
         function copyPix() {

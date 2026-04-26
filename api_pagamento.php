@@ -23,6 +23,7 @@ $action = $_GET['action'] ?? '';
 // Função auxiliar para ler pagamentos
 function readPayments() {
     global $dbFile;
+    if (!file_exists($dbFile)) return [];
     $data = file_get_contents($dbFile);
     return json_decode($data, true) ?: [];
 }
@@ -30,7 +31,13 @@ function readPayments() {
 // Função auxiliar para salvar pagamentos
 function savePayments($payments) {
     global $dbFile;
-    file_put_contents($dbFile, json_encode($payments, JSON_PRETTY_PRINT));
+    // Tenta salvar e verifica se houve erro de permissão
+    $result = @file_put_contents($dbFile, json_encode($payments, JSON_PRETTY_PRINT));
+    if ($result === false) {
+        $error = error_get_last();
+        throw new Exception("Erro ao salvar arquivo de pagamentos: " . ($error['message'] ?? 'Permissão negada'));
+    }
+    return true;
 }
 
 // Roteamento da API
@@ -40,43 +47,46 @@ switch ($action) {
      * Recebe os dados do pedido do frontend e gera uma intenção de pagamento.
      */
     case 'create':
-        $input = json_decode(file_get_contents('php://input'), true);
-        
-        $total = $input['total'] ?? 0;
-        $customerName = $input['customerName'] ?? 'Cliente';
-        
-        if ($total <= 0) {
-            echo json_encode(['error' => 'Valor inválido']);
-            http_response_code(400);
-            exit;
+        try {
+            $input = json_decode(file_get_contents('php://input'), true);
+            
+            $total = $input['total'] ?? 0;
+            $customerName = $input['customerName'] ?? 'Cliente';
+            
+            if ($total <= 0) {
+                echo json_encode(['success' => false, 'error' => 'Valor inválido: R$ ' . $total]);
+                exit;
+            }
+
+            // Gera um ID único para a transação
+            $transactionId = uniqid('txn_') . '_' . time();
+            
+            // Payload PIX Estático (Simulado com formato real do BC)
+            $pixCopiaCola = "00020126580014br.gov.bcb.pix013600ede306-8a84-4955-939c-ead6e5a81781520400005303986" . str_replace('.', '', number_format($total, 2, '.', '')) . "5802BR5925AGS_DELIVERY6009SAO_PAULO62070503***6304E2D1";
+
+            $paymentData = [
+                'id' => $transactionId,
+                'status' => 'pending',
+                'total' => $total,
+                'customer' => $customerName,
+                'created_at' => date('Y-m-d H:i:s'),
+                'pix' => $pixCopiaCola
+            ];
+
+            // Salva no "banco de dados"
+            $payments = readPayments();
+            $payments[$transactionId] = $paymentData;
+            savePayments($payments);
+
+            echo json_encode([
+                'success' => true,
+                'transactionId' => $transactionId,
+                'pixCopiaCola' => $pixCopiaCola,
+                'status' => 'pending'
+            ]);
+        } catch (Exception $e) {
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
-
-        // Gera um ID único para a transação
-        $transactionId = uniqid('txn_');
-        
-        // Aqui você integraria com a API real (ex: gerando Payload PIX)
-        // Para a interface genérica, criamos um PIX Cópia e Cola simulado/genérico
-        $pixCopiaCola = "00020126580014br.gov.bcb.pix0136...PIX_GENERICO...5204000053039865404" . number_format($total, 2, '.', '') . "5802BR5925" . strtoupper(substr($customerName, 0, 20)) . "6009SAO PAULO62070503***6304E2D1";
-
-        $paymentData = [
-            'id' => $transactionId,
-            'status' => 'pending', // pending, approved, rejected
-            'total' => $total,
-            'customer' => $customerName,
-            'created_at' => date('Y-m-d H:i:s')
-        ];
-
-        // Salva no "banco de dados"
-        $payments = readPayments();
-        $payments[$transactionId] = $paymentData;
-        savePayments($payments);
-
-        echo json_encode([
-            'success' => true,
-            'transactionId' => $transactionId,
-            'pixCopiaCola' => $pixCopiaCola,
-            'message' => 'Pagamento gerado com sucesso aguardando confirmação.'
-        ]);
         break;
 
     /**
