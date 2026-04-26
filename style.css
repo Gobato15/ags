@@ -440,7 +440,7 @@ header.scrolled {
 .empty-state i {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--text-muted);
+    color: #eee;
 }
 
 /* Footer Buttons */

@@ -150,11 +150,8 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
     const originalPriceHTML = isPromo ?
         `<span class="text-muted text-decoration-line-through me-2" style="font-size: 0.85rem;">R$ ${item.price.toFixed(2).replace('.', ',')}</span>` : '';
 
-    const cartItem = cart.find(c => c.id === item.id);
-    const quantity = cartItem ? cartItem.quantity : 0;
-
     return `
-        <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'promo-border' : ''}" style="animation: slideUp 0.5s ease forwards; animation-delay: ${index * 0.05}s; cursor: pointer;" onclick="openProductModal('${item.id}', ${isPromo}, ${isPromo ? promoPrice : null})">
+        <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'promo-border' : ''}" style="animation: slideUp 0.5s ease forwards; animation-delay: ${index * 0.05}s">
             <div class="position-relative overflow-hidden">
                 ${isPromo ? '<span class="badge bg-instagram position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">PROMOÇÃO</span>' : ''}
                 <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
@@ -165,85 +162,21 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
                 <div class="mt-auto pt-3 border-top w-100">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="price-wrapper text-start">
-                            <div class="d-flex flex-column">
+                            <span class="d-block text-uppercase fw-bold text-muted mb-1" style="font-size: 0.6rem; letter-spacing: 0.5px;">a partir de</span>
+                            <div class="d-flex align-items-center">
                                 ${originalPriceHTML}
-                                <span class="h4 fw-bold mb-0 ${promoClasses}" style="${isPromo ? 'color: #f53d2d;' : ''}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
+                                <span class="h5 fw-bold mb-0 ${promoClasses}">R$ ${displayPrice.toFixed(2).replace('.', ',')}</span>
                             </div>
                         </div>
-                        
-                        <div class="d-flex align-items-center gap-2">
-                            ${quantity > 0 ? `<span class="badge bg-success rounded-pill px-2 py-1 shadow-sm"><i class="fas fa-shopping-bag me-1"></i> ${quantity}</span>` : ''}
-                            <button class="btn-add-cart" aria-label="Adicionar ao carrinho" style="border-radius: 50%; width: 40px; height: 40px; background: #212529; color: white; border: none;">
-                                <i class="fas fa-plus"></i>
-                            </button>
-                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('${item.id}', '${item.name}', ${displayPrice})" aria-label="Adicionar ao carrinho">
+                            <i class="fas fa-plus"></i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     `;
 }
-
-// Lógica do Modal Estilo iFood
-let currentModalProduct = null;
-let currentModalQty = 1;
-
-window.openProductModal = function(id, isPromo, promoPrice) {
-    const item = menuItems.find(i => i.id === id);
-    if (!item) return;
-    
-    currentModalProduct = {
-        ...item,
-        displayPrice: isPromo ? promoPrice : item.price
-    };
-    currentModalQty = 1;
-    
-    document.getElementById('modalProductName').textContent = item.name;
-    document.getElementById('modalProductDesc').textContent = item.description;
-    document.getElementById('modalProductPrice').textContent = `R$ ${currentModalProduct.displayPrice.toFixed(2).replace('.', ',')}`;
-    
-    let imgSrc = item.image || '';
-    if (imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
-    document.getElementById('modalProductImage').style.backgroundImage = `url('${imgSrc}')`;
-    
-    document.getElementById('modalProductObs').value = '';
-    
-    updateModalUI();
-    
-    const productModal = new bootstrap.Modal(document.getElementById('productModal'));
-    productModal.show();
-};
-
-window.changeModalQty = function(delta) {
-    if (currentModalQty + delta > 0) {
-        currentModalQty += delta;
-        updateModalUI();
-    }
-};
-
-function updateModalUI() {
-    document.getElementById('modalProductQty').textContent = currentModalQty;
-    const total = currentModalProduct.displayPrice * currentModalQty;
-    document.getElementById('modalProductTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    const btnConfirm = document.getElementById('btnConfirmProduct');
-    if (btnConfirm) {
-        btnConfirm.addEventListener('click', () => {
-            if (!currentModalProduct) return;
-            const obs = document.getElementById('modalProductObs').value;
-            
-            // Adiciona ao carrinho com observação
-            window.alterarQtd(currentModalProduct.id, currentModalQty, currentModalProduct.name, currentModalProduct.displayPrice, obs);
-            
-            // Fecha Modal
-            const modalEl = document.getElementById('productModal');
-            const modalInstance = bootstrap.Modal.getInstance(modalEl);
-            if (modalInstance) modalInstance.hide();
-        });
-    }
-});
 
 function renderDailyPromos() {
     const promoContainer = document.getElementById('promoCarouselContainer');
@@ -382,53 +315,150 @@ if (searchInput) {
 }
 
 // Lógica do Carrinho
-window.alterarQtd = function (id, delta, name, price, obs = '') {
-    // Ao receber obs, verificamos se já há um item com a mesma ID e mesma obs no carrinho
-    const existing = cart.find(item => item.id === id && (item.obs || '') === obs);
-    
-    if (existing) {
-        existing.quantity += delta;
-        if (existing.quantity <= 0) {
-            cart = cart.filter(item => item !== existing);
-        }
-    } else if (delta > 0) {
-        cart.push({ id, name, price, quantity: delta, obs });
-    }
-    
-    updateCartUI();
-    
-    // Atualiza a visualização do menu para refletir as quantidades nos cards
-    const activeBtn = document.querySelector('.categories .btn-dark');
-    const activeCategory = activeBtn ? activeBtn.dataset.category : 'all';
-    const searchEl = document.getElementById('searchInput');
-    if (searchEl) {
-        renderMenu(activeCategory, searchEl.value);
-    }
-    
-    if (delta > 0) showToast(`${name} adicionado! 🛒`);
-};
-
 window.addToCart = function (id, name, price) {
-    window.alterarQtd(id, 1, name, price);
-};
-
-window.irParaPagamento = function () {
-    if (cart.length === 0) {
-        alert("Seu carrinho está vazio!");
-        return;
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+        existing.quantity++;
+    } else {
+        cart.push({ id, name, price, quantity: 1 });
     }
-    // Salva o carrinho e subtotal para a página de pagamento
-    const subtotal = cart.reduce((t, i) => t + (i.price * i.quantity), 0);
-    localStorage.setItem('cartAGS', JSON.stringify(cart));
-    localStorage.setItem('subtotalAGS', subtotal.toFixed(2));
-    window.location.href = 'pagamento.html';
+    updateCartUI();
+    showToast(`${name} adicionado! 🛒`);
+
+    // Feedback visual no ícone
+    if (event && event.currentTarget) {
+        const btn = event.currentTarget;
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        btn.classList.add('active');
+        setTimeout(() => {
+            btn.innerHTML = '<i class="fas fa-plus"></i>';
+            btn.classList.remove('active');
+        }, 1000);
+    }
 };
 
+window.toggleDeliveryFields = function () {
+    const isEntrega = document.getElementById('modeEntrega').checked;
+    const deliveryFields = document.getElementById('deliveryAddressFields');
+    const freightRow = document.getElementById('freightRow');
+
+    if (isEntrega) {
+        deliveryFields.style.display = 'block';
+        freightRow.style.setProperty('display', 'flex', 'important');
+    } else {
+        deliveryFields.style.display = 'none';
+        freightRow.style.setProperty('display', 'none', 'important');
+    }
+    updateCartUI();
+};
+
+window.checkCep = function (input) {
+    let cep = input.value.replace(/\D/g, '');
+    if (cep.length > 5) {
+        input.value = cep.substring(0, 5) + '-' + cep.substring(5, 8);
+    } else {
+        input.value = cep;
+    }
+
+    if (cep.length === 8) {
+        fetchAddress(cep);
+    }
+};
+
+async function fetchAddress(cep) {
+    const cityField = document.getElementById('deliveryCity');
+    const streetField = document.getElementById('deliveryStreet');
+
+    cityField.value = "Buscando...";
+    streetField.value = "Buscando...";
+
+    try {
+        const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const data = await response.json();
+
+        if (!data.erro) {
+            cityField.value = `${data.localidade} - ${data.bairro}`;
+            streetField.value = data.logradouro;
+            calculateFreight(cep);
+        } else {
+            alert("CEP não encontrado!");
+            cityField.value = "";
+            streetField.value = "";
+        }
+    } catch (e) {
+        console.error("Erro ao buscar CEP", e);
+        cityField.value = "";
+        streetField.value = "";
+    }
+}
+
+let deliveryFee = 0;
+let deliveryDistance = 0;
+
+window.calculateFreight = function (cep) {
+    if (!cep) cep = document.getElementById('deliveryCep').value.replace(/\D/g, '');
+    const freightElement = document.getElementById('cartFreight');
+
+    if (cep.length === 8) {
+        // Simulação de distância (Integrado à lógica de entrega inteligente)
+        const lastDigits = parseInt(cep.substring(5));
+        deliveryDistance = 1 + (lastDigits % 10);
+
+        // Regra de Negócio Atualizada:
+        // Base: R$ 7,00 (Válido para qualquer entrega até 3 km)
+        // Adicional: R$ 0,60 por km rodado que exceder os 3 km iniciais
+        let baseFee = 7.00;
+        let increment = 0;
+
+        if (deliveryDistance > 3) {
+            increment = (deliveryDistance - 3) * 0.60;
+        }
+
+        deliveryFee = baseFee + increment;
+
+        freightElement.textContent = `R$ ${deliveryFee.toFixed(2).replace('.', ',')} (${deliveryDistance.toFixed(1)}km)`;
+    } else {
+        deliveryFee = 0;
+        deliveryDistance = 0;
+        freightElement.textContent = 'R$ 0,00';
+    }
+    updateCartUI();
+};
+
+window.removeFromCart = function (index) {
+    cart.splice(index, 1);
+    updateCartUI();
+};
+
+window.liberarEntrega = function () {
+    const arquivo = document.getElementById('comprovante').files.length;
+    const botao = document.getElementById('btnFinalizar');
+
+    if (arquivo > 0) {
+        botao.disabled = false;
+        botao.classList.remove('opacity-50');
+        botao.innerHTML = '<i class="fab fa-whatsapp me-2"></i> ✅ Tudo Pronto! Enviar Pedido';
+        showToast("Comprovante anexado! Botão liberado. 🔓");
+    } else {
+        botao.disabled = true;
+        botao.classList.add('opacity-50');
+        botao.innerHTML = '<i class="fab fa-whatsapp me-2"></i> Finalizar e Liberar Entrega';
+    }
+};
 
 function updateCartUI() {
     const cartItemsContainer = document.getElementById('cartItems');
     const cartCount = document.getElementById('cartCount');
     const cartTotal = document.getElementById('cartTotal');
+    const cartSubtotal = document.getElementById('cartSubtotal');
+    const cartFreight = document.getElementById('cartFreight');
+
+    // Elementos do Resumo (Bloqueio de Segurança)
+    const resumoBox = document.getElementById('descritivoPedido');
+    const resumoNome = document.getElementById('resumoNome');
+    const resumoEnd = document.getElementById('resumoEnd');
+    const resumoItens = document.getElementById('resumoItens');
+    const resumoTotal = document.getElementById('resumoTotal');
 
     if (!cartItemsContainer || !cartCount || !cartTotal) return;
 
@@ -438,38 +468,29 @@ function updateCartUI() {
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<p class="text-muted text-center my-4 py-4 bg-light rounded-4">Seu carrinho está vazio.</p>';
         cartTotal.textContent = 'R$ 0,00';
+        if (cartSubtotal) cartSubtotal.textContent = 'R$ 0,00';
+        if (cartFreight) cartFreight.textContent = 'R$ 0,00';
+        if (resumoBox) resumoBox.style.display = 'none';
         return;
     }
 
     let itemsHTML = '';
+    let itemsResumo = [];
     let subtotal = 0;
 
     cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
-        const obsHtml = item.obs ? `<div class="small text-muted fst-italic mt-1"><i class="fas fa-comment-dots me-1"></i>${item.obs}</div>` : '';
-        
+        itemsResumo.push(`${item.quantity}x ${item.name}`);
         itemsHTML += `
-            <div class="cart-item shadow-sm border p-3 rounded-4 mb-2 d-flex justify-content-between align-items-center">
+            <div class="cart-item shadow-sm border p-3 rounded-4 mb-2">
                 <div class="flex-grow-1">
-                    <h6 class="fw-bold mb-1">${item.name}</h6>
-                    ${obsHtml}
-                    <div class="d-flex align-items-center gap-3 mt-2">
-                        <small class="text-muted">R$ ${item.price.toFixed(2).replace('.', ',')} cada</small>
-                        <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border" style="transform: scale(0.9);">
-                            <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${item.price}, '${item.obs ? item.obs.replace(/'/g, "\\'") : ''}')">
-                                <i class="fas fa-minus-circle"></i>
-                            </button>
-                            <span class="fw-bold small" style="min-width: 20px; text-align: center;">${item.quantity}</span>
-                            <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${item.price}, '${item.obs ? item.obs.replace(/'/g, "\\'") : ''}')">
-                                <i class="fas fa-plus-circle"></i>
-                            </button>
-                        </div>
-                    </div>
+                    <h6 class="fw-bold mb-0">${item.name}</h6>
+                    <small class="text-muted">${item.quantity}x R$ ${item.price.toFixed(2).replace('.', ',')}</small>
                 </div>
                 <div class="text-end">
-                    <div class="fw-bold text-dark mb-1">R$ ${itemTotal.toFixed(2).replace('.', ',')}</div>
-                    <button class="btn btn-sm text-danger p-0" onclick="removeFromCart(${index})" title="Remover item">
+                    <div class="fw-bold text-success mb-1">R$ ${itemTotal.toFixed(2).replace('.', ',')}</div>
+                    <button class="btn btn-sm btn-outline-danger border-0 rounded-circle" onclick="removeFromCart(${index})">
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
@@ -478,14 +499,105 @@ function updateCartUI() {
     });
 
     cartItemsContainer.innerHTML = itemsHTML;
-    cartTotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+
+    const isEntrega = document.getElementById('modeEntrega') ? document.getElementById('modeEntrega').checked : false;
+    const currentFreight = isEntrega ? deliveryFee : 0;
+    const finalTotal = subtotal + currentFreight;
+
+    const totalStr = `R$ ${finalTotal.toFixed(2).replace('.', ',')}`;
+    if (cartSubtotal) cartSubtotal.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    if (cartFreight) cartFreight.textContent = `R$ ${currentFreight.toFixed(2).replace('.', ',')}`;
+    cartTotal.textContent = totalStr;
+
+    // Atualiza Resumo de Segurança
+    if (resumoBox) {
+        resumoBox.style.display = 'block';
+        const nomeVal = document.getElementById('customerName').value || 'Pendente';
+        resumoNome.textContent = nomeVal;
+
+        if (isEntrega) {
+            const rua = document.getElementById('deliveryStreet').value || '...';
+            const num = document.getElementById('deliveryNumber').value || '...';
+            resumoEnd.textContent = `${rua}, ${num}`;
+        } else {
+            resumoEnd.textContent = "Retirada no Local";
+        }
+
+        resumoItens.textContent = itemsResumo.join(', ');
+        resumoTotal.textContent = totalStr;
+    }
 }
 
-window.removeFromCart = function (index) {
-    const item = cart[index];
-    if (item) {
-        window.alterarQtd(item.id, -item.quantity, item.name, item.price, item.obs);
+window.copyPix = function () {
+    const pixKey = document.getElementById('pixKey');
+    pixKey.select();
+    pixKey.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(pixKey.value);
+
+    const btn = event.currentTarget;
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-check me-1"></i> Copiado!';
+    btn.classList.replace('btn-primary', 'btn-success');
+
+    setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.classList.replace('btn-success', 'btn-primary');
+    }, 2000);
+};
+
+window.checkout = function () {
+    if (cart.length === 0) {
+        alert("Seu carrinho está vazio!");
+        return;
     }
+
+    const name = document.getElementById('customerName').value;
+    const phone = document.getElementById('customerPhone').value;
+    const isEntrega = document.getElementById('modeEntrega').checked;
+
+    if (!name || !phone) {
+        alert("Por favor, preencha seu nome e telefone!");
+        return;
+    }
+
+    const chavePix = "00ede306-8a84-4955-939c-ead6e5a81781";
+
+    let message = `*PEDIDO CONFIRMADO — AGS Delivery*\n`;
+    message += `━━━━━━━━━━━━━━━━━━\n\n`;
+    message += `👤 *CLIENTE*\n`;
+    message += `• Nome: ${name}\n`;
+    message += `• Contato: ${phone}\n\n`;
+
+    if (isEntrega) {
+        const street = document.getElementById('deliveryStreet').value;
+        const number = document.getElementById('deliveryNumber').value;
+        const note = document.getElementById('deliveryNote').value;
+        message += `📍 *ENTREGA*\n`;
+        message += `• Endereço: ${street}, ${number}\n`;
+        message += `• Referência: ${note || 'Nenhuma'}\n\n`;
+    } else {
+        message += `📍 *RETIRADA NO LOCAL*\n\n`;
+    }
+
+    message += `📦 *RESUMO DO PEDIDO*\n`;
+    cart.forEach(item => {
+        message += `• ${item.quantity}x ${item.name}\n`;
+    });
+
+    const currentFreight = isEntrega ? deliveryFee : 0;
+    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    const total = subtotal + currentFreight;
+
+    message += `\n💰 *VALOR TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `💳 *PAGAMENTO (PIX)*\n\n`;
+    message += `• Chave: \`${chavePix}\`\n`;
+    message += `• Favorecido: Mauricio Rogerio Gobato\n`;
+    message += `• Banco: Santander\n\n`;
+    message += `_Por favor, anexe o comprovante acima._`;
+
+    const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
 };
 
 // Sistema de Toast
