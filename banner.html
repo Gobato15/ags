@@ -374,6 +374,9 @@
                 height: 297mm;
                 background: #ffffff !important;
                 border: none !important;
+                overflow: hidden !important;
+                page-break-after: avoid !important;
+                break-after: avoid !important;
             }
 
             .banner-container::before {
@@ -405,15 +408,18 @@
 
             .menu-grid {
                 padding: 5mm 10mm !important;
-                display: block !important;
-                column-count: 3;
-                column-gap: 10mm;
+                display: grid !important;
+                grid-template-columns: repeat(3, 1fr) !important;
+                column-gap: 12mm !important;
+                row-gap: 4mm !important;
             }
 
             .menu-item {
-                display: block !important;
+                display: flex !important;
+                justify-content: space-between !important;
+                align-items: center !important;
                 width: 100% !important;
-                margin-bottom: 2mm !important;
+                margin: 0 !important;
                 break-inside: avoid;
                 overflow: hidden !important;
                 border: none !important;
@@ -421,16 +427,18 @@
             }
 
             .item-name {
-                float: left !important;
                 font-size: 9.5pt !important;
+                display: flex !important;
+                align-items: center !important;
+                gap: 5px !important;
             }
 
             .item-price {
-                float: right !important;
                 font-size: 9.5pt !important;
                 color: #ff0000 !important;
                 background: none !important;
                 -webkit-text-fill-color: #ff0000 !important;
+                white-space: nowrap !important;
             }
 
             .footer-section {
@@ -557,13 +565,13 @@
                             <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=https://www.agsdelivery.com.br"
                                 alt="QR Cardápio Digital">
                         </a>
-                        <div class="qr-label">Cardápio Digital</div>
+                        <div class="qr-label"><strong>Cardápio Digital</strong></div>
                     </div>
                     <div class="qr-box">
                         <a href="https://i.ibb.co/XxpQjJSg/qr.png" target="_blank" rel="noopener noreferrer">
                             <img src="https://i.ibb.co/XxpQjJSg/qr.png" alt="QR Pagamento">
                         </a>
-                        <div class="qr-label">Pagamento</div>
+                        <div class="qr-label"><strong>Pagamento</strong></div>
                     </div>
                 </div>
             </div>
