@@ -157,8 +157,8 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
                 <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
             </div>
             <div class="card-body d-flex flex-column text-center p-4">
-                <h5 class="card-title fw-bold mb-2">${item.name}</h5>
-                <p class="card-text text-muted small flex-grow-1 mb-3">${item.description}</p>
+                <h5 class="card-title fw-bold mb-2 text-truncate-2" style="height: 3rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${item.name}</h5>
+                <p class="card-text text-muted small flex-grow-1 mb-3 text-truncate-3" style="height: 3.5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">${item.description}</p>
                 <div class="mt-auto pt-3 border-top w-100">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="price-wrapper text-start">
@@ -430,21 +430,7 @@ window.removeFromCart = function (index) {
     updateCartUI();
 };
 
-window.liberarEntrega = function () {
-    const arquivo = document.getElementById('comprovante').files.length;
-    const botao = document.getElementById('btnFinalizar');
 
-    if (arquivo > 0) {
-        botao.disabled = false;
-        botao.classList.remove('opacity-50');
-        botao.innerHTML = '<i class="fab fa-whatsapp me-2"></i> ✅ Tudo Pronto! Enviar Pedido';
-        showToast("Comprovante anexado! Botão liberado. 🔓");
-    } else {
-        botao.disabled = true;
-        botao.classList.add('opacity-50');
-        botao.innerHTML = '<i class="fab fa-whatsapp me-2"></i> Finalizar e Liberar Entrega';
-    }
-};
 
 function updateCartUI() {
     const cartItemsContainer = document.getElementById('cartItems');
@@ -484,8 +470,8 @@ function updateCartUI() {
         itemsResumo.push(`${item.quantity}x ${item.name}`);
         itemsHTML += `
             <div class="cart-item shadow-sm border p-3 rounded-4 mb-2">
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold mb-0">${item.name}</h6>
+                <div class="flex-grow-1 overflow-hidden">
+                    <h6 class="fw-bold mb-0 text-truncate">${item.name}</h6>
                     <small class="text-muted">${item.quantity}x R$ ${item.price.toFixed(2).replace('.', ',')}</small>
                 </div>
                 <div class="text-end">
@@ -528,22 +514,7 @@ function updateCartUI() {
     }
 }
 
-window.copyPix = function () {
-    const pixKey = document.getElementById('pixKey');
-    pixKey.select();
-    pixKey.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(pixKey.value);
 
-    const btn = event.currentTarget;
-    const originalHTML = btn.innerHTML;
-    btn.innerHTML = '<i class="fas fa-check me-1"></i> Copiado!';
-    btn.classList.replace('btn-primary', 'btn-success');
-
-    setTimeout(() => {
-        btn.innerHTML = originalHTML;
-        btn.classList.replace('btn-success', 'btn-primary');
-    }, 2000);
-};
 
 window.checkout = function () {
     if (cart.length === 0) {
@@ -560,7 +531,7 @@ window.checkout = function () {
         return;
     }
 
-    const chavePix = "00ede306-8a84-4955-939c-ead6e5a81781";
+
 
     let message = `*PEDIDO CONFIRMADO — AGS Delivery*\n`;
     message += `━━━━━━━━━━━━━━━━━━\n\n`;
@@ -590,11 +561,8 @@ window.checkout = function () {
 
     message += `\n💰 *VALOR TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `💳 *PAGAMENTO (PIX)*\n\n`;
-    message += `• Chave: \`${chavePix}\`\n`;
-    message += `• Favorecido: Mauricio Rogerio Gobato\n`;
-    message += `• Banco: Santander\n\n`;
-    message += `_Por favor, anexe o comprovante acima._`;
+    message += `📱 *PAGAMENTO*\n`;
+    message += `• Combinar via WhatsApp\n`;
 
     const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -615,34 +583,6 @@ function showToast(message) {
         toast.style.transform = 'translateY(20px)';
         setTimeout(() => toast.remove(), 400);
     }, 2500);
-}
-
-// Lógica de Dark Mode
-const themeToggle = document.getElementById('themeToggle');
-if (themeToggle) {
-    const setCategoryTheme = () => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        const icon = themeToggle.querySelector('i');
-        if (theme === 'dark') {
-            icon.className = 'fas fa-sun';
-        } else {
-            icon.className = 'fas fa-moon';
-        }
-    };
-
-    // Check LocalStorage
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    setCategoryTheme();
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        setCategoryTheme();
-        showToast(`Modo ${newTheme === 'dark' ? 'Escuro' : 'Claro'} ativado!`);
-    });
 }
 
 // Carregamento inicial
