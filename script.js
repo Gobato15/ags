@@ -384,7 +384,7 @@ if (searchInput) {
 // Lógica do Carrinho
 window.alterarQtd = function (id, delta, name, price, obs = '') {
     // Ao receber obs, verificamos se já há um item com a mesma ID e mesma obs no carrinho
-    const existing = cart.find(item => item.id === id && (obs === '' || item.obs === obs));
+    const existing = cart.find(item => item.id === id && (item.obs || '') === obs);
     
     if (existing) {
         existing.quantity += delta;
