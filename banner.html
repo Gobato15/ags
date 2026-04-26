@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #ff2a00;
-            --secondary: #ffffff;
-            --dark: #0f0f0f;
-            --accent: #ff7b00;
+            --primary: #fbc500;
+            --secondary: #000000;
+            --dark: #1a1a1a;
+            --accent: #e32014;
             --surface: #f7f7f7;
             --glass: rgba(255, 255, 255, 0.95);
             --border: rgba(0, 0, 0, 0.18);
@@ -55,9 +55,9 @@
             left: 0;
             width: 100%;
             height: 140px;
-            background: linear-gradient(135deg, #ff2a00 0%, #ff7b00 100%);
+            background: #fbc500;
             z-index: 0;
-            box-shadow: 0 10px 40px rgba(255, 42, 0, 0.4);
+            box-shadow: 0 10px 40px rgba(251, 197, 0, 0.4);
         }
 
 
@@ -82,37 +82,48 @@
         }
 
         .brand-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-            font-weight: 700;
+            font-family: 'Impact', 'Outfit', sans-serif;
+            font-size: 56px;
+            font-weight: 800;
             margin: 0;
             color: #ffffff;
-            letter-spacing: 6px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(90deg, #ffffff, #f5f5f5, #ffffff);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-style: italic;
-            animation: shine 3s linear infinite;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
 
-        @keyframes shine {
-            to {
-                background-position: 200% center;
-            }
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            background: #fbc500;
+            color: #000000;
+            border: 2px solid #000000;
+            border-radius: 20px;
+            padding: 5px 20px;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            box-shadow: 2px 2px 0px #000000;
         }
 
         .brand-subtitle {
-            font-size: 13px;
-            color: #333;
-            letter-spacing: 3px;
+            font-family: 'Impact', 'Outfit', sans-serif;
+            font-size: 32px;
+            color: #fbc500;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            font-weight: 600;
-            margin-top: 8px;
-            opacity: 0.8;
+            font-weight: 800;
+            margin-top: 25px;
+            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 4px 4px 5px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 2;
         }
 
         .promo-tag {
@@ -158,8 +169,8 @@
 
         .item-name {
             font-size: 16px;
-            font-weight: 700;
-            color: #1a1a1a;
+            font-weight: 800;
+            color: #000000;
             text-transform: capitalize;
             display: flex;
             align-items: center;
@@ -175,10 +186,7 @@
         .item-price {
             font-size: 18px;
             font-weight: 800;
-            background: linear-gradient(135deg, #ff2a00 0%, #ff7b00 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #000000;
         }
 
         .footer-section {
@@ -186,8 +194,10 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
-            padding: 20px 0 0;
-            border-top: none;
+            padding: 20px;
+            background: linear-gradient(135deg, #fbc500 0%, #f9c80e 100%);
+            border-top: 4px dashed #000000;
+            border-radius: 0 0 30px 30px;
             margin-top: 5px;
         }
 
@@ -216,7 +226,7 @@
         .contact-link i {
             width: 38px;
             height: 38px;
-            background: linear-gradient(135deg, var(--primary) 0%, #ff7b00 100%);
+            background: linear-gradient(135deg, #ff0000 0%, #ffcc00 100%);
             color: #ffffff;
             border-radius: 50%;
             display: flex;
@@ -326,7 +336,7 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background: linear-gradient(135deg, #ff2a00 0%, #ff7b00 100%);
+            background: linear-gradient(135deg, #ff0000 0%, #ffcc00 100%);
             color: #ffffff;
             border: none;
             padding: 14px 28px;
@@ -369,14 +379,23 @@
                 print-color-adjust: exact;
             }
 
+            html, body {
+                height: 99vh;
+                max-height: 297mm;
+                overflow: hidden !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
             .banner-container {
                 width: 210mm;
-                height: 297mm;
+                height: 290mm;
                 background: #ffffff !important;
                 border: none !important;
                 overflow: hidden !important;
                 page-break-after: avoid !important;
                 break-after: avoid !important;
+                margin: 0 !important;
             }
 
             .banner-container::before {
@@ -384,22 +403,37 @@
             }
 
             .header-section {
-                background: linear-gradient(135deg, #ff2a00 0%, #ff7b00 100%) !important;
+                background: #fbc500 !important;
                 margin: 0 !important;
                 padding: 5mm 0 !important;
             }
 
             .brand-title {
+                font-size: 24pt !important;
                 color: #ffffff !important;
                 background: none !important;
                 -webkit-text-fill-color: #ffffff !important;
                 margin: 0 !important;
             }
 
+            .badges {
+                margin-top: 2mm !important;
+                gap: 5px !important;
+            }
+
+            .badge {
+                font-size: 8pt !important;
+                padding: 2px 8px !important;
+                border: 1px solid #000 !important;
+                box-shadow: 1px 1px 0px #000000 !important;
+            }
+
             .brand-subtitle {
-                color: #ffffff !important;
+                font-size: 14pt !important;
+                color: #fbc500 !important;
                 opacity: 1 !important;
-                margin: 0 !important;
+                margin: 2mm 0 0 !important;
+                text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000 !important;
             }
 
             .content-card {
@@ -435,9 +469,9 @@
 
             .item-price {
                 font-size: 9.5pt !important;
-                color: #ff2a00 !important;
+                color: #000000 !important;
                 background: none !important;
-                -webkit-text-fill-color: #ff2a00 !important;
+                -webkit-text-fill-color: #000000 !important;
                 white-space: nowrap !important;
             }
 
@@ -477,7 +511,12 @@
         <div class="content-card">
             <div class="header-section">
                 <h1 class="brand-title">AGS Delivery</h1>
-                <p class="brand-subtitle">CARDÁPIO DE DELÍCIAS</p>
+                <div class="badges">
+                    <span class="badge">Artesanal</span>
+                    <span class="badge">Suculento</span>
+                    <span class="badge">Feito com amor</span>
+                </div>
+                <p class="brand-subtitle">ESSE É O NOSSO SABOR!</p>
             </div>
 
             <div class="menu-grid">
