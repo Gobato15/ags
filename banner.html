@@ -138,9 +138,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid rgba(255, 183, 3, 0.2);
-            padding: 14px 0;
-            margin-bottom: 6px;
+            border-bottom: none;
+            padding: 10px 0;
+            margin-bottom: 2px;
             transition: all 0.35s cubic-bezier(0.23, 1, 0.320, 1);
             border-radius: 6px;
             padding-left: 10px;
@@ -151,7 +151,6 @@
         .menu-item:hover {
             background: linear-gradient(90deg, rgba(255, 183, 3, 0.08) 0%, rgba(255, 183, 3, 0.02) 100%);
             transform: translateX(6px);
-            border-bottom: 2px solid rgba(255, 183, 3, 0.4);
         }
 
         .item-name {
@@ -184,15 +183,15 @@
             justify-content: space-between;
             align-items: center;
             gap: 20px;
-            padding: 25px 0;
-            border-top: 2px solid rgba(255, 183, 3, 0.2);
-            margin-top: 10px;
+            padding: 20px 0 0;
+            border-top: none;
+            margin-top: 5px;
         }
 
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 6px;
         }
 
         .contact-link {
@@ -363,7 +362,11 @@
             }
 
             .content-card {
-                padding: 15mm 10mm 10mm;
+                padding: 15mm 10mm 5mm;
+            }
+
+            .footer-section {
+                padding-top: 10mm;
             }
 
             .banner-container::before {
