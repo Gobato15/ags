@@ -154,7 +154,7 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
     const quantity = cartItem ? cartItem.quantity : 0;
 
     return `
-        <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'promo-border' : ''}" style="animation: slideUp 0.5s ease forwards; animation-delay: ${index * 0.05}s">
+        <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden product-card ${isPromo ? 'promo-border' : ''}" style="animation: slideUp 0.5s ease forwards; animation-delay: ${index * 0.05}s; cursor: pointer;" onclick="openProductModal('${item.id}', ${isPromo}, ${isPromo ? promoPrice : null})">
             <div class="position-relative overflow-hidden">
                 ${isPromo ? '<span class="badge bg-instagram position-absolute top-0 end-0 m-3 shadow-sm" style="z-index: 2;">PROMOÇÃO</span>' : ''}
                 <img src="${imgSrc}" class="card-img-top" alt="${item.name}" style="height: 200px; object-fit: cover;" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200?text=Imagem+Indisponivel'">
@@ -173,8 +173,8 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
                         
                         <div class="d-flex align-items-center gap-2">
                             ${quantity > 0 ? `<span class="badge bg-success rounded-pill px-2 py-1 shadow-sm"><i class="fas fa-shopping-bag me-1"></i> ${quantity}</span>` : ''}
-                            <button class="btn-add-cart ${quantity > 0 ? 'active' : ''}" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${displayPrice})" aria-label="Adicionar ao carrinho" style="${quantity > 0 ? 'background: #25D366;' : ''}">
-                                <i class="fas ${quantity > 0 ? 'fa-check' : 'fa-plus'}"></i>
+                            <button class="btn-add-cart" aria-label="Adicionar ao carrinho" style="border-radius: 50%; width: 40px; height: 40px; background: #212529; color: white; border: none;">
+                                <i class="fas fa-plus"></i>
                             </button>
                         </div>
                     </div>
@@ -183,6 +183,67 @@ function createProductCard(item, isPromo, promoPrice, index = 0) {
         </div>
     `;
 }
+
+// Lógica do Modal Estilo iFood
+let currentModalProduct = null;
+let currentModalQty = 1;
+
+window.openProductModal = function(id, isPromo, promoPrice) {
+    const item = menuItems.find(i => i.id === id);
+    if (!item) return;
+    
+    currentModalProduct = {
+        ...item,
+        displayPrice: isPromo ? promoPrice : item.price
+    };
+    currentModalQty = 1;
+    
+    document.getElementById('modalProductName').textContent = item.name;
+    document.getElementById('modalProductDesc').textContent = item.description;
+    document.getElementById('modalProductPrice').textContent = `R$ ${currentModalProduct.displayPrice.toFixed(2).replace('.', ',')}`;
+    
+    let imgSrc = item.image || '';
+    if (imgSrc.startsWith('assets/')) imgSrc = './' + imgSrc;
+    document.getElementById('modalProductImage').style.backgroundImage = `url('${imgSrc}')`;
+    
+    document.getElementById('modalProductObs').value = '';
+    
+    updateModalUI();
+    
+    const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+    productModal.show();
+};
+
+window.changeModalQty = function(delta) {
+    if (currentModalQty + delta > 0) {
+        currentModalQty += delta;
+        updateModalUI();
+    }
+};
+
+function updateModalUI() {
+    document.getElementById('modalProductQty').textContent = currentModalQty;
+    const total = currentModalProduct.displayPrice * currentModalQty;
+    document.getElementById('modalProductTotal').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnConfirm = document.getElementById('btnConfirmProduct');
+    if (btnConfirm) {
+        btnConfirm.addEventListener('click', () => {
+            if (!currentModalProduct) return;
+            const obs = document.getElementById('modalProductObs').value;
+            
+            // Adiciona ao carrinho com observação
+            window.alterarQtd(currentModalProduct.id, currentModalQty, currentModalProduct.name, currentModalProduct.displayPrice, obs);
+            
+            // Fecha Modal
+            const modalEl = document.getElementById('productModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalEl);
+            if (modalInstance) modalInstance.hide();
+        });
+    }
+});
 
 function renderDailyPromos() {
     const promoContainer = document.getElementById('promoCarouselContainer');
@@ -321,15 +382,17 @@ if (searchInput) {
 }
 
 // Lógica do Carrinho
-window.alterarQtd = function (id, delta, name, price) {
-    const existing = cart.find(item => item.id === id);
+window.alterarQtd = function (id, delta, name, price, obs = '') {
+    // Ao receber obs, verificamos se já há um item com a mesma ID e mesma obs no carrinho
+    const existing = cart.find(item => item.id === id && (item.obs || '') === obs);
+    
     if (existing) {
         existing.quantity += delta;
         if (existing.quantity <= 0) {
-            cart = cart.filter(item => item.id !== id);
+            cart = cart.filter(item => item !== existing);
         }
     } else if (delta > 0) {
-        cart.push({ id, name, price, quantity: 1 });
+        cart.push({ id, name, price, quantity: delta, obs });
     }
     
     updateCartUI();
@@ -384,18 +447,21 @@ function updateCartUI() {
     cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
+        const obsHtml = item.obs ? `<div class="small text-muted fst-italic mt-1"><i class="fas fa-comment-dots me-1"></i>${item.obs}</div>` : '';
+        
         itemsHTML += `
             <div class="cart-item shadow-sm border p-3 rounded-4 mb-2 d-flex justify-content-between align-items-center">
                 <div class="flex-grow-1">
                     <h6 class="fw-bold mb-1">${item.name}</h6>
-                    <div class="d-flex align-items-center gap-3">
+                    ${obsHtml}
+                    <div class="d-flex align-items-center gap-3 mt-2">
                         <small class="text-muted">R$ ${item.price.toFixed(2).replace('.', ',')} cada</small>
                         <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border" style="transform: scale(0.9);">
-                            <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${item.price})">
+                            <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1, '${item.name}', ${item.price}, '${item.obs ? item.obs.replace(/'/g, "\\'") : ''}')">
                                 <i class="fas fa-minus-circle"></i>
                             </button>
                             <span class="fw-bold small" style="min-width: 20px; text-align: center;">${item.quantity}</span>
-                            <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${item.price})">
+                            <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', 1, '${item.name}', ${item.price}, '${item.obs ? item.obs.replace(/'/g, "\\'") : ''}')">
                                 <i class="fas fa-plus-circle"></i>
                             </button>
                         </div>
@@ -418,7 +484,7 @@ function updateCartUI() {
 window.removeFromCart = function (index) {
     const item = cart[index];
     if (item) {
-        window.alterarQtd(item.id, -item.quantity, item.name, item.price);
+        window.alterarQtd(item.id, -item.quantity, item.name, item.price, item.obs);
     }
 };
 

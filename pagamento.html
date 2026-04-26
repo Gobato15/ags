@@ -150,7 +150,7 @@
                                         <i class="fas fa-pix"></i>
                                     </div>
                                     <div>
-                                        <h6 class="fw-bold mb-0">PIX (Mercado Pago)</h6>
+                                        <h6 class="fw-bold mb-0">PIX Automático</h6>
                                         <small class="text-muted">Liberação instantânea</small>
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@
                             <i class="fab fa-whatsapp me-2"></i> Finalizar Pedido
                         </button>
                         <p class="text-center small text-muted mt-3 mb-0">
-                            <i class="fas fa-lock me-1"></i> Pagamento Seguro via Mercado Pago
+                            <i class="fas fa-lock me-1"></i> Pagamento Seguro via PIX
                         </p>
                     </div>
                 </div>
@@ -246,17 +246,18 @@
 
         function renderOrder() {
             const container = document.getElementById('orderItems');
-            container.innerHTML = cart.map(item => `
+            container.innerHTML = cart.map((item, index) => `
                 <div class="cart-item border p-3 rounded-4 mb-2 d-flex justify-content-between align-items-center bg-white shadow-sm">
                     <div class="flex-grow-1">
                         <h6 class="fw-bold mb-1">${item.name}</h6>
+                        ${item.obs ? \`<div class="small text-muted fst-italic mb-2"><i class="fas fa-comment-dots me-1"></i>\${item.obs}</div>\` : ''}
                         <div class="d-flex align-items-center gap-2">
                              <div class="d-flex align-items-center gap-2 bg-light px-2 py-1 rounded-pill border" style="transform: scale(0.9);">
-                                <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', -1)">
+                                <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd(${index}, -1)">
                                     <i class="fas fa-minus-circle"></i>
                                 </button>
                                 <span class="fw-bold small" style="min-width: 20px; text-align: center;">${item.quantity}</span>
-                                <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd('${item.id}', 1)">
+                                <button class="btn btn-sm p-0 text-muted border-0 bg-transparent" onclick="alterarQtd(${index}, 1)">
                                     <i class="fas fa-plus-circle"></i>
                                 </button>
                             </div>
@@ -272,12 +273,12 @@
             document.getElementById('resumoSubtotal').innerText = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
         }
 
-        function alterarQtd(id, delta) {
-            const item = cart.find(i => i.id === id);
+        function alterarQtd(index, delta) {
+            const item = cart[index];
             if (item) {
                 item.quantity += delta;
                 if (item.quantity <= 0) {
-                    cart = cart.filter(i => i.id !== id);
+                    cart.splice(index, 1);
                 }
                 
                 if (cart.length === 0) {
@@ -317,6 +318,8 @@
             const status = document.getElementById('paymentStatus');
             status.className = "alert alert-info rounded-pill py-2 border-0";
             status.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status"></span> Aguardando pagamento...';
+            
+            if(window.pollingInterval) clearInterval(window.pollingInterval);
         }
 
         function toggleDeliveryFields() {
@@ -387,28 +390,68 @@
                 return;
             }
 
-            // Simulação de chamada de API
             document.getElementById('btnGerarPix').innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Gerando...';
             document.getElementById('btnGerarPix').disabled = true;
 
-            setTimeout(() => {
-                document.getElementById('btnGerarPix').style.display = 'none';
-                document.getElementById('qrCodeArea').style.display = 'block';
-                document.getElementById('pixCopiaCola').value = "00020126580014br.gov.bcb.pix013600ede306-8a84-4955-939c-ead6e5a817815204000053039865404" + (subtotal + deliveryFee).toFixed(2) + "5802BR5925Mauricio Rogerio Gobato6009SAO PAULO62070503***6304E2D1";
-                
-                // Simula aprovação automática em 10 segundos
-                setTimeout(() => {
-                    const status = document.getElementById('paymentStatus');
-                    status.className = "alert alert-success rounded-pill py-2 border-0";
-                    status.innerHTML = '<i class="fas fa-check-circle me-2"></i> Pagamento Aprovado com Sucesso!';
+            const total = subtotal + deliveryFee;
+
+            fetch('api_pagamento.php?action=create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ total: total, customerName: name })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.success) {
+                    document.getElementById('btnGerarPix').style.display = 'none';
+                    document.getElementById('qrCodeArea').style.display = 'block';
+                    document.getElementById('pixCopiaCola').value = data.pixCopiaCola;
                     
-                    const btn = document.getElementById('btnFinalizar');
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-50');
-                    btn.classList.add('pulse-animation');
-                    showToast("✅ Pagamento confirmado! Pode finalizar o pedido.");
-                }, 8000);
-            }, 1500);
+                    // Iniciar verificação (Aviso de Pagamento)
+                    checkPaymentStatus(data.transactionId);
+                } else {
+                    showToast("⚠️ Erro ao gerar PIX: " + data.error);
+                    resetPagamento();
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                showToast("⚠️ Erro de comunicação com a API.");
+                resetPagamento();
+            });
+        }
+
+        window.pollingInterval = null;
+
+        function checkPaymentStatus(transactionId) {
+            if(window.pollingInterval) clearInterval(window.pollingInterval);
+            
+            window.pollingInterval = setInterval(() => {
+                fetch(`api_pagamento.php?action=status&id=${transactionId}`)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.status === 'approved') {
+                        clearInterval(window.pollingInterval);
+                        
+                        const status = document.getElementById('paymentStatus');
+                        status.className = "alert alert-success rounded-pill py-2 border-0";
+                        status.innerHTML = '<i class="fas fa-check-circle me-2"></i> Pagamento Aprovado com Sucesso!';
+                        
+                        const btn = document.getElementById('btnFinalizar');
+                        btn.disabled = false;
+                        btn.classList.remove('opacity-50');
+                        btn.classList.add('pulse-animation');
+                        
+                        showToast("✅ Pagamento confirmado! Liberando pedido...");
+                        
+                        // Liberação do produto: Clica automaticamente em finalizar após 2 segundos
+                        setTimeout(() => {
+                            btn.click();
+                        }, 2000);
+                    }
+                })
+                .catch(err => console.error("Erro no polling", err));
+            }, 3000); // Consulta o aviso a cada 3 segundos
         }
 
         function copyPix() {
@@ -444,6 +487,7 @@
             message += `📦 *RESUMO DO PEDIDO*\n`;
             cart.forEach(item => {
                 message += `• ${item.quantity}x ${item.name} (R$ ${(item.price * item.quantity).toFixed(2)})\n`;
+                if (item.obs) message += `   ↳ Obs: ${item.obs}\n`;
             });
 
             message += `\n💰 *PAGO VIA PIX: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
