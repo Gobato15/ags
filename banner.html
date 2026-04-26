@@ -138,8 +138,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: none;
-            padding: 10px 0;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 8px 0;
             margin-bottom: 2px;
             transition: all 0.35s cubic-bezier(0.23, 1, 0.320, 1);
             border-radius: 6px;
@@ -337,6 +338,10 @@
             * {
                 animation: none !important;
                 transition: none !important;
+                box-shadow: none !important;
+                border: none !important;
+                outline: none !important;
+                text-decoration: none !important;
             }
 
             .btn-print {
@@ -344,7 +349,7 @@
             }
 
             body {
-                background: white;
+                background: white !important;
                 padding: 0;
                 margin: 0;
                 -webkit-print-color-adjust: exact;
@@ -352,25 +357,51 @@
             }
 
             .banner-container {
-                box-shadow: none !important;
-                border: none !important;
                 width: 210mm;
                 height: 297mm;
                 max-width: none;
                 border-radius: 0;
                 transform: none !important;
-            }
-
-            .content-card {
-                padding: 15mm 10mm 5mm;
-            }
-
-            .footer-section {
-                padding-top: 10mm;
+                background: #f7f7f7 !important;
+                border: none !important;
             }
 
             .banner-container::before {
                 height: 45mm;
+                background: #e8321f !important;
+            }
+
+            .content-card {
+                padding: 10mm 10mm 20mm;
+            }
+
+            .header-section {
+                margin: 20mm 0 10mm !important;
+            }
+
+            .brand-title {
+                background: none !important;
+                -webkit-text-fill-color: #ffffff !important;
+                color: #ffffff !important;
+                text-shadow: none !important;
+            }
+
+            .item-price {
+                background: none !important;
+                background-image: none !important;
+                -webkit-text-fill-color: #e8321f !important;
+                color: #e8321f !important;
+                display: inline-block;
+            }
+
+            .menu-item {
+                background: none !important;
+                display: flex !important;
+                border: none !important;
+            }
+
+            .qr-box img {
+                border: 1px solid #ddd !important;
             }
         }
     </style>
