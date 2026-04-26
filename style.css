@@ -689,6 +689,19 @@ header.scrolled {
     box-shadow: 0 0 0 0.25rem rgba(232, 50, 31, 0.1);
 }
 
+.pix-payment-container {
+    background: #fff;
+    transition: var(--transition);
+}
+
+.qr-code-wrapper {
+    transition: var(--transition);
+}
+
+.qr-code-wrapper:hover {
+    transform: scale(1.05);
+}
+
 /* Toast Notifications */
 .toast-container {
     position: fixed;

@@ -516,6 +516,8 @@ function updateCartUI() {
 
 
 
+
+
 window.checkout = function () {
     if (cart.length === 0) {
         alert("Seu carrinho está vazio!");
@@ -530,6 +532,8 @@ window.checkout = function () {
         alert("Por favor, preencha seu nome e telefone!");
         return;
     }
+
+
 
 
 
@@ -561,8 +565,9 @@ window.checkout = function () {
 
     message += `\n💰 *VALOR TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `📱 *PAGAMENTO*\n`;
-    message += `• Combinar via WhatsApp\n`;
+    message += `💳 *PAGAMENTO (PIX)*\n\n`;
+    message += `• Favorecido: Mauricio Rogerio Gobato\n`;
+    message += `• Banco: Santander\n\n`;
 
     const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
