@@ -55,9 +55,9 @@
             left: 0;
             width: 100%;
             height: 140px;
-            background: #fbc500;
+            background: linear-gradient(90deg, #ff0000 0%, #ffcc00 100%);
             z-index: 0;
-            box-shadow: 0 10px 40px rgba(251, 197, 0, 0.4);
+            box-shadow: 0 10px 40px rgba(255, 0, 0, 0.4);
         }
 
 
@@ -90,6 +90,20 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .banner-logo {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 3px solid #ffffff;
+            object-fit: contain;
+            background: #e32014;
         }
 
         .badges {
@@ -403,7 +417,7 @@
             }
 
             .header-section {
-                background: #fbc500 !important;
+                background: linear-gradient(90deg, #ff0000 0%, #ffcc00 100%) !important;
                 margin: 0 !important;
                 padding: 5mm 0 !important;
             }
@@ -414,6 +428,14 @@
                 background: none !important;
                 -webkit-text-fill-color: #ffffff !important;
                 margin: 0 !important;
+            }
+
+            .banner-logo {
+                width: 25mm !important;
+                height: 25mm !important;
+                top: 3mm !important;
+                right: 5mm !important;
+                border: 1mm solid #ffffff !important;
             }
 
             .badges {
@@ -510,6 +532,7 @@
     <div class="banner-container">
         <div class="content-card">
             <div class="header-section">
+                <img src="assets/logo.png" alt="Logo AGS" class="banner-logo">
                 <h1 class="brand-title">AGS Delivery</h1>
                 <div class="badges">
                     <span class="badge">Artesanal</span>
