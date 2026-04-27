@@ -430,6 +430,16 @@ window.removeFromCart = function (index) {
     updateCartUI();
 };
 
+window.updateCartItemQuantity = function (index, change) {
+    if (cart[index]) {
+        cart[index].quantity += change;
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+        updateCartUI();
+    }
+};
+
 
 
 function updateCartUI() {
@@ -469,16 +479,30 @@ function updateCartUI() {
         subtotal += itemTotal;
         itemsResumo.push(`${item.quantity}x ${item.name}`);
         itemsHTML += `
-            <div class="cart-item shadow-sm border p-3 rounded-4 mb-2">
-                <div class="flex-grow-1 overflow-hidden">
-                    <h6 class="fw-bold mb-0 text-truncate">${item.name}</h6>
-                    <small class="text-muted">${item.quantity}x R$ ${item.price.toFixed(2).replace('.', ',')}</small>
+            <div class="cart-item d-flex align-items-center shadow-sm border p-3 rounded-4 mb-3 bg-white" style="transition: transform 0.2s;">
+                <div class="flex-grow-1 overflow-hidden pe-2">
+                    <h6 class="fw-bold mb-1 text-truncate text-dark" style="font-size: 0.95rem;">${item.name}</h6>
+                    <div class="text-success fw-bold small">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
                 </div>
-                <div class="text-end">
-                    <div class="fw-bold text-success mb-1">R$ ${itemTotal.toFixed(2).replace('.', ',')}</div>
-                    <button class="btn btn-sm btn-outline-danger border-0 rounded-circle" onclick="removeFromCart(${index})">
-                        <i class="fas fa-trash-alt"></i>
-                    </button>
+                
+                <div class="d-flex flex-column align-items-end">
+                    <div class="fw-bold text-dark mb-2" style="font-size: 0.95rem;">R$ ${itemTotal.toFixed(2).replace('.', ',')}</div>
+                    
+                    <div class="d-flex align-items-center bg-light rounded-pill p-1 border shadow-sm" style="max-width: 100px;">
+                        <button class="btn btn-sm border-0 rounded-circle d-flex align-items-center justify-content-center text-secondary" 
+                                style="width: 26px; height: 26px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);" 
+                                onclick="updateCartItemQuantity(${index}, -1)" aria-label="Diminuir">
+                            <i class="fas ${item.quantity === 1 ? 'fa-trash-alt text-danger' : 'fa-minus'}" style="font-size: 0.75rem;"></i>
+                        </button>
+                        
+                        <span class="fw-bold text-dark text-center" style="width: 26px; font-size: 0.9rem;">${item.quantity}</span>
+                        
+                        <button class="btn btn-sm border-0 rounded-circle d-flex align-items-center justify-content-center text-dark" 
+                                style="width: 26px; height: 26px; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1);" 
+                                onclick="updateCartItemQuantity(${index}, 1)" aria-label="Aumentar">
+                            <i class="fas fa-plus" style="font-size: 0.75rem;"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
