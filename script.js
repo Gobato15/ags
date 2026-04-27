@@ -518,7 +518,7 @@ function updateCartUI() {
 
 
 
-window.checkout = function () {
+window.checkout = async function () {
     if (cart.length === 0) {
         alert("Seu carrinho está vazio!");
         return;
@@ -533,44 +533,50 @@ window.checkout = function () {
         return;
     }
 
-
-
-
-
-    let message = `*PEDIDO CONFIRMADO — AGS Delivery*\n`;
-    message += `━━━━━━━━━━━━━━━━━━\n\n`;
-    message += `👤 *CLIENTE*\n`;
-    message += `• Nome: ${name}\n`;
-    message += `• Contato: ${phone}\n\n`;
-
-    if (isEntrega) {
-        const street = document.getElementById('deliveryStreet').value;
-        const number = document.getElementById('deliveryNumber').value;
-        const note = document.getElementById('deliveryNote').value;
-        message += `📍 *ENTREGA*\n`;
-        message += `• Endereço: ${street}, ${number}\n`;
-        message += `• Referência: ${note || 'Nenhuma'}\n\n`;
-    } else {
-        message += `📍 *RETIRADA NO LOCAL*\n\n`;
-    }
-
-    message += `📦 *RESUMO DO PEDIDO*\n`;
-    cart.forEach(item => {
-        message += `• ${item.quantity}x ${item.name}\n`;
-    });
+    const btnFinalizar = document.getElementById('btnFinalizar');
+    const originalText = btnFinalizar.innerHTML;
+    btnFinalizar.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Redirecionando...';
+    btnFinalizar.disabled = true;
 
     const currentFreight = isEntrega ? deliveryFee : 0;
-    const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    const total = subtotal + currentFreight;
 
-    message += `\n💰 *VALOR TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`;
-    message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `💳 *PAGAMENTO (PIX)*\n\n`;
-    message += `• Favorecido: Mauricio Rogerio Gobato\n`;
-    message += `• Banco: Santander\n\n`;
+    try {
+        const response = await fetch('checkout.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                cart: cart,
+                freight: currentFreight,
+                customerName: name,
+                customerPhone: phone,
+                isEntrega: isEntrega,
+                deliveryAddress: isEntrega ? {
+                    street: document.getElementById('deliveryStreet').value,
+                    number: document.getElementById('deliveryNumber').value,
+                    note: document.getElementById('deliveryNote').value
+                } : null
+            })
+        });
 
-    const whatsappUrl = `https://wa.me/5519997035700?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
+        const data = await response.json();
+
+        if (data.success && data.init_point) {
+            // Redireciona o usuário para a página de pagamento seguro do Mercado Pago
+            window.location.href = data.init_point;
+        } else {
+            console.error('Erro na API:', data);
+            alert("Erro ao conectar com Mercado Pago. Tente novamente mais tarde.");
+            btnFinalizar.innerHTML = originalText;
+            btnFinalizar.disabled = false;
+        }
+    } catch (error) {
+        console.error("Erro ao finalizar pedido:", error);
+        alert("Erro de conexão. Verifique sua internet.");
+        btnFinalizar.innerHTML = originalText;
+        btnFinalizar.disabled = false;
+    }
 };
 
 // Sistema de Toast

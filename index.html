@@ -189,31 +189,20 @@
                             <p class="mb-0">💰 <strong>TOTAL: <span id="resumoTotal" class="text-danger">R$ 0,00</span></strong></p>
                         </div>
 
-                        <div class="pix-payment-container p-4 rounded-4 bg-white shadow-sm border border-light text-center">
-                            <span class="badge bg-primary text-white mb-3 px-3 py-2 rounded-pill shadow-sm"
-                                style="font-size: 0.75rem; letter-spacing: 1px;">PAGAMENTO VIA PIX</span>
-
-                            <!-- QR Code Automático -->
-                            <div class="qr-code-wrapper mx-auto mb-4 p-3 bg-white rounded-4 shadow-sm"
-                                style="width: 220px; height: 220px; border: 1px solid #f0f0f0;">
-                                <img src="https://i.ibb.co/XxpQjJSg/qr.png" alt="PIX AGS" class="img-fluid"
-                                    style="width: 100%; height: 100%; object-fit: contain;">
-                            </div>
-
-                            <div class="payment-details mb-0">
-                                <p class="mb-0 fw-bold text-dark" style="font-size: 1.1rem;">Mauricio Rogerio Gobato</p>
-                                <span class="badge bg-light text-dark border fw-normal mt-1">Banco Santander</span>
-                            </div>
+                        <div class="mp-payment-container p-4 rounded-4 bg-white shadow-sm border text-center" style="border-color: #009EE3 !important;">
+                            <img src="https://logospng.org/download/mercado-pago/logo-mercado-pago-icone-1024.png" alt="Mercado Pago" style="width: 50px; margin-bottom: 12px;">
+                            <h6 class="fw-bold text-dark mb-1" style="color: #009EE3 !important;">Pagamento Seguro</h6>
+                            <p class="text-muted small mb-0">Você será redirecionado para o ambiente seguro do Mercado Pago para finalizar com PIX ou Cartão.</p>
                         </div>
 
-                        <input type="hidden" id="paymentMethod" value="pix">
+                        <input type="hidden" id="paymentMethod" value="mercadopago">
                     </div>
                 </div>
                 <div class="modal-footer border-top-0 pt-0 pb-4 px-4 d-flex flex-column flex-sm-row gap-2">
                     <button type="button" class="btn btn-light rounded-pill px-4 py-2 w-100 fw-bold border"
                         data-bs-dismiss="modal">Continuar Comprando</button>
-                    <button id="btnFinalizar" type="button" class="btn btn-success rounded-pill px-4 py-2 w-100 fw-bold m-0 shadow-sm"
-                        onclick="checkout()"><i class="fab fa-whatsapp me-2"></i> Finalizar Pedido no WhatsApp</button>
+                    <button id="btnFinalizar" type="button" class="btn rounded-pill px-4 py-2 w-100 fw-bold m-0 shadow-sm" style="background-color: #009EE3; color: white;"
+                        onclick="checkout()"><i class="fas fa-lock me-2"></i> Ir para Pagamento</button>
                 </div>
             </div>
         </div>
