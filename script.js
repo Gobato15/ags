@@ -591,7 +591,18 @@ window.checkout = async function () {
             window.location.href = data.init_point;
         } else {
             console.error('Erro na API:', data);
-            alert("Erro ao conectar com Mercado Pago. Tente novamente mais tarde.");
+            
+            let errorMessage = "Erro ao conectar com Mercado Pago.";
+            if (data.details && data.details.message) {
+                errorMessage += "\nDetalhe: " + data.details.message;
+            } else if (data.details && data.details.error) {
+                errorMessage += "\nDetalhe: " + data.details.error;
+            } else {
+                errorMessage += "\n\nDetalhes Técnicos: " + JSON.stringify(data.details);
+            }
+            
+            alert(errorMessage);
+            
             btnFinalizar.innerHTML = originalText;
             btnFinalizar.disabled = false;
         }
