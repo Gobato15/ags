@@ -5,7 +5,7 @@ header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
 // ATENÇÃO: Substitua pelo seu Access Token de Produção do Mercado Pago
-$accessToken = 'APP_USR-SEU_ACCESS_TOKEN_AQUI'; 
+$accessToken = 'APP_USR-4540005447639242-042719-fd5dd13aac31912651bca600314b1720-3364931348';
 
 $input = file_get_contents('php://input');
 $data = json_decode($input, true);
@@ -55,18 +55,26 @@ $preferenceData = [
     'auto_return' => 'approved',
     'payment_methods' => [
         'excluded_payment_types' => [
-            ['id' => 'ticket'] // Exclui boletos (demora para compensar), focando em PIX e Cartão
+            ['id' => 'ticket'] // Exclui boletos
         ],
         'installments' => 1
     ],
-    'notification_url' => $baseUrl . '/webhook.php',
     'external_reference' => uniqid('AGS_')
 ];
+
+// O Mercado Pago BLOQUEIA a geração do Pix se a URL de notificação for 'localhost'.
+// Se estiver em localhost, enviamos uma URL genérica só para ele deixar testar a tela.
+if (strpos($baseUrl, 'localhost') === false && strpos($baseUrl, '127.0.0.1') === false) {
+    $preferenceData['notification_url'] = $baseUrl . '/webhook.php';
+} else {
+    $preferenceData['notification_url'] = 'https://www.google.com'; // Dummy URL apenas para não dar erro 400 no teste
+}
 
 $ch = curl_init('https://api.mercadopago.com/checkout/preferences');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($preferenceData));
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // NECESSÁRIO NO XAMPP: ignora erro de certificado local
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Authorization: Bearer ' . $accessToken,
     'Content-Type: application/json'
@@ -74,9 +82,15 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$curlError = curl_error($ch);
 curl_close($ch);
 
 $responseData = json_decode($response, true);
+
+if ($response === false) {
+    echo json_encode(['success' => false, 'error' => 'Erro interno do cURL', 'details' => $curlError]);
+    exit;
+}
 
 if ($httpCode == 201 || $httpCode == 200) {
     // Salva temporariamente os dados do pedido para cruzar com o webhook depois (opcional)
