@@ -20,7 +20,7 @@ foreach ($data['cart'] as $item) {
     $items[] = [
         'title' => $item['name'],
         'quantity' => (int) $item['quantity'],
-        'unit_price' => (float) $item['price'],
+        'unit_price' => round((float) $item['price'], 2),
         'currency_id' => 'BRL'
     ];
 }
@@ -47,12 +47,6 @@ $preferenceData = [
         'name' => $data['customerName'] ?? 'Cliente',
         'email' => 'cliente@agsdelivery.com.br'
     ],
-    'back_urls' => [
-        'success' => $isLocalhost ? 'https://www.google.com' : $baseUrl . '/sucesso.html',
-        'failure' => $isLocalhost ? 'https://www.google.com' : $baseUrl . '/index.html?status=failure',
-        'pending' => $isLocalhost ? 'https://www.google.com' : $baseUrl . '/index.html?status=pending'
-    ],
-    'auto_return' => 'approved',
     'payment_methods' => [
         'default_payment_method_id' => 'pix',
         'excluded_payment_types' => [
@@ -60,9 +54,19 @@ $preferenceData = [
         ],
         'installments' => 1
     ],
-    'external_reference' => uniqid('AGS_'),
-    'notification_url' => $isLocalhost ? 'https://www.google.com' : $baseUrl . '/webhook.php'
+    'external_reference' => uniqid('AGS_')
 ];
+
+// Só adiciona URLs e Notificação se NÃO for localhost
+if (!$isLocalhost) {
+    $preferenceData['back_urls'] = [
+        'success' => $baseUrl . '/sucesso.html',
+        'failure' => $baseUrl . '/index.html?status=failure',
+        'pending' => $baseUrl . '/index.html?status=pending'
+    ];
+    $preferenceData['auto_return'] = 'approved';
+    $preferenceData['notification_url'] = $baseUrl . '/webhook.php';
+}
 
 $ch = curl_init('https://api.mercadopago.com/checkout/preferences');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
