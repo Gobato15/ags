@@ -48,10 +48,6 @@ $preferenceData = [
         'email' => 'cliente@agsdelivery.com.br'
     ],
     'payment_methods' => [
-        'default_payment_method_id' => 'pix',
-        'excluded_payment_types' => [
-            ['id' => 'ticket']
-        ],
         'installments' => 1
     ],
     'external_reference' => uniqid('AGS_')
