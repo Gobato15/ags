@@ -586,33 +586,9 @@ window.checkout = async function () {
 
         const data = await response.json();
 
-        if (data.success && data.qr_code_base64) {
-            // EXIBE O QR CODE NA TELA
-            const paymentArea = document.querySelector('.mp-payment-container');
-            paymentArea.innerHTML = `
-                <div class="text-center animate__animated animate__fadeIn">
-                    <h6 class="fw-bold text-success mb-3"><i class="fas fa-check-circle me-1"></i> Pix Gerado com Sucesso!</h6>
-                    
-                    <div class="bg-white p-2 d-inline-block rounded-3 shadow-sm mb-3 border">
-                        <img src="data:image/jpeg;base64,${data.qr_code_base64}" style="width: 200px; height: 200px; display: block;">
-                    </div>
-                    
-                    <div class="px-3 mb-3">
-                        <label class="form-label small fw-bold text-muted text-uppercase">Pix Copia e Cola</label>
-                        <div class="input-group mb-2">
-                            <input type="text" id="pixCode" class="form-control form-control-sm bg-light border-0" value="${data.qr_code}" readonly>
-                            <button class="btn btn-primary btn-sm" onclick="copyPixCode()">Copiar</button>
-                        </div>
-                    </div>
-                    
-                    <p class="text-muted small mb-0"><i class="fas fa-info-circle me-1"></i> Após pagar, o pedido será liberado automaticamente.</p>
-                </div>
-            `;
-            
-            // Esconde o botão de finalizar já que o pix foi gerado
-            btnFinalizar.style.display = 'none';
-            
-            showToast("Pix gerado! Agora é só pagar. ⚡");
+        if (data.success && data.init_point) {
+            // Redireciona o usuário para a página de pagamento seguro do Mercado Pago
+            window.location.href = data.init_point;
         } else {
             console.error('Erro na API:', data);
             

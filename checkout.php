@@ -10,17 +10,27 @@ $input = file_get_contents('php://input');
 $data = json_decode($input, true);
 
 if (!$data) {
-    echo json_encode(['success' => false, 'error' => 'Dados inválidos']);
+    echo json_encode(['error' => 'Dados inválidos']);
     exit;
 }
 
-// Calcula o total
-$total = 0;
+$items = [];
 foreach ($data['cart'] as $item) {
-    $total += (float)$item['price'] * (int)$item['quantity'];
+    $items[] = [
+        'title' => $item['name'],
+        'quantity' => (int) $item['quantity'],
+        'unit_price' => round((float) $item['price'], 2),
+        'currency_id' => 'BRL'
+    ];
 }
-if (isset($data['freight'])) {
-    $total += (float)$data['freight'];
+
+if (isset($data['freight']) && $data['freight'] > 0) {
+    $items[] = [
+        'title' => 'Taxa de Entrega',
+        'quantity' => 1,
+        'unit_price' => round((float) $data['freight'], 2),
+        'currency_id' => 'BRL'
+    ];
 }
 
 $siteUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
@@ -28,29 +38,40 @@ $baseDir = dirname($_SERVER['REQUEST_URI']);
 $baseUrl = rtrim($siteUrl . $baseDir, '/');
 $isLocalhost = (strpos($baseUrl, 'localhost') !== false || strpos($baseUrl, '127.0.0.1') !== false);
 
-// Dados para criação do Pagamento via Pix Direto (Checkout Transparente)
-$paymentData = [
-    'transaction_amount' => round($total, 2),
-    'description' => 'Pedido AGS Delivery',
-    'payment_method_id' => 'pix',
+$preferenceData = [
+    'items' => $items,
     'payer' => [
-        'email' => 'cliente@agsdelivery.com.br',
-        'first_name' => $data['customerName'] ?? 'Cliente',
-        'last_name' => 'AGS'
+        'name' => $data['customerName'] ?? 'Cliente',
+        'email' => 'cliente@agsdelivery.com.br'
     ],
-    'external_reference' => uniqid('AGS_'),
-    'notification_url' => $isLocalhost ? 'https://www.google.com' : $baseUrl . '/webhook.php'
+    'payment_methods' => [
+        'excluded_payment_types' => [
+            ['id' => 'ticket']
+        ],
+        'installments' => 1
+    ],
+    'external_reference' => uniqid('AGS_')
 ];
 
-$ch = curl_init('https://api.mercadopago.com/v1/payments');
+// O Mercado Pago exige URLs reais. No localhost, não enviamos para evitar erro.
+if (!$isLocalhost) {
+    $preferenceData['back_urls'] = [
+        'success' => $baseUrl . '/sucesso.html',
+        'failure' => $baseUrl . '/index.html?status=failure',
+        'pending' => $baseUrl . '/index.html?status=pending'
+    ];
+    $preferenceData['auto_return'] = 'approved';
+    $preferenceData['notification_url'] = $baseUrl . '/webhook.php';
+}
+
+$ch = curl_init('https://api.mercadopago.com/checkout/preferences');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($paymentData));
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($preferenceData));
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Authorization: Bearer ' . $accessToken,
-    'Content-Type: application/json',
-    'X-Idempotency-Key: ' . uniqid()
+    'Content-Type: application/json'
 ]);
 
 $response = curl_exec($ch);
@@ -60,18 +81,8 @@ curl_close($ch);
 $responseData = json_decode($response, true);
 
 if ($httpCode == 201 || $httpCode == 200) {
-    // Retornamos os dados do Pix para o JavaScript
-    echo json_encode([
-        'success' => true,
-        'qr_code' => $responseData['point_of_interaction']['transaction_data']['qr_code'],
-        'qr_code_base64' => $responseData['point_of_interaction']['transaction_data']['qr_code_base64'],
-        'payment_id' => $responseData['id']
-    ]);
+    echo json_encode(['success' => true, 'init_point' => $responseData['init_point']]);
 } else {
-    echo json_encode([
-        'success' => false, 
-        'error' => 'Erro ao criar Pix', 
-        'details' => $responseData
-    ]);
+    echo json_encode(['success' => false, 'error' => 'Erro ao comunicar com Mercado Pago', 'details' => $responseData]);
 }
 ?>
