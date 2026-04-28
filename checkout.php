@@ -43,9 +43,7 @@ $preferenceData = [
     'items' => $items,
     'payer' => [
         'name' => $data['customerName'] ?? 'Cliente',
-        'phone' => [
-            'number' => $data['customerPhone'] ?? ''
-        ]
+        'email' => 'cliente@agsdelivery.com.br' // Email é frequentemente obrigatório na API do MP
     ],
     'back_urls' => [
         'success' => $baseUrl . '/sucesso.html',
