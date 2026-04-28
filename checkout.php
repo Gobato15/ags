@@ -39,34 +39,29 @@ $siteUrl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "
 $baseDir = dirname($_SERVER['REQUEST_URI']);
 $baseUrl = rtrim($siteUrl . $baseDir, '/');
 
+$isLocalhost = (strpos($baseUrl, 'localhost') !== false || strpos($baseUrl, '127.0.0.1') !== false);
+
 $preferenceData = [
     'items' => $items,
     'payer' => [
         'name' => $data['customerName'] ?? 'Cliente',
-        'email' => 'cliente@agsdelivery.com.br' // Email é frequentemente obrigatório na API do MP
+        'email' => 'cliente@agsdelivery.com.br'
     ],
     'back_urls' => [
-        'success' => $baseUrl . '/sucesso.html',
-        'failure' => $baseUrl . '/index.html?status=failure',
-        'pending' => $baseUrl . '/index.html?status=pending'
+        'success' => $isLocalhost ? 'https://www.google.com' : $baseUrl . '/sucesso.html',
+        'failure' => $isLocalhost ? 'https://www.google.com' : $baseUrl . '/index.html?status=failure',
+        'pending' => $isLocalhost ? 'https://www.google.com' : $baseUrl . '/index.html?status=pending'
     ],
     'auto_return' => 'approved',
     'payment_methods' => [
         'excluded_payment_types' => [
-            ['id' => 'ticket'] // Exclui boletos
+            ['id' => 'ticket']
         ],
         'installments' => 1
     ],
-    'external_reference' => uniqid('AGS_')
+    'external_reference' => uniqid('AGS_'),
+    'notification_url' => $isLocalhost ? 'https://www.google.com' : $baseUrl . '/webhook.php'
 ];
-
-// O Mercado Pago BLOQUEIA a geração do Pix se a URL de notificação for 'localhost'.
-// Se estiver em localhost, enviamos uma URL genérica só para ele deixar testar a tela.
-if (strpos($baseUrl, 'localhost') === false && strpos($baseUrl, '127.0.0.1') === false) {
-    $preferenceData['notification_url'] = $baseUrl . '/webhook.php';
-} else {
-    $preferenceData['notification_url'] = 'https://www.google.com'; // Dummy URL apenas para não dar erro 400 no teste
-}
 
 $ch = curl_init('https://api.mercadopago.com/checkout/preferences');
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
